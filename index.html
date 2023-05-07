@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/lightbox.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- 1. Header -->
+    <header id="my-header" class="d-flex">
+        <div class="nav-branch">
+            <a href="#"><img src="./images/log123.avif" alt="logo" class="branch-logo"></a>
+
+        </div>
+
+        <div class="menu-bar ">
+            <ul class="d-flex">
+                <li>
+                    <a id="home-tab" class="active" href="./index.html">HOME</a>
+                </li>
+                <li>
+                    <a id="gallery-tab" href="#gallery">GALLERY</a>
+                </li>
+                <li>
+                    <a id="shop-tab" href="./shop.html">SHOP</a>
+                </li>
+                <li>
+                    <a id="team-tab" href="#team">ABOUT US</a>
+                </li>
+                <li>
+                    <a id="contact-tab" href="#contact">CONTACT</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="login">
+            <button class="my-button login-btn" id="login-btn" >Login</button>
+            <div class="form-popup animate__animated animate__fadeIn" id="my-form" style="display: none;">
+                <form method="post" class="form-container" id="login-form">
+                  <h2 class="pb-10">Login</h2>
+              
+                  <label for="email"><b>Email</b></label>
+                  <input type="text" placeholder="Enter Email" name="email" required id="username">
+              
+                  <label for="psw"><b>Password</b></label>
+                  <input type="password" placeholder="Enter Password" name="psw" required id="password">
+              
+                  <button type="submit" class="btn" id="login-submit">Login</button>
+                  <button type="button" class="btn cancel" id="close-btn">Close</button>
+                </form>
+              </div>
+        </div>
+
+    </header>
+    <!-- 2. Banner  -->
+    <section class="banner" id="banner">
+        <div class="banner-top">
+            <img src="./images/image-1.jpg" alt="banner" class="banner-img">
+            <div class="banner-cont">
+                <h3>LOREM IPSIM DORLOE SIT AMET CONSECTURE</h3>
+                <p>Your favourite coffee</p>
+            </div>
+        </div>
+        <div class="banner-bot d-flex">
+            <div>
+                <h3>PHONE</h3>
+                <p class="pt-20 cl-white">(323) 467-1175</p>
+            </div>
+            <div>
+                <h3>ADDRESS</h3>
+                <p class="pt-20 cl-white">123, NEW LENOXCHICAGO,IL 60606</p>
+            </div>
+            <div>
+                <h3>EMAIL</h3>
+                <p class="pt-20 cl-white">EXAMPLE@GMAIL.COM</p>
+
+            </div>
+            <div>
+                <h3>HOURS</h3>
+                <p class="pt-20 cl-white">MO-SU 8AM-10PM</p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- 3. Gallery  -->
+    <section class="gallery" id="gallery">
+        <h2>OUR GALLERY</h2>
+        <div class="gal-cont">
+            <!-- item 1 -->
+            <div class="gal-item">
+                <a href="./images/caffe-doppio.webp" data-lightbox="gallery">
+                    <img src="./images/caffe-doppio.webp" alt="caffe-doppio">
+                </a>
+                <div class="gal-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR GALLERY</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi doloremque labore molestiae
+                        exercitationem fuga harum corporis delectus fugit culpa molestias, nisi at animi totam veritatis
+                        cupiditate repellat beatae eum deleniti.</p>
+                    <br>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit porro aut maxime
+                        dignissimos quia?</p>
+                </div>
+            </div>
+            <!-- item 2 -->
+            <div class="gal-item">
+                <a href="./images/ca-phe-sua-da-2.jpg" data-lightbox="gallery">
+                    <img src="./images/ca-phe-sua-da-2.jpg" alt="ca-phe-sua-da">
+                </a>
+                <div class="gal-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR GALLERY</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi numquam autem dolorem impedit
+                        soluta? Eum provident repellat eius laudantium nisi consequuntur? Nostrum nesciunt quod
+                        reiciendis.</p>
+                </div>
+            </div>
+            <!-- item 3 -->
+            <div class="gal-item">
+                <a href="./images/cotardo2.jpg" data-lightbox="gallery">
+                    <img src="./images/cotardo2.jpg" alt="cotardo2">
+                </a>
+                <div class="gal-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR GALLERY</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime voluptates quidem debitis.</p>
+                </div>
+            </div>
+            <!-- item 4 -->
+            <div class="gal-item">
+                <a href="./images/machiato2.jpg" data-lightbox="gallery">
+                    <img src="./images/machiato2.jpg" alt="caffe-doppio">
+                </a>
+                <div class="gal-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR GALLERY</h3>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate facere quia iure expedita
+                        ad. Officiis facere ab iure id asperiores? Sunt, delectus.</p>
+                </div>
+            </div>
+            <!-- item 5 -->
+            <div class="gal-item">
+                <a href="./images/Raf-2.jpg" data-lightbox="gallery">
+                    <img src="./images/Raf-2.jpg" alt="Raf-2">
+                </a>
+                <div class="gal-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR GALLERY</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et, possimus iusto! Voluptatem facilis
+                        officiis sint fugit excepturi nostrum!</p>
+                </div>
+            </div>
+            <!-- item 6 -->
+            <div class="gal-item">
+                <a href="./images/latte.webp" data-lightbox="gallery">
+                    <img src="./images/latte.webp" alt="latte">
+                </a>
+                <div class="gal-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR GALLERY</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quo rerum voluptate ex vero odio quos
+                        consequatur libero voluptatum. Sit, eius aspernatur!</p>
+                    <br>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla reiciendis ut eaque iste id a
+                        quam assumenda recusandae odio?</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 4. Shop  -->
+    <section class="shop" id="shop">
+        <div class="shop-top">
+            <img src="./images/image-2.jpg" alt="shop" class="shop-img">
+            <div class="shop-cont">
+                <h3>LOREM IPSIM DORLOE SIT AMET CONSECTURE</h3>
+                <p>Your favourite coffee</p>
+            </div>
+        </div>
+        <div class="shop-bot d-flex">
+            <div>
+                <h2 class="pt-20">Your Comfort is Our Priority</h2>
+            </div>
+            <div>
+                <button class="shop-button"><a href="./shop.html">Visit shop</a></button>
+            </div>
+
+        </div>
+
+
+    </section>
+    <!-- 5. Team  -->
+    <section class="team" id="team">
+        <h2>OUR TEAM</h2>
+        <div class="team-cont">
+            <!-- mem1 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team1.jpg" alt="team1" class="team-img">
+                    <div class="team-info">
+                        <h3>John Simon</h3>
+                        <p>-Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>John Simon</h3>
+                        <p>-Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem2 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team4.jpg" alt="team4" class="team-img">
+                    <div class="team-info">
+                        <h3>Jim Samule</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Jim Samule</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem3 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team3.jpg" alt="team3" class="team-img">
+                    <div class="team-info">
+                        <h3>Robert Adam</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Robert Adam</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo consectetur adipisicing elit. Facilis.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem4 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team2.jpg" alt="team2" class="team-img">
+                    <div class="team-info">
+                        <h3>Rebeca Gomi</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Rebeca Gomi</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem5 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team5.webp" alt="team5" class="team-img">
+                    <div class="team-info">
+                        <h3>Tahi Chin</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Tahi Chin</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem6 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team6.jpg" alt="team5" class="team-img">
+                    <div class="team-info">
+                        <h3>Grandi</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Grandi</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, laudantium?
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 6. contact  -->
+    <section id="contact" id="contact">
+        <h2>CONTACT</h2>
+        <form class="form" action="#contact">
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Last name">
+            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Phone">
+            <textarea cols="30" rows="10" placeholder="Message"></textarea>
+            <button type="submit" class="my-button">Send</button>
+        </form>
+    </section>
+    <!-- 7. Footer  -->
+    <footer class="d-flex footer">
+        <div class="footer-item">
+            <h3>ABOUT US</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta unde aspernatur totam delectus,
+                rerum, ad tempora non architecto. Earum dicta commodi illo rerum!</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusamus ab facere.</p>
+            <div class="team-socials">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+        </div>
+        <div class="footer-item">
+            <h3>WORKING TIME</h3>
+            <div class="footer-time">
+                <p>Monday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Tuesday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Wednesday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Thusday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Friday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Saturday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Sunday</p>
+                <p>8AM - 10PM</p>
+            </div>
+        </div>
+        <div class="footer-item">
+            <h3>TWITTER US</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta unde aspernatur totam delectus,
+                rerum, ad tempora non architecto.</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusamus ab facere.</p>
+            <br>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+
+        <div class="footer-item">
+            <h3>SUBSCIBE US</h3>
+            <input type="text" placeholder="name@example.com">
+            <button class="my-button">Send</button>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit amet consectetur adipisicing</p>
+        </div>
+    </footer>
+
+    <script src="./js/lightbox-plus-jquery.js"></script>
+    <script src="./js/js.js"></script>
+</body>
+
+</html>

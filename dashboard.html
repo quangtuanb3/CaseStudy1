@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/dashboard.css">
+</head>
+<body>
+    <div class="my-dashboard d-flex">
+        <div class="side-bar">
+            <div class="side-bar-header">
+                <h2>DASHBOARD</h2>
+            </div>
+            <ul class="menu-bar">
+                <li>
+                    <a href="#"><i class="fa fa-home"></i>HOME</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-receipt"></i>ORDER</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user-friends"></i>USER</a>
+                </li>
+                <li>
+                    <a href="#" > <i class="fa fa-phone"></i>CONTACT</a>
+                </li>
+            </ul>
+        </div>
+        <div class="dashboard-content">
+            <div class="main-content">
+                <div class="content-header">
+                    <h2>COFFEE SHOP</h2>
+                    <button class="my-button">Add New</button>
+                    <div class="clear"></div>
+                </div>
+                <div class="pt-20">
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Title</th>
+                                <th>Rate</th>
+                                <th>Order</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th><i class="fa fa-cog"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="my-table">
+                            <tr>
+                                <td>111</td>
+                                <td>Coffee</td>
+                                <td>Lorem, ipsum dolor ipsum.</td>
+                                <td>5</td>
+                                <td>1234</td>
+                                <td>11.22</td>
+                                <td class="description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facilis nostrum commodi exercitationem minus accusantium sequi alias adipisci! Illum voluptatum odio libero eos.</td>
+                                <td>
+                                    <button class="edit-btn"><i class="fa fa-edit"></i></button>
+                                    <button class="delete-btn"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                
+            </div>
+            
+        </div>
+    </div>
+
+
+<script src="./js/dashboard.js"></script>
+</body>
+</html>

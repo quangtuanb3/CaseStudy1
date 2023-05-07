@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+.d-flex {
+    display: flex;
+}
+.pt-20 {
+    padding-top: 20px;
+}
+.pb-10 {
+    padding-bottom: 10px;
+}
+.cl-white {
+    color: #ffffff;
+}
+.clear {
+    clear: both;
+}
+
+.my-button {
+    display: block;
+    background-color: #fac760;
+    padding: 5px 10px;
+    border: 1px solid #fac760;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+.my-button:hover {
+    background-color: rgb(65, 65, 131);
+    color: white;
+}
+
+#contact .form .my-button {
+    padding: 15px;
+    font-size: 15px;
+}
+.side-bar {
+    width: 250px;
+    background-color: rgb(68, 68, 135);
+
+    color: white;
+}
+.side-bar-header {
+    padding: 30px;
+    background-color: rgb(48, 48, 96);
+}
+.menu-bar {
+    border-bottom: 1px dotted gray;
+}
+.menu-bar li {
+    padding: 20px 20px;
+}
+
+.menu-bar a {
+    text-decoration: none;
+    color: white;
+}
+.menu-bar a i {
+    padding: 0 10px;
+}
+
+/* content  */
+.dashboard-content {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(to right, #acb6e5, #74ebd5);
+}
+.main-content {
+    margin: 40px;
+    background-color: #ffffff;
+    height: 85%;
+    border-radius: 10px;
+}
+.content-header h2 {
+    padding: 40px 40px 20px;
+    color: rgb(48, 48, 96);
+}
+.content-header {
+    border-bottom: 1px dotted gray;
+}
+.content-header button {
+    float: right;
+    margin-right: 50px;
+    padding: 15px 20px;
+}
+.content-table {
+    width: 90%;
+    margin: auto;
+    border-radius: 7px;
+}
+.content-table th {
+    padding: 10px 20px;
+}
+.content-table th:last-child{
+    width: 38px;
+}
+
+table,
+th,
+td {
+    border: 1px solid rgb(178, 178, 178);
+    border-collapse: collapse;
+    text-align: center;
+    padding: 0 5px;
+}
+
+.edit-btn {
+    margin: 0 3px;
+    color: #fac760;
+    border-radius: 3px;
+    border: 1px solid #fac760;
+    transition: all .5s;
+}
+.edit-btn i {
+    padding: 5px;
+}
+.edit-btn:hover i {
+    color: #af60fa;
+    border: 1px solid #af60fa;
+}
+
+.delete-btn {
+    margin: 0 3px;
+    color: #c21111;
+    border-radius: 3px;
+    border: 1px solid #c21111;
+    transition: all .5s;
+}
+.delete-btn i {
+    padding: 5px;
+}
+.delete-btn:hover i {
+    color: #271568;
+    border: 1px solid #271568;
+}

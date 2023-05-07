@@ -1,0 +1,438 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+.d-flex {
+    display: flex;
+}
+.pt-20 {
+    padding-top: 20px;
+}
+.pb-10 {
+    padding-bottom: 10px;
+}
+.cl-white {
+    color: #ffffff;
+}
+
+/* header  */
+
+#my-header {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    justify-content: space-between;
+    background-color: #393838;
+}
+.branch-logo {
+    height: 70px;
+    width: 70px;
+    border-radius: 50%;
+    padding: 10px 0 0 20px;
+}
+.menu-bar ul {
+    list-style: none;
+    padding: 30px 20px 20px 200px;
+}
+.menu-bar ul li {
+    padding: 0 20px;
+}
+.menu-bar ul li a {
+    text-decoration: none;
+    color: #60de55;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.5s;
+}
+.menu-bar ul li a.active {
+    color: #fac760;
+}
+
+.cart-icon {
+    padding: 1px 10px;
+}
+
+.cart {
+    padding: 30px;
+    font-size: 20px;
+    color: #fac760;
+}
+.currency {
+    padding: 0 10px;
+}
+.login {
+    padding: 15px 40px 15px 15px;
+}
+.login-btn {
+    padding: 10px 15px !important;
+}
+
+/* form popup */
+.form-popup {
+    position: relative;
+    /* display: none; */
+    position: fixed;
+    top: 86px;
+    right: 0;
+    border: 2px solid white;
+    z-index: 9;
+    border-radius: 7px;
+    background-color: white;
+    transition: all .5s;
+}
+.form-popup::before {
+    content: "";
+    width: 50px;
+    height: 50px;
+    transform: rotate(45deg);
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    right: 50px;
+    top: -10px;
+}
+.form-popup h2 {
+    text-align: center;
+    padding: 15px;
+}
+/* Add styles to the form container */
+.form-container {
+    max-width: 300px;
+    padding: 10px;
+    background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type="text"],
+.form-container input[type="password"] {
+    width: 90%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+    background-color: #04aa6d;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    border-radius: 5px;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+    background-color: red;
+    border-radius: 5px;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover,
+.open-button:hover {
+    opacity: 1;
+}
+
+/* banner  */
+
+.banner-img {
+    width: 100%;
+}
+.banner-top {
+    position: relative;
+}
+.banner-cont {
+    position: absolute;
+    left: 25%;
+    top: 65%;
+    background-color: rgba(151, 121, 104, 0.605);
+    padding: 10px;
+}
+.banner-cont h3 {
+    color: rgb(243, 243, 243);
+    font-size: 25px;
+    text-align: center;
+}
+.banner-cont p {
+    color: #fac760;
+    font-size: 20px;
+    text-align: center;
+}
+.banner-bot {
+    padding: 20px;
+    justify-content: space-around;
+    text-align: center;
+    background-color: #fac760;
+    margin-top: -10px;
+}
+
+/* gallery */
+.gallery h2 {
+    text-align: center;
+    padding: 30px;
+    background-color: rgb(48, 48, 96);
+    color: white;
+}
+.gal-cont {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    padding: 0 15px;
+    background-color: rgb(65, 65, 131);
+}
+.gal-item {
+    position: relative;
+}
+.gal-item img {
+    width: 100%;
+    height: 350px;
+}
+.gal-overlay h3 {
+    padding-bottom: 20px;
+}
+.gal-overlay {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    text-align: right;
+    color: white;
+    background-color: rgba(232, 110, 167, 0.712);
+    padding: 20px;
+    overflow: hidden;
+    transition: all 0.5s;
+}
+.gal-cont .gal-item:nth-child(1) {
+    grid-column: 1 / 3;
+}
+.gal-cont .gal-item:nth-child(6) {
+    grid-column: 3 / span 2;
+}
+
+.gal-item:hover .gal-overlay {
+    display: block;
+}
+
+/* shop  */
+.shop-img {
+    width: 100%;
+}
+.shop-top {
+    position: relative;
+}
+.shop-cont {
+    position: absolute;
+    left: 25%;
+    top: 40%;
+    /* background-color: rgba(151, 121, 104, 0.605); */
+    padding: 10px;
+}
+.shop-cont h3 {
+    color: rgb(243, 243, 243);
+    font-size: 30px;
+    text-align: center;
+}
+.shop-cont p {
+    color: #ffffff;
+    font-size: 25px;
+    text-align: center;
+}
+.shop-bot {
+    padding: 20px;
+    justify-content: space-around;
+    text-align: center;
+    background-color: #fac760;
+    margin-top: -10px;
+}
+.shop-bot h2 {
+    color: rgb(44, 44, 44);
+}
+.shop-button {
+    border: 1px solid rgb(44, 44, 44);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(44, 44, 44);
+    border-radius: 5px;
+    border: none;
+    box-shadow: -1px 3px 5px 3px #888888;
+    transition: all 1s;
+}
+.shop-button :hover {
+    background-color: rgba(232, 110, 167, 1);
+    border-color: rgba(232, 110, 167, 1);
+    border-radius: 5px;
+}
+.shop-button a {
+    text-decoration: none;
+    padding: 20px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+/* team  */
+.team {
+    background-color: rgb(65, 65, 131);
+}
+.team h2 {
+    text-align: center;
+    padding: 40px;
+    color: white;
+}
+.team-cont {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 15px;
+    width: 85%;
+    margin: 0 auto;
+}
+
+.team-img {
+    width: 100%;
+}
+.team-item {
+    position: relative;
+}
+.team-info {
+    width: 77%;
+    color: white;
+    margin-right: 18px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 40px;
+    background-color: rgb(181, 48, 177);
+    opacity: 1;
+}
+
+.team-info h3 {
+    padding-bottom: 10px;
+}
+
+.team-overload {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 77%;
+    height: 77%;
+    background-color: rgba(0, 0, 0, 0.603);
+    color: white;
+    padding: 50px 40px;
+    opacity: 0;
+    transition: all 0.7s;
+}
+.team-overload h3 {
+    color: #fac760;
+    padding: 10px;
+}
+.team-overload p {
+    padding: 10px;
+    line-height: 30px;
+}
+.team-overload .team-socials {
+    text-align: center;
+    word-spacing: 25px;
+    cursor: pointer;
+}
+.team-socials i {
+    padding: 5px;
+}
+.team-socials i:hover {
+    color: #fac760;
+
+    border: 1px solid #fac760;
+}
+.team-item:hover .team-info {
+    opacity: 0;
+}
+.team-item:hover .team-overload {
+    opacity: 1;
+}
+/* contact  */
+#contact {
+    padding: 50px;
+    background-color: white;
+    color: #393838;
+}
+#contact h2 {
+    text-align: center;
+    padding-bottom: 30px;
+    color: #393838;
+}
+.form {
+    width: 70%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px 30px;
+    color: #393838;
+}
+input {
+    padding: 10px;
+    border: 1px solid #393838;
+    border-radius: 3px;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 1px 1px 4px 2px #fac760;
+    transition: all 0.5s;
+}
+.form textarea:focus {
+    outline: none;
+    box-shadow: 1px 1px 4px 2px #fac760;
+    transition: all 0.5s;
+}
+.form textarea {
+    padding: 20px;
+    grid-column: 1 / span 2;
+}
+
+.form button {
+    grid-column: 1 / span 2;
+}
+/* footer  */
+.footer {
+    background-color: #393838;
+    color: white;
+    line-height: 30px;
+}
+.footer-item {
+    width: 25%;
+    padding: 40px;
+}
+.footer-item h3 {
+    color: #fac760;
+    text-align: center;
+}
+.footer-time {
+    display: flex;
+    padding: 10px 0;
+    justify-content: space-between;
+    border-bottom: 1px dotted white;
+}
+.my-button {
+    display: block;
+    background-color: #fac760;
+    padding: 5px 10px;
+    border: 1px solid #fac760;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+.my-button:hover {
+    background-color: rgb(65, 65, 131);
+    color: white;
+}
+
+#contact .form .my-button {
+    padding: 15px;
+    font-size: 15px;
+}

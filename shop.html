@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="./css/lightbox.css">
+    <link rel="stylesheet" href="./css/style-shop.css">
+</head>
+
+<body>
+    <!-- 1. Header -->
+    <header id="my-header" class="d-flex">
+        <div class="nav-branch">
+            <a href="./index.html"><img src="./images/log123.avif" alt="logo" class="branch-logo"></a>
+
+        </div>
+
+        <div class="menu-bar">
+            <ul class="d-flex">
+                <li>
+                    <a href="./index.html">HOME</a>
+                </li>
+                <li>
+                    <a href="./index.html#gallery">GALLERY</a>
+                </li>
+                <li>
+                    <a class="active" href="#product">SHOP</a>
+                </li>
+                <li>
+                    <a href="#team">ABOUT US</a>
+                </li>
+                <li>
+                    <a href="#contact">CONTACT</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="cart d-flex">
+            <div id="cart-number">
+                <p>0</p>
+            </div>
+            <div class="cart-icon"><i class="fa fa-shopping-cart"></i></div>
+            <div class="d-flex">
+                <p id="cart-money">00</p>
+                <p class="currency"><i class="fa fa-dollar-sign"></i></p>
+            </div>
+        </div>
+
+    </header>
+    <!-- 2. Banner  -->
+    <section class="banner">
+        <div class="banner-top">
+            <img src="./images/bannershop.jpg" alt="banner-shop" class="banner-img">
+            <img class="banner-cont" src="./images/saleUp.avif">
+
+        </div>
+        <div class="banner-bot d-flex">
+            <div>
+                <h3>PHONE</h3>
+                <p class="pt-20 cl-white">(323) 467-1175</p>
+            </div>
+            <div>
+                <h3>ADDRESS</h3>
+                <p class="pt-20 cl-white">123, NEW LENOXCHICAGO,IL 60606</p>
+            </div>
+            <div>
+                <h3>EMAIL</h3>
+                <p class="pt-20 cl-white">EXAMPLE@GMAIL.COM</p>
+
+            </div>
+            <div>
+                <h3>HOURS</h3>
+                <p class="pt-20 cl-white">MO-SU 8AM-10PM</p>
+            </div>
+        </div>
+
+
+    </section>
+
+    <!-- 3. Product  -->
+    <section class="product" id="product">
+        <h2>OUR PRODUCT</h2>
+        <div class="pro-cont">
+            <!-- item 1 -->
+            <div class="pro-banner">
+                <img src="./images/oganic-coffe.webp" alt="oganic">
+                <div class="pro-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR PRODUCT</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi doloremque labore molestiae
+                        exercitationem fuga harum corporis delectus fugit culpa molestias, nisi at animi totam veritatis
+                        cupiditate repellat beatae eum deleniti.</p>
+                    <br>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit porro aut maxime
+                        dignissimos quia?</p>
+                </div>
+            </div>
+            <!-- item 2  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/sale1.png" alt="sale2">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">12.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 3  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/sale2.webp" alt="sale2">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">11.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 4  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/sale3.png" alt="sale3">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">10.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 5  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/sale4.jpg" alt="sale4">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">14.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 6  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/sale7.jpg" alt="sale7">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">19.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 7  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/sale5.webp" alt="sale5">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">11.66</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- coffee  -->
+
+            <!-- item 1 -->
+            <div class="pro-banner">
+                <img src="./images/image-2.jpg" alt="banner-2">
+                <div class="pro-overlay animate__animated animate__fadeInUp">
+                    <h3>OUR PRODUCT</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi doloremque labore molestiae
+                        exercitationem fuga harum corporis delectus fugit culpa molestias, nisi at animi totam veritatis
+                        cupiditate repellat beatae eum deleniti.</p>
+                    <br>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati fugit porro aut maxime
+                        dignissimos quia?</p>
+                </div>
+            </div>
+            <!-- item 2  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/ca-phe-sua-da-2.jpg" alt="cf-sua-da">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">1.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 3  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/cotardo2.jpg" alt="cotardo-2">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">2.49</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 4  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/Raf-2.jpg" alt="raf">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">2.99</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 5  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/coffee-banner.webp" alt="cf">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">1.49</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 6  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/red-eyes.webp" alt="red-eyes">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">2.59</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+            <!-- item 7  -->
+            <div class="pro-item">
+                <div class="pro-img">
+                    <img src="./images/machiato2.jpg" alt="machiato2">
+                    <div class="pro-item-overlay animate__animated animate__fadeIn">
+                        <h3>COFFEE LOREM</h3>
+                        <p>Lorem ipsum dolor sit alabore molestiae exercitationem </p>
+                        <br>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisiciporro aut maxime
+                            dignissimos quia?</p>
+                    </div>
+                </div>
+
+                <div class="pro-body">
+                    <div class="pro-title">
+                        <p>Coffee Lorem</p>
+                    </div>
+                    <div class="pro-text pt-10">
+                        <p>Lorem ipsum dolor sit amet.</p>
+                    </div>
+                    <div class="pro-start pt-10">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <span>(1.236)</span>
+                    </div>
+                    <div class="pro-price pt-10">
+                        <span>$</span>
+                        <span id="pro-price">1.76</span>
+                    </div>
+                    <button class="my-button">Buy now</button>
+                </div>
+
+            </div>
+
+
+
+
+
+        </div>
+    </section>
+    <!-- 4. Shop  -->
+
+    <!-- 5. Team  -->
+    <section class="team" id="team">
+        <h2>OUR TEAM</h2>
+        <div class="team-cont">
+            <!-- mem1 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team1.jpg" alt="team1" class="team-img">
+                    <div class="team-info">
+                        <h3>John Simon</h3>
+                        <p>-Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>John Simon</h3>
+                        <p>-Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem2 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team4.jpg" alt="team4" class="team-img">
+                    <div class="team-info">
+                        <h3>Jim Samule</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Jim Samule</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem3 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team3.jpg" alt="team3" class="team-img">
+                    <div class="team-info">
+                        <h3>Robert Adam</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Robert Adam</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo consectetur adipisicing elit. Facilis.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem4 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team2.jpg" alt="team2" class="team-img">
+                    <div class="team-info">
+                        <h3>Rebeca Gomi</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Rebeca Gomi</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem5 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team5.webp" alt="team5" class="team-img">
+                    <div class="team-info">
+                        <h3>Tahi Chin</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Tahi Chin</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor, sit ame ipsum explicabo. Facilis consectetur adipisicing elit.
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- mem6 -->
+            <div class="team-item">
+                <div>
+                    <img src="./images/team6.jpg" alt="team5" class="team-img">
+                    <div class="team-info">
+                        <h3>Grandi</h3>
+                        <p>- Batender</p>
+                    </div>
+                    <div class="team-overload">
+                        <h3>Grandi</h3>
+                        <p>- Batender</p>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Provident, laudantium?
+                        </p>
+                        <div class="team-socials">
+                            <i class="fa-brands fa-facebook"></i>
+                            <i class="fa-brands fa-twitter"></i>
+                            <i class="fa-brands fa-tiktok"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 6. contact  -->
+    <section id="contact" id="contact">
+        <h2>CONTACT</h2>
+        <form class="form" action="#contact">
+            <input type="text" placeholder="Name">
+            <input type="text" placeholder="Last name">
+            <input type="text" placeholder="Email">
+            <input type="text" placeholder="Phone">
+            <textarea cols="30" rows="10" placeholder="Message"></textarea>
+            <button type="submit" class="my-button">Send</button>
+        </form>
+    </section>
+    <!-- 7. Footer  -->
+    <footer class="d-flex footer">
+        <div class="footer-item">
+            <h3>ABOUT US</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta unde aspernatur totam delectus,
+                rerum, ad tempora non architecto. Earum dicta commodi illo rerum!</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusamus ab facere.</p>
+            <div class="team-socials">
+                <i class="fa-brands fa-facebook"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-tiktok"></i>
+            </div>
+        </div>
+        <div class="footer-item">
+            <h3>WORKING TIME</h3>
+            <div class="footer-time">
+                <p>Monday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Tuesday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Wednesday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Thusday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Friday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Saturday</p>
+                <p>8AM - 10PM</p>
+            </div>
+            <div class="footer-time">
+                <p>Sunday</p>
+                <p>8AM - 10PM</p>
+            </div>
+        </div>
+        <div class="footer-item">
+            <h3>TWITTER US</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta unde aspernatur totam delectus,
+                rerum, ad tempora non architecto.</p>
+            <br>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia accusamus ab facere.</p>
+            <br>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+
+        <div class="footer-item">
+            <h3>SUBSCIBE US</h3>
+            <input type="text" placeholder="name@example.com">
+            <button class="my-button">Send</button>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit amet consectetur adipisicing</p>
+        </div>
+    </footer>
+
+    <script src="./js/lightbox-plus-jquery.js"></script>
+    <script src="./js/js.js"></script>
+</body>
+
+</html>
