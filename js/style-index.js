@@ -4,7 +4,7 @@
 // Get all the menu items
 var menuItems = document.querySelectorAll('div ul li a');
 var section = document.querySelectorAll('section')
-console.log(menuItems);
+
 
 // Loop through each menu item
 for (var i = 0; i < menuItems.length; i++) {
@@ -45,9 +45,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
   var loginBtn = document.getElementById("login-btn");
   var loginPopup = document.getElementById("my-form");
   var closeBtn = document.getElementById("close-btn");
-  console.log(loginBtn);
-  console.log(loginPopup);
-  console.log(closeBtn);
+
 
   if (loginBtn && loginPopup && closeBtn) {
     loginBtn.addEventListener("click", function () {
@@ -97,13 +95,13 @@ function login() {
   const password = document.querySelector('#password').value;
 
   // Check if the username and password are valid
-  if (username === 'admin' && password === 'admin') {
+  if (username === 'admin1' && password === 'admin1') {
     // If the username and password are valid, navigate to the homepage
     window.location.href = './dashboard.html';
-  } else if (username === 'user' && password === 'user') {
+  } else if (username === 'user1' && password === 'user1') {
     // If the username and password are valid, navigate to the homepage
     window.location.href = './shop.html';
-  }   else {
+  } else {
     // If the username and password are not valid, show an error message
     alert('Invalid username or password. Please try again.');
   }

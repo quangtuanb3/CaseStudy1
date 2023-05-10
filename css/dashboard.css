@@ -36,7 +36,7 @@
     color: white;
 }
 
-#contact .form .my-button {
+.my-button {
     padding: 15px;
     font-size: 15px;
 }
@@ -53,8 +53,18 @@
 .menu-bar {
     border-bottom: 1px dotted gray;
 }
+.menu-bar .active{
+    background-color: #496198;
+}
 .menu-bar li {
     padding: 20px 20px;
+}
+.menu-bar li{
+    background-color: transparent;
+}
+li:hover{
+    background-color:#496198;
+    border: 1px dotted rgb(174, 170, 170);
 }
 
 .menu-bar a {
@@ -74,7 +84,7 @@
 .main-content {
     margin: 40px;
     background-color: #ffffff;
-    height: 85%;
+    min-height: 85%;
     border-radius: 10px;
 }
 .content-header h2 {
@@ -97,7 +107,7 @@
 .content-table th {
     padding: 10px 20px;
 }
-.content-table th:last-child{
+.content-table th:last-child {
     width: 38px;
 }
 
@@ -107,7 +117,7 @@ td {
     border: 1px solid rgb(178, 178, 178);
     border-collapse: collapse;
     text-align: center;
-    padding: 0 5px;
+    padding: 5px;
 }
 
 .edit-btn {
@@ -115,7 +125,7 @@ td {
     color: #fac760;
     border-radius: 3px;
     border: 1px solid #fac760;
-    transition: all .5s;
+    transition: all 0.5s;
 }
 .edit-btn i {
     padding: 5px;
@@ -130,7 +140,7 @@ td {
     color: #c21111;
     border-radius: 3px;
     border: 1px solid #c21111;
-    transition: all .5s;
+    transition: all 0.5s;
 }
 .delete-btn i {
     padding: 5px;
@@ -139,3 +149,99 @@ td {
     color: #271568;
     border: 1px solid #271568;
 }
+
+/* modal popup */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 30px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.add-coffee-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 15px;
+}
+
+/* MODAL  */
+.modal-content {
+    border-radius: 7px;
+    transition: all 0.5s;
+}
+.modal-content h3 {
+    text-align: center;
+    padding: 20px;
+}
+
+input {
+    padding: 10px;
+    border: 1px solid #393838;
+    border-radius: 3px;
+    width: 90%;
+    margin: 5px 0;
+    border-color: #393838;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 1px 1px 4px 2px #fac760;
+    transition: all 0.5s;
+}
+textarea:focus {
+    outline: none;
+    box-shadow: 1px 1px 4px 2px #fac760;
+    transition: all 0.5s;
+}
+textarea {
+    padding: 20px;
+    grid-column: 1 / span 2;
+    width: 93%;
+}
+.clear-form-btn {
+    background-color: rgb(244, 82, 82);
+}
+
+.table-img img {
+    width: 100px;
+}
+
+.input-img {
+    grid-column: 1 / 2 span;
+}
+.input-img input {
+    width: 95%;
+}
+

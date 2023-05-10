@@ -15,6 +15,9 @@
 .pt-10 {
     padding-top: 10px;
 }
+.pr-30 {
+    padding-right: 30px;
+}
 .cl-white {
     color: #ffffff;
 }
@@ -48,7 +51,7 @@
     font-weight: 600;
     transition: all 0.5s;
 }
-.menu-bar ul li a.active{
+.menu-bar ul li a.active {
     color: #fac760;
 }
 
@@ -92,6 +95,10 @@
 }
 
 /* product */
+#product {
+    padding-bottom: 30px;
+    background: linear-gradient(-30deg, rgb(220, 201, 250), rgb(181, 224, 248));
+}
 .product h2 {
     text-align: center;
     padding: 30px;
@@ -102,10 +109,9 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    padding: 0 15px;
+    padding: 15px;
 }
 .pro-item {
-   
     border: 1px solid #888888;
     border-radius: 5px;
 }
@@ -153,42 +159,37 @@
     position: relative;
 }
 
-.pro-item .pro-img:hover .pro-item-overlay{
-display: block;
-/* z-index: 1; */
+.pro-item .pro-img:hover .pro-item-overlay {
+    display: block;
+    /* z-index: 1; */
 }
-
 
 .pro-banner:hover .pro-overlay {
     display: block;
 }
-.pro-item .pro-img{
+.pro-item .pro-img {
     position: relative;
 }
-.pro-item{
+.pro-item {
     height: 430px;
 }
-.pro-body{
+.pro-body {
     padding-left: 30px;
-
 }
-.pro-title{
+.pro-title {
     font-weight: bold;
     font-size: 18px;
-   
 }
-.pro-start i{
+.pro-start i {
     color: rgb(238, 214, 56);
 }
-.pro-price{
+.pro-price {
     font-weight: bold;
     text-align: right;
     padding-right: 30px;
 }
-.pro-body button{
-   margin-left: 70px;
-
-
+.pro-body button {
+    margin-left: 70px;
 }
 
 /* shop  */
@@ -279,8 +280,8 @@ display: block;
     bottom: 0;
     left: 0;
     padding: 40px;
-    background-color: rgb(181, 48, 177);
-    opacity: 1;
+    background-color: rgb(157, 9, 152);
+    opacity: 0.8;
 }
 
 .team-info h3 {
@@ -345,13 +346,13 @@ display: block;
     gap: 15px 30px;
     color: #393838;
 }
- input {
+input {
     padding: 10px;
     border: 1px solid #393838;
     border-radius: 3px;
 }
 
- input:focus {
+input:focus {
     outline: none;
     box-shadow: 1px 1px 4px 2px #fac760;
     transition: all 0.5s;
@@ -405,11 +406,98 @@ display: block;
     margin: 10px 0;
 }
 .my-button:hover {
-    background-color:rgb(65, 65, 131);
+    background-color: rgb(65, 65, 131);
     color: white;
 }
 
-#contact .form .my-button{
+#contact .form .my-button {
     padding: 15px;
     font-size: 15px;
+}
+#my-modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding: 10px 30px;
+    left: 07%;
+    top: 30px;
+    width: 80%;
+    margin: auto;
+    border: 1px solid rgb(169, 166, 166);
+    border-radius: 10px;
+    background: linear-gradient(65deg, #afbcf8, #8ff2e0);
+    opacity: 0.95;
+}
+#modal-buy-cf {
+    width: 90%;
+    padding: 30px 30px 10px 30px;
+}
+#modal-buy-cf .modal-cf-img {
+    padding-right: 40px;
+}
+.modal-cf-img img {
+    max-width: 400px;
+    border-radius: 10px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    margin-right: -7px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-cf-content {
+    width: 80%;
+}
+.modal-cf-content h3,
+.modal-cf-content h4 {
+    padding: 10px 0;
+}
+.radio-option {
+    display: none;
+}
+.radio-btn {
+    width: 70px;
+    text-align: center;
+    margin: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.topping-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 15px;
+}
+
+.buy-coffee-form .active {
+    background-color: rgb(65, 65, 131);
+    color: white;
+}
+.topping-option {
+    display: none;
+}
+
+.add-to-cart {
+    width: 20%;
+    margin: auto;
+}
+.buy-coffee-form .add-to-cart-btn {
+    padding: 20px 30px !important;
+    font-size: 18px !important;
+    background-color: #f47f35;
+    color: #ffffff;
+}
+.buy-coffee-form .add-to-cart-btn:hover {
+    background-color: #22b382;
+    color: #ffffff;
 }
