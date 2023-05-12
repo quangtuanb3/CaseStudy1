@@ -58,8 +58,9 @@
 
 .cart-icon {
     padding: 1px 10px;
+    cursor: pointer;
 }
-.cart-icon i{
+.cart-icon i {
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -68,6 +69,11 @@
     line-height: 42px;
     background-color: white;
     color: orange;
+}
+.cart-icon i:hover {
+    color: white;
+    background-color: orange;
+    transition: all 0.5s;
 }
 
 .cart {
@@ -509,7 +515,6 @@ input:focus {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    padding: 0 15px;
 }
 
 .buy-coffee-form .active {
@@ -540,4 +545,67 @@ input:focus {
     color: #d7084d;
     font-weight: 600;
     letter-spacing: 2px;
+}
+.table-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+#cart-table {
+    position: fixed;
+    z-index: 100;
+    padding: 30px;
+    left: 07%;
+    top: 70px;
+    width: 80%;
+    margin: auto;
+    border: 1px solid rgb(169, 166, 166);
+    border-radius: 10px;
+    background-color: white;
+    opacity: 0.95;
+}
+table,
+th,
+td {
+    border: 1px solid rgb(178, 178, 178);
+    border-collapse: collapse;
+    text-align: center;
+    padding: 5px 15px;
+    font-size: 14px;
+}
+
+#cart-table table {
+    border-radius: 7px;
+    margin: auto;
+}
+#cart-table .radio-btn {
+    margin: 5px;
+    padding: 7px;
+}
+#table-container {
+    display: none;
+}
+#cart-table .close {
+    margin-top: -20px;
+}
+#cart-table .active {
+    background-color: rgb(65, 65, 131);
+    color: white;
+}
+
+.total-cart {
+    text-align: right;
+    color: red;
+    font-size: 17px;
+    letter-spacing: 3px;
+    padding-top: 15px;
+}
+ .topping-btn {
+    font-size: 12px;
+    margin: 5px;
+    padding: 5px 5px;
 }

@@ -13,6 +13,28 @@ var productionType = [
     }
 
 ]
+RenderProductSection();
+RenderCart()
+if (localStorage.getItem("coffeeInCart") != null) {
+    listCoffee = getCartListInStorage();
+}
+
+
+function RenderProductSection() {
+    if (localStorage.getItem("coffeeList") == null) {
+        RenderCoffeeData(productionType, listCoffee);
+    } else {
+        getCfListInStorage()
+    };
+}
+
+function RenderCart() {
+    if (localStorage.getItem("coffeeInCart") != null) {
+        getCartListInStorage();
+    }
+}
+
+
 
 var coffeeOder = new Coffee();
 Coffee.prototype.size = 'Medium';
@@ -28,19 +50,121 @@ Coffee.prototype.calculatePayment = function () {
             this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1);
             break;
         case 'Big':
-            this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1);
+            this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1.5);
 
             break;
     }
 };
 
-renderListCart(listCoffee);
 
 function DOM_ID(id) {
     return document.getElementById(id)
 }
 function qSelector(attribute) {
     return document.querySelectorAll(attribute)
+}
+
+function renderCartTable() {
+    listCoffee = getCartListInStorage();
+    openTable();
+    var tbody = DOM_ID("cart-tbody");
+    var totalElement = DOM_ID("total-payment");
+    tbody.innerHTML = '';
+    var totalPayment = calculateTotalPayment(listCoffee);
+    var tbodyContent = '';
+
+    for (let i = 0; i < listCoffee.listInCart.length; i++) {
+        var coffee = listCoffee.listCf[i];
+        tbodyContent += `
+                <tr>
+                    <td>${i + 1}</td>
+                    <td>${coffee.id}</td>
+                    <td>${coffee.name}</td>
+                    <td>
+               
+                    <div >
+                        <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
+                        <label for="small">
+                            <p class="my-button radio-btn">Small</p>
+                        </label>
+                    </div>
+                    <div >
+                        <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option">
+                        <label for="medium">
+                            <p class="my-button radio-btn active">Medium</p>
+                        </label>
+                    </div>
+                    <div >
+                        <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
+                        <label for="big">
+                            <p class="my-button radio-btn" class="">Big</p>
+                        </label>
+                    </div>
+            
+                    </td>
+                    
+                    <td>
+                        <div class="topping-grid">
+                            <div>
+                                <input type="checkbox" id="topping1" name="topping1" value="topping1"
+                                    class="topping-option">
+                                <label for="topping1">
+                                    <p class="my-button topping-btn" class="">Lorem psum1</p>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="topping2" name="topping2" value="topping2"
+                                    class="topping-option">
+                                <label for="topping2">
+                                    <p class="my-button topping-btn" class="">Lorem psum2</p>
+                                </label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="topping3" name="topping3" value="topping3"
+                                    class="topping-option">
+                                <label for="topping3">
+                                    <p class="my-button topping-btn" class="">Lorem psum3</p>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="topping4" name="topping4" value="topping4"
+                                    class="topping-option">
+                                <label for="topping4">
+                                    <p class="my-button topping-btn" class="">Lorem psum4</p>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="topping5" name="topping5" value="topping5"
+                                    class="topping-option">
+                                <label for="topping5">
+                                    <p class="my-button topping-btn" class="">Lorem psum5</p>
+                                </label>
+                            </div>
+
+                            <div>
+                                <input type="checkbox" id="topping6" name="topping6" value="topping6"
+                                    class="topping-option">
+                                <label for="topping6">
+                                    <p class="my-button topping-btn" class="">Lorem psum6</p>
+                                </label>
+                            </div>
+
+                        </div>
+
+                    </td>
+                    <td> <input type="number" min="1" max="1000" value="${coffee.quantity}" style="text-align: right;" id="quantity">
+                    </td>
+                    <td><span id="table-payment">${coffee.payment}</span>$</td>
+                </tr>
+        `
+
+    }
+
+    tbody.innerHTML = tbodyContent;
+    totalElement.innerHTML = totalPayment;
 }
 
 function addToCart(cfId) {
@@ -67,22 +191,26 @@ function addToCart(cfId) {
         return
     }
 
+
     listCoffee.AddToCart(coffeeToCart);
-    console.log(coffeeToCart);
-    showCart()
-    hideModal();
+
+    showCart(listCoffee)
+    closeModal();
     setStorage();
 
 }
 
-
-function showCart() {
-    let items = listCoffee.listInCart.length;
-    console.log(items);
+function calculateTotalPayment(listCoffee) {
     let sum = 0;
     for (let i = 0; i < listCoffee.listInCart.length; i++) {
-        sum += listCoffee.listInCart[i].payment
+        sum += listCoffee.listInCart[i].payment;
     }
+    return sum;
+}
+
+function showCart(listCoffee) {
+    let items = listCoffee.listInCart.length;
+    let sum = calculateTotalPayment(listCoffee);
     DOM_ID("cart-number").innerHTML = items;
     DOM_ID("cart-money").innerHTML = sum;
 
@@ -117,9 +245,6 @@ function setStorage() {
     localStorage.setItem("coffeeInCart", jsonCoffeeData);
 }
 
-function renderListCart(listCoffee) {
-
-}
 
 
 function getTotal() {
@@ -129,15 +254,6 @@ function getTotal() {
     let price = document.querySelector(".coffee-price").innerHTML;
 
     let total = calculateTotal(size, topping, quantity, price);
-
-    console.log(size);
-    console.log(topping);
-    console.log(quantity);
-    console.log(price);
-
-    console.log("total in getTotal " + total);
-
-
     DOM_ID("total").innerHTML = total;
 }
 
@@ -167,7 +283,6 @@ function showTotal() {
 }
 
 
-
 function calculateTotal(size, topping, quantity, price) {
     let total;
     switch (size) {
@@ -176,7 +291,6 @@ function calculateTotal(size, topping, quantity, price) {
             break;
         case 'Medium':
             total = quantity * ((parseInt(price)) + (topping.length * 0.5) + 1);
-            console.log(total)
             break;
         case 'Big':
             total = quantity * ((parseInt(price)) + (topping.length * 0.5) + 1.5);
@@ -185,22 +299,21 @@ function calculateTotal(size, topping, quantity, price) {
     return total;
 };
 
-
-if (localStorage.getItem("coffeeList") == null) {
-    RenderCoffeeData(productionType, listCoffee);
-} else {
-    getStorage()
-};
-
-
-function getStorage() {
+function getCfListInStorage() {
     var coffeeData = localStorage.getItem("coffeeList");
     listCoffee.listCf = JSON.parse(coffeeData);
     RenderCoffeeData(productionType, listCoffee);
 }
+function getCartListInStorage() {
+    var coffeeInCart = localStorage.getItem("coffeeInCart");
+    listCoffee.listInCart = JSON.parse(coffeeInCart);
+    showCart(listCoffee);
+    return listCoffee;
+}
+
 function setStorage() {
     var jsonCoffeeInCart = JSON.stringify(listCoffee.listInCart);
-    localStorage.setItem("coffeeList", jsonCoffeeInCart);
+    localStorage.setItem("coffeeInCart", jsonCoffeeInCart);
 }
 function RenderCoffeeData(productionType, listCoffee) {
     var divContent = DOM_ID("pro-cont");
@@ -286,10 +399,10 @@ function truncateString(str, num) {
 }
 
 function buyCoffee(id) {
-    showModal()
+    openModal()
     let coffeeToBuy = listCoffee.FindById(id)
     let modalElement = `
-    <span class="close" onclick="hideModal()">&times;</span>
+    <span class="close" onclick="closeModal()">&times;</span>
     <div id="modal-buy-cf" class="d-flex">
         <div class="modal-cf-img">
             <img src="${coffeeToBuy.image}" alt="${coffeeToBuy.name}">
@@ -335,7 +448,7 @@ function buyCoffee(id) {
                             <input type="checkbox" id="topping1" name="topping1" value="topping1"
                                 class="topping-option">
                             <label for="topping1">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
+                                <p class="my-button topping-btn" class="">Lorem psum1</p>
                             </label>
                         </div>
 
@@ -343,7 +456,7 @@ function buyCoffee(id) {
                             <input type="checkbox" id="topping2" name="topping2" value="topping2"
                                 class="topping-option">
                             <label for="topping2">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
+                                <p class="my-button topping-btn" class="">Lorem psum2</p>
                             </label>
                         </div>
 
@@ -352,7 +465,7 @@ function buyCoffee(id) {
                             <input type="checkbox" id="topping3" name="topping3" value="topping3"
                                 class="topping-option">
                             <label for="topping3">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
+                                <p class="my-button topping-btn" class="">Lorem psum3</p>
                             </label>
                         </div>
 
@@ -360,7 +473,7 @@ function buyCoffee(id) {
                             <input type="checkbox" id="topping4" name="topping4" value="topping4"
                                 class="topping-option">
                             <label for="topping4">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
+                                <p class="my-button topping-btn" class="">Lorem psum4</p>
                             </label>
                         </div>
 
@@ -368,7 +481,7 @@ function buyCoffee(id) {
                             <input type="checkbox" id="topping5" name="topping5" value="topping5"
                                 class="topping-option">
                             <label for="topping5">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
+                                <p class="my-button topping-btn" class="">Lorem psum5</p>
                             </label>
                         </div>
 
@@ -376,7 +489,7 @@ function buyCoffee(id) {
                             <input type="checkbox" id="topping6" name="topping6" value="topping6"
                                 class="topping-option">
                             <label for="topping6">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
+                                <p class="my-button topping-btn" class="">Lorem psum6</p>
                             </label>
                         </div>
 
@@ -433,11 +546,17 @@ function activeTopping() {
     });
 }
 
-function showModal() {
+function openModal() {
     DOM_ID("my-modal").style.display = 'block';
 }
 
-function hideModal() {
-
+function closeModal() {
     DOM_ID("my-modal").style.display = 'none';
+}
+
+function closeTable() {
+    DOM_ID("table-container").style.display = 'none';
+}
+function openTable() {
+    DOM_ID("table-container").style.display = 'block';
 }
