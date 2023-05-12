@@ -165,5 +165,13 @@ function ListCoffee() {
     this.AddToCart = function (coffeeToAdd) {
         this.listInCart.push(coffeeToAdd);
     }
+    this.DeleteOrder = function (CfId) {
+        for (let i = 0; i < this.listInCart.length; i++) {
+            if (CfId == this.listInCart[i].id) {
+                this.listInCart.splice(i, 1);
+            }
+        }
+
+    }
 }
 

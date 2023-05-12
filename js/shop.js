@@ -34,27 +34,26 @@ function RenderCart() {
     }
 }
 
-
-
 var coffeeOder = new Coffee();
 Coffee.prototype.size = 'Medium';
 Coffee.prototype.topping = [];
 Coffee.prototype.quantity = '';
 // Coffee.prototype.payment = '';
-Coffee.prototype.calculatePayment = function () {
-    switch (this.size) {
-        case 'Small':
-            this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 0.5);
-            break;
-        case 'Medium':
-            this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1);
-            break;
-        case 'Big':
-            this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1.5);
+Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this.quantity, this.price)
+// {
+//     switch (this.size) {
+//         case 'Small':
+//             this.payment = this.quantity * (this.price + this.topping.length * 0.5);
+//             break;
+//         case 'Medium':
+//             this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1);
+//             break;
+//         case 'Big':
+//             this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1.5);
 
-            break;
-    }
-};
+//             break;
+//     }
+// };
 
 
 function DOM_ID(id) {
@@ -74,7 +73,7 @@ function renderCartTable() {
     var tbodyContent = '';
 
     for (let i = 0; i < listCoffee.listInCart.length; i++) {
-        var coffee = listCoffee.listCf[i];
+        var coffee = listCoffee.listInCart[i];
         tbodyContent += `
                 <tr>
                     <td>${i + 1}</td>
@@ -85,19 +84,19 @@ function renderCartTable() {
                     <div >
                         <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
                         <label for="small">
-                            <p class="my-button radio-btn">Small</p>
+                            <p class="my-button radio-btn small-size" >Small</p>
                         </label>
                     </div>
                     <div >
                         <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option">
                         <label for="medium">
-                            <p class="my-button radio-btn active">Medium</p>
+                            <p class="my-button radio-btn medium-size" >Medium</p>
                         </label>
                     </div>
                     <div >
                         <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
                         <label for="big">
-                            <p class="my-button radio-btn" class="">Big</p>
+                            <p class="my-button radio-btn big-size">Big</p>
                         </label>
                     </div>
             
@@ -109,7 +108,7 @@ function renderCartTable() {
                                 <input type="checkbox" id="topping1" name="topping1" value="topping1"
                                     class="topping-option">
                                 <label for="topping1">
-                                    <p class="my-button topping-btn" class="">Lorem psum1</p>
+                                    <p class="my-button topping-btn topping1-btn" class="">Lorem psum1</p>
                                 </label>
                             </div>
 
@@ -117,14 +116,14 @@ function renderCartTable() {
                                 <input type="checkbox" id="topping2" name="topping2" value="topping2"
                                     class="topping-option">
                                 <label for="topping2">
-                                    <p class="my-button topping-btn" class="">Lorem psum2</p>
+                                    <p class="my-button topping-btn topping2-btn" class="">Lorem psum2</p>
                                 </label>
                             </div>
                             <div>
                                 <input type="checkbox" id="topping3" name="topping3" value="topping3"
                                     class="topping-option">
                                 <label for="topping3">
-                                    <p class="my-button topping-btn" class="">Lorem psum3</p>
+                                    <p class="my-button topping-btn topping3-btn" class="">Lorem psum3</p>
                                 </label>
                             </div>
 
@@ -132,7 +131,7 @@ function renderCartTable() {
                                 <input type="checkbox" id="topping4" name="topping4" value="topping4"
                                     class="topping-option">
                                 <label for="topping4">
-                                    <p class="my-button topping-btn" class="">Lorem psum4</p>
+                                    <p class="my-button topping-btn topping4-btn" class="">Lorem psum4</p>
                                 </label>
                             </div>
 
@@ -140,7 +139,7 @@ function renderCartTable() {
                                 <input type="checkbox" id="topping5" name="topping5" value="topping5"
                                     class="topping-option">
                                 <label for="topping5">
-                                    <p class="my-button topping-btn" class="">Lorem psum5</p>
+                                    <p class="my-button topping-btn topping5-btn" class="">Lorem psum5</p>
                                 </label>
                             </div>
 
@@ -148,7 +147,7 @@ function renderCartTable() {
                                 <input type="checkbox" id="topping6" name="topping6" value="topping6"
                                     class="topping-option">
                                 <label for="topping6">
-                                    <p class="my-button topping-btn" class="">Lorem psum6</p>
+                                    <p class="my-button topping-btn topping6-btn" class="">Lorem psum6</p>
                                 </label>
                             </div>
 
@@ -158,6 +157,7 @@ function renderCartTable() {
                     <td> <input type="number" min="1" max="1000" value="${coffee.quantity}" style="text-align: right;" id="quantity">
                     </td>
                     <td><span id="table-payment">${coffee.payment}</span>$</td>
+                    <td> <button class="delete-btn" onclick="removeOrder(${coffee.id})" ><i class="fa fa-trash"></i></button></td>
                 </tr>
         `
 
@@ -165,6 +165,9 @@ function renderCartTable() {
 
     tbody.innerHTML = tbodyContent;
     totalElement.innerHTML = totalPayment;
+    setSize(listCoffee);
+    setTopping(listCoffee);
+    changeOrderBtn(listCoffee)
 }
 
 function addToCart(cfId) {
@@ -179,7 +182,7 @@ function addToCart(cfId) {
     coffeeToCart.size = coffeeCalled.size;
     coffeeToCart.topping = coffeeCalled.topping;
     coffeeToCart.quantity = coffeeCalled.quantity;
-    // coffeeToCart.calculatePayment();
+
     coffeeToCart.payment = calculateTotal(coffeeToCart.size, coffeeToCart.topping, coffeeToCart.quantity, coffeeToCart.price);
 
     //validate
@@ -245,8 +248,6 @@ function setStorage() {
     localStorage.setItem("coffeeInCart", jsonCoffeeData);
 }
 
-
-
 function getTotal() {
     let size = getSize();
     let topping = getTopping();
@@ -256,7 +257,6 @@ function getTotal() {
     let total = calculateTotal(size, topping, quantity, price);
     DOM_ID("total").innerHTML = total;
 }
-
 
 function showTotal() {
 
@@ -282,7 +282,6 @@ function showTotal() {
     });
 }
 
-
 function calculateTotal(size, topping, quantity, price) {
     let total;
     switch (size) {
@@ -304,6 +303,7 @@ function getCfListInStorage() {
     listCoffee.listCf = JSON.parse(coffeeData);
     RenderCoffeeData(productionType, listCoffee);
 }
+
 function getCartListInStorage() {
     var coffeeInCart = localStorage.getItem("coffeeInCart");
     listCoffee.listInCart = JSON.parse(coffeeInCart);
@@ -535,6 +535,51 @@ function activeSize() {
         });
     }
 }
+function setSize(listCf) {
+
+    let elementsSmall = qSelector('.small-size');
+    let elementsMed = qSelector('.medium-size');
+    let elementsBig = qSelector('.big-size');
+    console.log("big: " + elementsBig[0]);
+    console.log(elementsMed[0]);
+    console.log(elementsSmall[0]);
+    for (i = 0; i < listCf.listInCart.length; i++) {
+        let size = listCf.listInCart[i].size;
+        if (size == 'Big') {
+            elementsBig[i].classList.add('active');
+        } else if (size == 'Medium') {
+            elementsMed[i].classList.add('active');
+        } else
+            elementsSmall[i].classList.add('active');
+
+    }
+}
+function setTopping(listCf) {
+    let elementsTopping1 = qSelector('.topping1-btn');
+    let elementsTopping2 = qSelector('.topping2-btn');
+    let elementsTopping3 = qSelector('.topping3-btn');
+    let elementsTopping4 = qSelector('.topping4-btn');
+    let elementsTopping5 = qSelector('.topping5-btn');
+    let elementsTopping6 = qSelector('.topping6-btn');
+
+    for (i = 0; i < listCf.listInCart.length; i++) {
+        let topping = listCf.listInCart[i].topping;
+        console.log(topping);
+        for (j = 0; j < topping.length; j++) {
+            if (topping[j] == 'topping1') {
+                elementsTopping1[i].classList.add('active');
+            } else if (topping[j] == 'topping2') {
+                elementsTopping2[i].classList.add('active');
+            } else if (topping[j] == 'topping3') {
+                elementsTopping3[i].classList.add('active');
+            } else if (topping[j] == 'topping4') {
+                elementsTopping4[i].classList.add('active');
+            } else if (topping[j] == 'topping5') {
+                elementsTopping5[i].classList.add('active');
+            } else elementsTopping6[i].classList.add('active');
+        }
+    }
+}
 
 function activeTopping() {
     const toppings = qSelector('.topping-btn');
@@ -545,7 +590,21 @@ function activeTopping() {
         });
     });
 }
+function changeOrderBtn(listCf) {
+    btn = DOM_ID('send-order-btn');
+    if (listCf.listInCart.length == 0) {
+        btn.innerHTML = 'Order now';
+        btn.onclick = closeTable;
+    }
+}
+function removeOrder(id) {
+    listCoffee.DeleteOrder(id);
+    setStorage();
+    getCartListInStorage();
+    renderCartTable()
 
+
+}
 function openModal() {
     DOM_ID("my-modal").style.display = 'block';
 }
