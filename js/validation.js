@@ -30,4 +30,20 @@ function Validation() {
             return false;
         }
     }
+    this.CheckBoundary = function (id) {
+        let element = document.getElementById(id);
+        console.log(element.min);
+        console.log(element.value);
+        console.log(element.max);
+
+        if (parseInt(element.min) <= parseInt(element.value) && parseInt(element.value) <= parseInt(element.max)) {
+            element.style.borderColor = "green";
+            return false;
+        } else {
+            element.style.borderColor = "red";
+            return true;
+        }
+
+
+    }
 }

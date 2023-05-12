@@ -30,6 +30,7 @@
     width: 100%;
     justify-content: space-between;
     background-color: #393838;
+    line-height: 35px;
 }
 .branch-logo {
     height: 70px;
@@ -58,11 +59,36 @@
 .cart-icon {
     padding: 1px 10px;
 }
+.cart-icon i{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #c47113;
+    text-align: center;
+    line-height: 42px;
+    background-color: white;
+    color: orange;
+}
 
 .cart {
-    padding: 30px;
+    position: relative;
+    padding: 25px;
     font-size: 20px;
     color: #fac760;
+}
+#cart-number {
+    background-color: white;
+    border: 1px solid green;
+    width: 14px;
+    color: #60de55;
+    height: 14px;
+    position: absolute;
+    left: 37%;
+    top: 25%;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 14px;
 }
 .currency {
     padding: 0 10px;
@@ -97,7 +123,7 @@
 /* product */
 #product {
     padding-bottom: 30px;
-    background: linear-gradient(-30deg, rgb(220, 201, 250), rgb(181, 224, 248));
+    background: linear-gradient(-30deg, rgb(148 92 57 / 54%), rgb(181, 224, 248));
 }
 .product h2 {
     text-align: center;
@@ -460,7 +486,14 @@ input:focus {
 }
 .modal-cf-content h3,
 .modal-cf-content h4 {
-    padding: 10px 0;
+    padding: 8px 0;
+}
+.modal-cf-content .coffee-name {
+    font-size: 20px;
+}
+.modal-cf-content .coffee-price {
+    color: #d7084d;
+    font-size: 18px;
 }
 .radio-option {
     display: none;
@@ -500,4 +533,11 @@ input:focus {
 .buy-coffee-form .add-to-cart-btn:hover {
     background-color: #22b382;
     color: #ffffff;
+}
+.total {
+    padding-top: 40px;
+    font-size: 20px;
+    color: #d7084d;
+    font-weight: 600;
+    letter-spacing: 2px;
 }

@@ -150,7 +150,6 @@ function ListCoffee() {
 
     this.FindById = function (cfId) {
         for (let i = 0; i < this.listCf.length; i++) {
-            console.log("hello")
             if (cfId == this.listCf[i].id) {
 
                 return this.listCf[i]
@@ -161,6 +160,10 @@ function ListCoffee() {
 
     this.SearchCoffee = function (searchCoffee) {
 
+    }
+    this.listInCart = [];
+    this.AddToCart = function (coffeeToAdd) {
+        this.listInCart.push(coffeeToAdd);
     }
 }
 
