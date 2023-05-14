@@ -1,0 +1,328 @@
+https://preview.themeforest.net/item/coffee-luck-coffee-shop-cafe-restaurant/full_screen_preview/18010229?ref=cirvitis&clickthrough_id=1431250790&redirect_back=true
+link tham khảo
+
+trdata in cart
+ tbodyContent += `
+<tr>
+    <td>${i + 1}</td>
+    <td>${coffee.id}</td>
+    <td>${coffee.name}</td>
+    <td>
+
+    <div >
+        <input type="radio" id="cf-${coffee.id}-small" name="cf-size-${i}" value="Small" class="radio-option">
+        <label for="cf-${coffee.id}-small">
+            <p class="my-button radio-btn radio-btn-${i} small-size" >Small</p>
+        </label>
+    </div>
+    <div >
+        <input type="radio" id="cf-${coffee.id}-med" name="cf-size-${i}" value="Medium" class="radio-option">
+        <label for="cf-${coffee.id}-med">
+            <p class="my-button radio-btn radio-btn-${i} medium-size" >Medium</p>
+        </label>
+    </div>
+    <div >
+        <input type="radio" id="cf-${coffee.id}-big" name="cf-size-${i}" value="Big" class="radio-option">
+        <label for="cf-${coffee.id}-big">
+            <p class="my-button radio-btn radio-btn-${i} big-size">Big</p>
+        </label>
+    </div>
+
+    </td>
+    
+    <td>
+        <div class="topping-grid">
+            <div>
+                <input type="checkbox" id="cf-${coffee.id}-topping1" name="topping1-${i}" value="topping1"
+                    class="topping-option">
+                <label for="cf-${coffee.id}-topping1">
+                    <p class="my-button topping-btn topping-btn-${i} topping1-btn" class="">Lorem psum1</p>
+                </label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="cf-${coffee.id}-topping2" name="topping2-${i}" value="topping2"
+                    class="topping-option">
+                <label for="cf-${coffee.id}-topping2">
+                    <p class="my-button topping-btn topping-btn-${i} topping2-btn" class="">Lorem psum2</p>
+                </label>
+            </div>
+            <div>
+                <input type="checkbox" id="cf-${coffee.id}-topping3" name="topping3-${i}" value="topping3"
+                    class="topping-option">
+                <label for="cf-${coffee.id}-topping3">
+                    <p class="my-button topping-btn topping-btn-${i} topping3-btn" class="">Lorem psum3</p>
+                </label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="cf-${coffee.id}-topping4" name="topping4-${i}" value="topping4"
+                    class="topping-option">
+                <label for="cf-${coffee.id}-topping4">
+                    <p class="my-button topping-btn topping-btn-${i} topping4-btn" class="">Lorem psum4</p>
+                </label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="cf-${coffee.id}-topping5" name="topping5-${i}" value="topping5"
+                    class="topping-option">
+                <label for="cf-${coffee.id}-topping5">
+                    <p class="my-button topping-btn topping-btn-${i} topping5-btn" class="">Lorem psum5</p>
+                </label>
+            </div>
+
+            <div>
+                <input type="checkbox" id="cf-${coffee.id}-topping6" name="topping6-${i}" value="topping6"
+                    class="topping-option">
+                <label for="cf-${coffee.id}-topping6">
+                    <p class="my-button topping-btn topping-btn-${i} topping6-btn" class="">Lorem psum6</p>
+                </label>
+            </div>
+
+        </div>
+
+    </td>
+    <td> <input type="number" min="1" max="1000" value="${coffee.quantity}" style="text-align: right;" id="quantity-${i}">
+    </td>
+    <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>
+    <td> <button class="delete-btn" onclick="editOrder(${i})" ><i class="fa fa-pen" style="color:orange;"></i></button>
+     <button class="delete-btn" onclick="removeOrder(${i})" ><i class="fa fa-trash"></i></button></td>
+</tr>
+`
+
+
+
+
+
+
+>>>>>>>>>>>>
+function renderCartTable() {
+    listCoffee = getCartListInStorage();
+    openTable();
+    var tbody = DOM_ID("cart-tbody");
+    var totalElement = DOM_ID("payment-cart");
+    tbody.innerHTML = '';
+    var totalPayment = calculateTotalPayment(listCoffee);
+
+    var tbodyContent = '';
+
+    for (let i = 0; i < listCoffee.listInCart.length; i++) {
+        var coffee = listCoffee.listInCart[i];
+
+        //         const names = ['Alice', 'Bob', 'Charlie'];
+
+        // const list = `<ul>
+        //   ${names.map(name => `<li>${name}</li>`).join('\n')}
+        // </ul>`;
+
+
+        tbodyContent += `
+<tr>
+    <td>${i + 1}</td>
+
+    <td>${coffee.id}</td>
+
+    <td>${coffee.name}</td>
+
+    <td> ${coffee.size}</td>
+    
+    <td> ${coffee.topping.map(topping => `<span class='toppingItems'>${topping}</span>`).join(', ')}</td >
+
+    <td> ${coffee.quantity}</td>
+    
+    <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>
+   
+    <td> <button class="delete-btn" onclick="editOrder(${i})" ><i class="fa fa-pen" style="color:orange;"></i></button>
+     <button class="delete-btn" onclick="removeOrder(${i})" ><i class="fa fa-trash"></i></button></td>
+</tr >
+        `
+    }
+
+    tbody.innerHTML = tbodyContent;
+    totalElement.innerHTML = totalPayment;
+    setSize(listCoffee);
+    setTopping(listCoffee);
+    changeOrderBtn(listCoffee);
+    for (i = 0; i < listCoffee.listInCart.length; i++) {
+        editOrder(i, listCoffee);
+    }
+}
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> this is used to render cart with direct edit
+
+
+
+// function editOrder(No, listCoffee) {
+//     activeSizeInCart(No);
+//     activeToppingInCar(No);
+//     getSizeInCart(No);
+//     getToppingInCart(No)
+
+//     showTotalEditOrder(No, listCoffee);
+// }
+// function saveCart(No) {
+//     let size = getSizeInCart(No);
+//     let topping = getToppingInCart(No);
+//     let quantityPath = 'quantity-' + i;
+//     let totalId = 'cf-' + No + '-payment';
+//     var quantity = DOM_ID(quantityPath);
+//     console.log(quantity);
+//     listCoffee.listInCart[No].size = size;
+//     listCoffee.listInCart[No].topping = topping;
+//     listCoffee.listInCart[No].quantity = quantity;
+//     listCoffee.listInCart[No].payment = parseFloat(calculateTotal(size, topping, quantity, listCoffee.listInCart[No].price)).toFixed(2);
+//     console.log(listCoffee.listInCart[No].payment)
+//     setStorage()
+// }
+
+
+// >>>>>>>>>>>>>>>>>> <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>  >>>>>>>>>>>>>>>>>>>>>>>>>>
+
+// function showTotalEditOrder(No, listCoffee) {
+
+//     getTotalInCart(No, listCoffee);
+
+//     let sizePath = 'input[name="cf-size-' + No + '"]'
+//     var sizeItems = qSelector(sizePath);
+//     sizeItems.forEach(function (radio) {
+//         radio.addEventListener("change", function () {
+//             getTotalInCart(No, listCoffee);
+//             saveCart(No)
+//             showTotalPaymentInCart(listCoffee)
+//         });
+//     });
+
+//     let toppingPath = 'input[name^="topping' + i + '"]'
+//     var toppingCheckboxes = qSelector(toppingPath);
+//     toppingCheckboxes.forEach(function (checkbox) {
+//         checkbox.addEventListener("change", function () {
+//             getTotalInCart(No, listCoffee);
+//             saveCart(No)
+//             showTotalPaymentInCart(listCoffee)
+//         });
+//     });
+
+//     let quantityPath = 'quantity-' + No
+//     var quantityInput = DOM_ID(quantityPath);
+//     quantityInput.addEventListener("input", function () {
+//         getTotalInCart(No, listCoffee);
+//         saveCart(No)
+//         showTotalPaymentInCart(listCoffee)
+//     });
+// }
+// function showTotalPaymentInCart(listCoffee) {
+//     let totalPayment = calculateTotalPayment(listCoffee);
+//     DOM_ID('payment-cart').innerHTML = totalPayment;
+//     console.log(totalPayment);
+
+// }
+// function getTotalInCart(No, listCoffee) {
+//     let quantityId = "quantity-" + No;
+//     let totalId = 'cf-' + No + '-payment';
+//     let price = listCoffee.listInCart[No].price;
+//     let size = getSizeInCart(No);
+//     let topping = getToppingInCart(No);
+//     let quantity = parseInt(DOM_ID(quantityId).value);
+//     console.log(quantity);
+//     let total = calculateTotal(size, topping, quantity, price);
+
+
+//     console.log("payment getTotalInCart(): " + total);
+
+//     DOM_ID(totalId).innerHTML = total;
+// }
+
+// function getSizeInCart(No) {
+//     let sizeClasses = '.radio-btn-' + No
+//     var sizeItems = document.querySelectorAll(sizeClasses);
+//     var selectedSize = '';
+//     for (var i = 0; i < sizeItems.length; i++) {
+//         if (sizeItems[i].classList.contains('active')) {
+//             selectedSize = sizeItems[i].innerHTML;
+//         }
+//     }
+//     return selectedSize;
+// }
+
+// function getToppingInCart(No) {
+//     let toppingClasses = '.topping-btn' + No
+//     var toppingItems = document.querySelectorAll(toppingClasses);
+//     var selectedToppings = [];
+//     for (var i = 0; i < toppingItems.length; i++) {
+//         if (toppingItems[i].classList.contains('active')) {
+//             var toppingInput = document.querySelector('input[id="' + toppingItems[i].parentNode.getAttribute('for') + '"]');
+//             if (toppingInput) {
+//                 selectedToppings.push(toppingInput.value);
+//             }
+//         }
+//     }
+//     return selectedToppings;
+// }
+
+function setSize(listCf) {
+
+    let elementsSmall = qSelector('.small-size');
+    let elementsMed = qSelector('.medium-size');
+    let elementsBig = qSelector('.big-size');
+    for (i = 0; i < listCf.listInCart.length; i++) {
+        let size = listCf.listInCart[i].size;
+        if (size == 'Big') {
+            elementsBig[i].classList.add('active');
+        } else if (size == 'Medium') {
+            elementsMed[i].classList.add('active');
+        } else
+            elementsSmall[i].classList.add('active');
+
+    }
+}
+function setTopping(listCf) {
+    let elementsTopping1 = qSelector('.topping1-btn');
+    let elementsTopping2 = qSelector('.topping2-btn');
+    let elementsTopping3 = qSelector('.topping3-btn');
+    let elementsTopping4 = qSelector('.topping4-btn');
+    let elementsTopping5 = qSelector('.topping5-btn');
+    let elementsTopping6 = qSelector('.topping6-btn');
+
+    for (i = 0; i < listCf.listInCart.length; i++) {
+        let topping = listCf.listInCart[i].topping;
+        for (j = 0; j < topping.length; j++) {
+            if (topping[j] == 'topping1') {
+                elementsTopping1[i].classList.add('active');
+            } else if (topping[j] == 'topping2') {
+                elementsTopping2[i].classList.add('active');
+            } else if (topping[j] == 'topping3') {
+                elementsTopping3[i].classList.add('active');
+            } else if (topping[j] == 'topping4') {
+                elementsTopping4[i].classList.add('active');
+            } else if (topping[j] == 'topping5') {
+                elementsTopping5[i].classList.add('active');
+            } else elementsTopping6[i].classList.add('active');
+        }
+    }
+}
+
+
+function activeSizeInCart(No) {
+    let sizePath = '.radio-btn-' + No
+    var sizeItems = qSelector(sizePath)
+    for (var i = 0; i < sizeItems.length; i++) {
+        sizeItems[i].addEventListener('click', function () {
+            for (var j = 0; j < sizeItems.length; j++) {
+                sizeItems[j].classList.remove('active');
+            }
+            this.classList.add('active');
+
+        });
+    }
+}
+
+function activeToppingInCar(No) {
+    let toppingsPath = '.topping-btn-' + No
+    let toppings = qSelector(toppingsPath);
+
+    toppings.forEach((topping) => {
+        topping.addEventListener('click', () => {
+            topping.classList.toggle('active');
+        });
+    });
+}

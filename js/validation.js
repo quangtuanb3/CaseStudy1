@@ -8,6 +8,18 @@ function Validation() {
         document.getElementById(id).style.borderColor = "green"
         return false;
     }
+
+    this.CheckToSetDefaultImg = function (imgSrc) {
+        const http = new XMLHttpRequest();
+        http.open('HEAD', imgSrc, false);
+        http.send();
+        if (http.status == 404) {
+            imgSrc = "./images/defaultProduct.webp";
+        }
+        return imgSrc;
+    }
+
+
     this.CheckDuplicateId = function (id, listCoffee) {
         let idElement = document.getElementById(id);
         for (let i = 0; i < listCoffee.listCf.length; i++) {
@@ -30,6 +42,7 @@ function Validation() {
             return false;
         }
     }
+
     this.CheckBoundary = function (id) {
         let element = document.getElementById(id);
         console.log(element.min);
@@ -46,4 +59,5 @@ function Validation() {
 
 
     }
+
 }

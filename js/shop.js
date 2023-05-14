@@ -38,23 +38,7 @@ var coffeeOder = new Coffee();
 Coffee.prototype.size = 'Medium';
 Coffee.prototype.topping = [];
 Coffee.prototype.quantity = '';
-// Coffee.prototype.payment = '';
 Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this.quantity, this.price)
-// {
-//     switch (this.size) {
-//         case 'Small':
-//             this.payment = this.quantity * (this.price + this.topping.length * 0.5);
-//             break;
-//         case 'Medium':
-//             this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1);
-//             break;
-//         case 'Big':
-//             this.payment = this.quantity * (this.price + this.topping.length * 0.5 + 1.5);
-
-//             break;
-//     }
-// };
-
 
 function DOM_ID(id) {
     return document.getElementById(id)
@@ -63,113 +47,59 @@ function qSelector(attribute) {
     return document.querySelectorAll(attribute)
 }
 
+
 function renderCartTable() {
     listCoffee = getCartListInStorage();
     openTable();
     var tbody = DOM_ID("cart-tbody");
-    var totalElement = DOM_ID("total-payment");
+    var totalElement = DOM_ID("payment-cart");
     tbody.innerHTML = '';
     var totalPayment = calculateTotalPayment(listCoffee);
+
     var tbodyContent = '';
 
     for (let i = 0; i < listCoffee.listInCart.length; i++) {
         var coffee = listCoffee.listInCart[i];
+
         tbodyContent += `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${coffee.id}</td>
-                    <td>${coffee.name}</td>
-                    <td>
-               
-                    <div >
-                        <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
-                        <label for="small">
-                            <p class="my-button radio-btn small-size" >Small</p>
-                        </label>
-                    </div>
-                    <div >
-                        <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option">
-                        <label for="medium">
-                            <p class="my-button radio-btn medium-size" >Medium</p>
-                        </label>
-                    </div>
-                    <div >
-                        <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
-                        <label for="big">
-                            <p class="my-button radio-btn big-size">Big</p>
-                        </label>
-                    </div>
-            
-                    </td>
-                    
-                    <td>
-                        <div class="topping-grid">
-                            <div>
-                                <input type="checkbox" id="topping1" name="topping1" value="topping1"
-                                    class="topping-option">
-                                <label for="topping1">
-                                    <p class="my-button topping-btn topping1-btn" class="">Lorem psum1</p>
-                                </label>
-                            </div>
+<tr>
+    <td>${i + 1}</td>
 
-                            <div>
-                                <input type="checkbox" id="topping2" name="topping2" value="topping2"
-                                    class="topping-option">
-                                <label for="topping2">
-                                    <p class="my-button topping-btn topping2-btn" class="">Lorem psum2</p>
-                                </label>
-                            </div>
-                            <div>
-                                <input type="checkbox" id="topping3" name="topping3" value="topping3"
-                                    class="topping-option">
-                                <label for="topping3">
-                                    <p class="my-button topping-btn topping3-btn" class="">Lorem psum3</p>
-                                </label>
-                            </div>
+    <td>${coffee.id}</td>
 
-                            <div>
-                                <input type="checkbox" id="topping4" name="topping4" value="topping4"
-                                    class="topping-option">
-                                <label for="topping4">
-                                    <p class="my-button topping-btn topping4-btn" class="">Lorem psum4</p>
-                                </label>
-                            </div>
+    <td>${coffee.name}</td>
 
-                            <div>
-                                <input type="checkbox" id="topping5" name="topping5" value="topping5"
-                                    class="topping-option">
-                                <label for="topping5">
-                                    <p class="my-button topping-btn topping5-btn" class="">Lorem psum5</p>
-                                </label>
-                            </div>
+    <td> ${coffee.size}</td>
+    
+    <td> ${coffee.topping.map(topping => `<span class='toppingItems'>${topping}</span>`).join(', ')}</td >
 
-                            <div>
-                                <input type="checkbox" id="topping6" name="topping6" value="topping6"
-                                    class="topping-option">
-                                <label for="topping6">
-                                    <p class="my-button topping-btn topping6-btn" class="">Lorem psum6</p>
-                                </label>
-                            </div>
-
-                        </div>
-
-                    </td>
-                    <td> <input type="number" min="1" max="1000" value="${coffee.quantity}" style="text-align: right;" id="quantity">
-                    </td>
-                    <td><span id="table-payment">${coffee.payment}</span>$</td>
-                    <td> <button class="delete-btn" onclick="removeOrder(${coffee.id})" ><i class="fa fa-trash"></i></button></td>
-                </tr>
+    <td> ${coffee.quantity}</td>
+    
+    <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>
+   
+    <td> <button class="edit-btn" onclick="editOrder(${i})" ><i class="fa fa-pen" style="color:orange;"></i></button>
+     <button class="delete-btn" onclick="confirmRemoveOrder(${i})" ><i class="fa fa-trash"></i></button></td>
+</tr >
         `
-
     }
 
     tbody.innerHTML = tbodyContent;
     totalElement.innerHTML = totalPayment;
-    setSize(listCoffee);
-    setTopping(listCoffee);
-    changeOrderBtn(listCoffee)
-}
 
+    changeOrderBtn(listCoffee);
+}
+function saveOrder(No) {
+    let coffeeToSave = listCoffee.listInCart[No]
+    coffeeToSave.size = getSize();
+    coffeeToSave.topping = getTopping();
+    coffeeToSave.quantity = DOM_ID("quantity").value;
+    coffeeToSave.payment = calculateTotal(coffeeToSave.size, coffeeToSave.topping, coffeeToSave.quantity, coffeeToSave.price);
+    checkQuantity();
+    setStorage();
+    closeModal();
+    openTable();
+    renderCartTable();
+};
 function addToCart(cfId) {
     var coffeeCalled = listCoffee.FindById(cfId);
 
@@ -186,6 +116,15 @@ function addToCart(cfId) {
     coffeeToCart.payment = calculateTotal(coffeeToCart.size, coffeeToCart.topping, coffeeToCart.quantity, coffeeToCart.price);
 
     //validate
+    checkQuantity()
+
+
+    listCoffee.AddToCart(coffeeToCart);
+    setStorage();
+    showCart(listCoffee)
+    closeModal();
+}
+function checkQuantity() {
     var error = 0;
     if (validation.CheckBoundary("quantity") == true) {
         error++;
@@ -193,22 +132,14 @@ function addToCart(cfId) {
     if (error != 0) {
         return
     }
-
-
-    listCoffee.AddToCart(coffeeToCart);
-
-    showCart(listCoffee)
-    closeModal();
-    setStorage();
-
 }
-
 function calculateTotalPayment(listCoffee) {
     let sum = 0;
     for (let i = 0; i < listCoffee.listInCart.length; i++) {
-        sum += listCoffee.listInCart[i].payment;
+        sum += parseFloat(listCoffee.listInCart[i].payment);
     }
-    return sum;
+
+    return parseFloat(sum).toFixed(2);
 }
 
 function showCart(listCoffee) {
@@ -243,59 +174,62 @@ function getTopping() {
     }
     return selectedToppings;
 }
-function setStorage() {
-    var jsonCoffeeData = JSON.stringify(listCoffee.listInCart);
-    localStorage.setItem("coffeeInCart", jsonCoffeeData);
-}
 
-function getTotal() {
+function getTotal(eleId) {
     let size = getSize();
     let topping = getTopping();
     let quantity = DOM_ID("quantity").value;
-    let price = document.querySelector(".coffee-price").innerHTML;
+    let price = parseFloat(document.querySelector(".coffee-price").innerHTML);
 
     let total = calculateTotal(size, topping, quantity, price);
-    DOM_ID("total").innerHTML = total;
+
+    DOM_ID(eleId).innerHTML = total;
 }
 
-function showTotal() {
+function showTotalBuy(eleId) {
 
-    getTotal();
+    getTotal(eleId);
 
     var sizeItems = qSelector('input[name="cf-size"]');
     sizeItems.forEach(function (radio) {
         radio.addEventListener("change", function () {
-            getTotal();
+            getTotal(eleId);
         });
     });
 
     var toppingCheckboxes = qSelector('input[name^="topping"]');
     toppingCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("change", function () {
-            getTotal();
+            getTotal(eleId);
         });
     });
 
     var quantityInput = DOM_ID("quantity");
     quantityInput.addEventListener("input", function () {
-        getTotal();
+        getTotal(eleId);
     });
 }
 
 function calculateTotal(size, topping, quantity, price) {
     let total;
+
+
     switch (size) {
         case 'Small':
-            total = quantity * ((parseInt(price)) + (topping.length * 0.5) + 0.5);
+            total = quantity * (((price)) + (topping.length * 0.5));
             break;
         case 'Medium':
-            total = quantity * ((parseInt(price)) + (topping.length * 0.5) + 1);
+            total = quantity * (((price)) + (topping.length * 0.5) + 1);
             break;
         case 'Big':
-            total = quantity * ((parseInt(price)) + (topping.length * 0.5) + 1.5);
+            total = quantity * (((price)) + (topping.length * 0.5) + 1.5);
             break;
     }
-    return total;
+
+    if (total != undefined) {
+        return total.toFixed(2);
+    }
+
 };
 
 function getCfListInStorage() {
@@ -315,6 +249,8 @@ function setStorage() {
     var jsonCoffeeInCart = JSON.stringify(listCoffee.listInCart);
     localStorage.setItem("coffeeInCart", jsonCoffeeInCart);
 }
+
+
 function RenderCoffeeData(productionType, listCoffee) {
     var divContent = DOM_ID("pro-cont");
     divContent.innerHTML = '';
@@ -367,10 +303,11 @@ function createDivItem(productionType, listCoffee) {
                     <span>(${coffee.order})</span>
                 </div>
                 <div class="pro-price pt-10">
-                    <span>$</span>
-                    <span id="pro-price">${coffee.price}</span>
+                    <span style='font-weight: 500;'>(<span class="old-price">${(coffee.price * 1.2).toFixed(2)}$</span>)</span>
+                    <span class="new-price" style="color:red;letter-spacing:1px;">${coffee.price}</span>
+                    <span style="color:red;">$</span>
                 </div>
-                <button class="my-button" onclick="buyCoffee(${coffee.id})">Buy now</button>
+                <button class="my-button" onclick="buyCoffee(${coffee.id})" value="buyCoffee">Buy now</button>
             </div>
     
         </div>
@@ -400,7 +337,7 @@ function truncateString(str, num) {
 
 function buyCoffee(id) {
     openModal()
-    let coffeeToBuy = listCoffee.FindById(id)
+    let coffeeToBuy = listCoffee.FindById(id);
     let modalElement = `
     <span class="close" onclick="closeModal()">&times;</span>
     <div id="modal-buy-cf" class="d-flex">
@@ -520,66 +457,207 @@ function buyCoffee(id) {
     DOM_ID("my-modal").innerHTML = modalElement;
     activeSize();
     activeTopping();
-    showTotal();
+    showTotalBuy("total");
+}
+
+function editOrder(No) {
+    OpenModalEditCoffee(No)
+}
+
+function OpenModalEditCoffee(No) {
+    closeTable();
+    openModal();
+    let listCoffee = getCartListInStorage();
+    let coffeeToEdit = listCoffee.listInCart[No];
+    let size = coffeeToEdit.size;
+    let quantity = coffeeToEdit.quantity;
+    let topping = coffeeToEdit.topping;
+    let modalElement = `
+    <span class="close" onclick="closeModal()">&times;</span>
+    <div id="modal-buy-cf" class="d-flex">
+        <div class="modal-cf-img">
+            <img src="${coffeeToEdit.image}" alt="${coffeeToEdit.name}">
+            <p class="pt-20" style="width:90%;line-height:25px">${coffeeToEdit.description}</p>
+        </div>
+
+        <div class="modal-cf-content">
+            <h3 class="coffee-name">${coffeeToEdit.name}</h3>
+            <h3><span class="coffee-price">${coffeeToEdit.price}</span> <span style="color: #d7084d"> $</span></h3>
+            <!-- option form  -->
+            <form action="#" class="buy-coffee-form">
+                <div class="size">
+                    <h4>Please select your favorite size:</h4>
+                    <div class="d-flex">
+                        <div class="pr-30">
+                            <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
+                            <label for="small">
+                                <p class="my-button radio-btn small-size">Small</p>
+                            </label>
+                        </div>
+                        <div class="pr-30">
+                            <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option"
+                                checked="checked">
+                            <label for="medium">
+                                <p class="my-button radio-btn active medium-size">Medium</p>
+                            </label>
+                        </div>
+                        <div class="pr-30">
+                            <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
+                            <label for="big">
+                                <p class="my-button radio-btn big-size" >Big</p>
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="topping">
+
+                    <h4>Please select your topping:</h4>
+                    <div class="topping-grid">
+                        <div>
+                            <input type="checkbox" id="topping1" name="topping1" value="topping1"
+                                class="topping-option">
+                            <label for="topping1">
+                                <p class="my-button topping-btn topping1-btn" >Lorem psum1</p>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="topping2" name="topping2" value="topping2"
+                                class="topping-option">
+                            <label for="topping2">
+                                <p class="my-button topping-btn topping2-btn" >Lorem psum2</p>
+                            </label>
+                        </div>
+
+
+                        <div>
+                            <input type="checkbox" id="topping3" name="topping3" value="topping3"
+                                class="topping-option">
+                            <label for="topping3">
+                                <p class="my-button topping-btn topping3-btn" >Lorem psum3</p>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="topping4" name="topping4" value="topping4"
+                                class="topping-option">
+                            <label for="topping4">
+                                <p class="my-button topping-btn topping4-btn" >Lorem psum4</p>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="topping5" name="topping5" value="topping5"
+                                class="topping-option">
+                            <label for="topping5">
+                                <p class="my-button topping-btn topping5-btn" >Lorem psum5</p>
+                            </label>
+                        </div>
+
+                        <div>
+                            <input type="checkbox" id="topping6" name="topping6" value="topping6"
+                                class="topping-option">
+                            <label for="topping6">
+                                <p class="my-button topping-btn topping6-btn">Lorem psum6</p>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="d-flex" style="justify-content: space-between">
+                    <div class="quantity">
+                        <h4>Please enter quantity</h4>
+                        <input type="number" min="1" max="1000" value="${quantity}" style="text-align: right;" id="quantity">
+                    </div>
+                    <div>
+                        <p class="total">Total: <span id="total">${coffeeToEdit.payment}</span>$</p>
+                    </div>
+                </div>
+
+
+
+
+                <div class="add-to-cart">
+                    <input id="add-to-cart-btn" type="button" value="Save" class="my-button add-to-cart-btn"
+                        onclick="saveOrder(${No})">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    `
+    DOM_ID("my-modal").innerHTML = modalElement;
+    setSize(size);
+    setTopping(topping);
+    showTotalBuy("total");
+    activeSize();
+    activeTopping();
+}
+
+
+function sendOrder() {
+
 }
 
 function activeSize() {
-    var sizeItem = qSelector('.radio-btn')
-    for (var i = 0; i < sizeItem.length; i++) {
-        sizeItem[i].addEventListener('click', function () {
-            for (var j = 0; j < sizeItem.length; j++) {
-                sizeItem[j].classList.remove('active');
+    var sizeItems = qSelector('.radio-btn')
+    for (var i = 0; i < sizeItems.length; i++) {
+        sizeItems[i].addEventListener('click', function () {
+            for (var j = 0; j < sizeItems.length; j++) {
+                sizeItems[j].classList.remove('active');
             }
             this.classList.add('active');
 
         });
     }
 }
-function setSize(listCf) {
+function setSize(size) {
 
-    let elementsSmall = qSelector('.small-size');
-    let elementsMed = qSelector('.medium-size');
-    let elementsBig = qSelector('.big-size');
-    console.log("big: " + elementsBig[0]);
-    console.log(elementsMed[0]);
-    console.log(elementsSmall[0]);
-    for (i = 0; i < listCf.listInCart.length; i++) {
-        let size = listCf.listInCart[i].size;
-        if (size == 'Big') {
-            elementsBig[i].classList.add('active');
-        } else if (size == 'Medium') {
-            elementsMed[i].classList.add('active');
-        } else
-            elementsSmall[i].classList.add('active');
+    let elementSmall = document.querySelector('.small-size');
+    let elementMed = document.querySelector('.medium-size');
+    let elementBig = document.querySelector('.big-size');
+    console.log(elementBig);
+    console.log(size)
+    if (size == 'Big') {
+        elementSmall.classList.remove('active');
+        elementMed.classList.remove('active');
+        elementBig.classList.add('active');
+    } else if (size == 'Medium') {
+        elementSmall.classList.remove('active');
+        elementBig.classList.remove('active');
+        elementMed.classList.add('active');
+    } else {
+        elementBig.classList.remove('active');
+        elementMed.classList.remove('active');
+        elementSmall.classList.add('active');
+    }
 
+}
+function setTopping(topping) {
+    let elementsTopping1 = document.querySelector('.topping1-btn');
+    let elementsTopping2 = document.querySelector('.topping2-btn');
+    let elementsTopping3 = document.querySelector('.topping3-btn');
+    let elementsTopping4 = document.querySelector('.topping4-btn');
+    let elementsTopping5 = document.querySelector('.topping5-btn');
+    let elementsTopping6 = document.querySelector('.topping6-btn');
+
+    for (i = 0; i < topping.length; i++) {
+        if (topping[i] == 'topping1') {
+            elementsTopping1.classList.add('active');
+        } else if (topping[i] == 'topping2') {
+            elementsTopping2.classList.add('active');
+        } else if (topping[i] == 'topping3') {
+            elementsTopping3.classList.add('active');
+        } else if (topping[i] == 'topping4') {
+            elementsTopping4.classList.add('active');
+        } else if (topping[i] == 'topping5') {
+            elementsTopping5.classList.add('active');
+        } else elementsTopping6.classList.add('active');
     }
 }
-function setTopping(listCf) {
-    let elementsTopping1 = qSelector('.topping1-btn');
-    let elementsTopping2 = qSelector('.topping2-btn');
-    let elementsTopping3 = qSelector('.topping3-btn');
-    let elementsTopping4 = qSelector('.topping4-btn');
-    let elementsTopping5 = qSelector('.topping5-btn');
-    let elementsTopping6 = qSelector('.topping6-btn');
 
-    for (i = 0; i < listCf.listInCart.length; i++) {
-        let topping = listCf.listInCart[i].topping;
-        console.log(topping);
-        for (j = 0; j < topping.length; j++) {
-            if (topping[j] == 'topping1') {
-                elementsTopping1[i].classList.add('active');
-            } else if (topping[j] == 'topping2') {
-                elementsTopping2[i].classList.add('active');
-            } else if (topping[j] == 'topping3') {
-                elementsTopping3[i].classList.add('active');
-            } else if (topping[j] == 'topping4') {
-                elementsTopping4[i].classList.add('active');
-            } else if (topping[j] == 'topping5') {
-                elementsTopping5[i].classList.add('active');
-            } else elementsTopping6[i].classList.add('active');
-        }
-    }
-}
 
 function activeTopping() {
     const toppings = qSelector('.topping-btn');
@@ -590,15 +668,29 @@ function activeTopping() {
         });
     });
 }
+
 function changeOrderBtn(listCf) {
     btn = DOM_ID('send-order-btn');
     if (listCf.listInCart.length == 0) {
         btn.innerHTML = 'Order now';
-        btn.onclick = closeTable;
+        btn.onclick = closeTable();
+    } else {
+        btn.innerHTML = 'Send Order Now';
+        btn.onclick = sendOrder();
     }
 }
-function removeOrder(id) {
-    listCoffee.DeleteOrder(id);
+
+function confirmRemoveOrder(No) {
+    if (confirm("Are you sure you want to delete?")) {
+        removeOrder(No);
+        alert("Item deleted successfully!");
+    } else {
+        alert("Delete cancelled.");
+    }
+}
+
+function removeOrder(No) {
+    listCoffee.DeleteOrder(No);
     setStorage();
     getCartListInStorage();
     renderCartTable()
@@ -615,6 +707,7 @@ function closeModal() {
 
 function closeTable() {
     DOM_ID("table-container").style.display = 'none';
+
 }
 function openTable() {
     DOM_ID("table-container").style.display = 'block';

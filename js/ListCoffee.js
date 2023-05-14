@@ -7,7 +7,7 @@ function ListCoffee() {
             "title": "Short and strong coffee",
             "rate": 4,
             "order": 1042,
-            "price": 2.50,
+            "price": 15.99,
             "description": "Espresso is a concentrated form of coffee that is brewed by forcing hot water under high pressure through finely ground coffee beans."
         },
         {
@@ -17,7 +17,7 @@ function ListCoffee() {
             "title": "Coffee with steamed milk",
             "rate": 5,
             "order": 1230,
-            "price": 3.50,
+            "price": 16.19,
             "description": "Latte is a coffee drink made with espresso and steamed milk. \nIt is typically topped with a layer of milk foam."
         },
         {
@@ -27,7 +27,7 @@ function ListCoffee() {
             "title": "Coffee with equal parts of espresso, steamed milk, and milk foam",
             "rate": 4.2,
             "order": 1190,
-            "price": 3.00,
+            "price": 19.99,
             "description": "Cappuccino is a coffee drink that is made with equal parts of espresso, steamed milk, and milk foam.\n It is typically served in a small cup."
         },
         {
@@ -37,7 +37,7 @@ function ListCoffee() {
             "title": "Espresso diluted with hot water",
             "rate": 3.8,
             "order": 3819,
-            "price": 2.75,
+            "price": 22.79,
             "description": "Americano is a coffee drink made by diluting an espresso shot with hot water.\n It is similar to drip coffee but has a different taste due to the use of espresso as a base."
         },
         {
@@ -47,7 +47,7 @@ function ListCoffee() {
             "title": "Espresso with chocolate syrup and steamed milk",
             "rate": 4,
             "order": 2451,
-            "price": 4.00,
+            "price": 24.69,
             "description": "Mocha is a coffee drink made with espresso, chocolate syrup, and steamed milk.\n It is typically topped with whipped cream and chocolate shavings."
         },
         {
@@ -57,7 +57,7 @@ function ListCoffee() {
             "title": "Espresso with a dollop of steamed milk",
             "rate": 4,
             "order": 5831,
-            "price": 3.25,
+            "price": 25.99,
             "description": "Macchiato is a coffee drink made with a shot of espresso and a dollop of steamed milk.\n It is similar to a latte, but with a stronger coffee flavor."
         },
         {
@@ -67,7 +67,7 @@ function ListCoffee() {
             "title": "Chilled coffee served over ice",
             "rate": 4,
             "order": 1221,
-            "price": 3.50,
+            "price": 2.99,
             "description": "Iced coffee is a coffee drink that is served chilled over ice.\n It can be made with regular drip coffee or espresso, and is typically sweetened with sugar or a flavored syrup."
         },
         {
@@ -77,7 +77,7 @@ function ListCoffee() {
             "title": "Espresso poured over a scoop of ice cream",
             "rate": 5,
             "order": 2390,
-            "price": 5.00,
+            "price": 1.99,
             "description": "Affogato is a dessert coffee made with a shot of espresso poured over a scoop of vanilla ice cream.\n It is typically served in a small bowl or glass."
         },
         {
@@ -87,7 +87,7 @@ function ListCoffee() {
             "title": "Coffee with a double shot of espresso and steamed milk",
             "rate": 5,
             "order": 5210,
-            "price": 3.75,
+            "price": 3.99,
             "description": "Flat white is a coffee drink made with a double shot of espresso and steamed milk. \nIt is similar to a latte, but with a stronger coffee flavor and less milk foam."
         },
         {
@@ -97,7 +97,7 @@ function ListCoffee() {
             "title": "Strong coffee brewed in a pot and served unfiltered",
             "rate": 5,
             "order": 3190,
-            "price": 4.50,
+            "price": 1.99,
             "description": "Turkish coffee is a coffee drink that is brewed in a pot and served unfiltered. \nIt is a stronger coffee flavor"
         },
         {
@@ -107,7 +107,7 @@ function ListCoffee() {
             "title": "Chilled coffee served over ice",
             "rate": 4,
             "order": 1221,
-            "price": 3.50,
+            "price": 2.99,
             "description": "Iced coffee is a coffee drink that is served chilled over ice. \nIt can be made with regular drip coffee or espresso, and is typically sweetened with sugar or a flavored syrup."
         },
         {
@@ -117,7 +117,7 @@ function ListCoffee() {
             "title": "Espresso poured over a scoop of ice cream",
             "rate": 5,
             "order": 2390,
-            "price": 5.00,
+            "price": 4.99,
             "description": "Affogato is a dessert coffee made with a shot of espresso poured over a scoop of vanilla ice cream. \nIt is typically served in a small bowl or glass."
         }
     ];
@@ -165,13 +165,17 @@ function ListCoffee() {
     this.AddToCart = function (coffeeToAdd) {
         this.listInCart.push(coffeeToAdd);
     }
-    this.DeleteOrder = function (CfId) {
+    this.DeleteOrder = function (No) {
+        this.listInCart.splice(No, 1);
+    }
+    this.FindCfInCart = function (No) {
         for (let i = 0; i < this.listInCart.length; i++) {
-            if (CfId == this.listInCart[i].id) {
-                this.listInCart.splice(i, 1);
+            if (cfId == this.listInCart[i].id) {
+
+                return this.listInCart[i]
             }
         }
-
+        return null;
     }
 }
 
