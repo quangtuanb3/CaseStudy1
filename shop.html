@@ -57,7 +57,7 @@
     </header>
 
     <!-- cart-table -->
-    <div id="table-container">
+    <div id="cart-container">
         <div id="cart-table">
             <span class="close" id="close-table" onclick="closeTable()">&times;</span>
             <table>
@@ -81,7 +81,7 @@
                 <span id="payment-cart">22</span><span>$</span>
             </p>
             <div class="send-order">
-                <button id="send-order-btn" onclick="sendOrder()">Send Order Now</button>
+                <button id="send-order-btn" onclick="confirmOrder()">Send Order Now</button>
             </div>
 
         </div>
@@ -122,121 +122,49 @@
         <div class="pro-cont" id="pro-cont">
             <!-- item here -->
         </div>
-        <div id="modal-container">
-            <!-- modal buy here  -->
-            <div id="my-modal">
-
-                <!-- <span class="close" onclick="hideModal()">&times;</span>
-    <div id="modal-buy-cf" class="d-flex">
-        <div class="modal-cf-img">
-            <img src="./images/ca-phe-sua-da-2.jpg" alt="ca-phe-sua-da-2.jpg">
-        </div>
-
-        <div class="modal-cf-content">
-            <h3>Coffee Name </h3>
-            <h3>1.99<span> $</span></h3>
-
-            <form action="#" class="buy-coffee-form">
-                <div class="size">
-                    <h4>Please select your favorite size:</h4>
-                    <div class="d-flex">
-                        <div class="pr-30">
-                            <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
-                            <label for="small">
-                                <p class="my-button radio-btn">Small</p>
-                            </label>
-                        </div>
-                        <div class="pr-30">
-                            <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option"
-                                checked="checked">
-                            <label for="medium">
-                                <p class="my-button radio-btn active">Medium</p>
-                            </label>
-                        </div>
-                        <div class="pr-30">
-                            <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
-                            <label for="big">
-                                <p class="my-button radio-btn" class="">Big</p>
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="topping">
-
-                    <h4>Please select your topping:</h4>
-                    <div class="topping-grid">
-                        <div>
-                            <input type="checkbox" id="topping1" name="topping1" value="topping1"
-                                class="topping-option">
-                            <label for="topping1">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping2" name="topping2" value="topping2"
-                                class="topping-option">
-                            <label for="topping2">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
-                            </label>
-                        </div>
-
-
-                        <div>
-                            <input type="checkbox" id="topping3" name="topping3" value="topping3"
-                                class="topping-option">
-                            <label for="topping3">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping4" name="topping4" value="topping4"
-                                class="topping-option">
-                            <label for="topping4">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping5" name="topping5" value="topping5"
-                                class="topping-option">
-                            <label for="topping5">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping6" name="topping6" value="topping6"
-                                class="topping-option">
-                            <label for="topping6">
-                                <p class="my-button topping-btn" class="">Lorem psum.</p>
-                            </label>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="quantity">
-                    <h4>Please enter quantity</h4>
-                    <input type="number" min="1" max="1000" value="1" style="text-align: right;">
-                </div>
-                <div class="add-to-cart">
-                    <input type="button" value="Add to cart" class="my-button add-to-cart-btn"
-                        onclick="addToCart()">
-                </div>
-
-            </form>
-        </div>
-    </div> -->
-            </div>
+        <div>
 
         </div>
-
-
 
     </section>
+    <div id="modal-container">
+        <!-- modal buy here  -->
+        <div id="my-modal">
+        </div>
+    </div>
+    <div id="confirm-order-container">
+        <div id="confirm-order">
+            <h2 style="text-align: center;">Client Information</h2>
+            <span class="close" id="close-confirmModal" onclick="closeConfirmModal()">&times;</span>
+            <form class="form" action="#contact">
+                <input type="text" placeholder="First name" id="client-firstname">
+                <input type="text" placeholder="Last name" id="client-lastname">
+                <input type="text" placeholder="Address" id="client-address">
+                <input type="number" placeholder="Phone" id="client-phone">
+                <textarea cols="30" rows="3" placeholder="Message" id="client-comment"></textarea>
+                <table style="grid-column: 1 /span 2;">
+                    <thead>
+                        <tr>
+                            <th> No.</th>
+                            <th> ID </th>
+                            <th> Name </th>
+                            <th> Size </th>
+                            <th> Topping </th>
+                            <th> Quantity </th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="order-tbody">
+
+                    </tbody>
+                </table>
+                <p class="total-order" style="text-align: right; color: red;">Total:
+                    <span id="payment-order">22</span><span>$</span>
+                </p>
+                <button type="submit" class="my-button" onclick="sendOrder()">Send now</button>
+            </form>
+        </div>
+    </div>
 
     <!-- 5. Team  -->
     <section class="team" id="team">
@@ -377,7 +305,7 @@
         </div>
     </section>
     <!-- 6. contact  -->
-    <section id="contact" id="contact">
+    <section id="contact">
         <h2>CONTACT</h2>
         <form class="form" action="#contact">
             <input type="text" placeholder="Name">
@@ -455,6 +383,8 @@
     <script src="./js/Coffee.js"></script>
     <script src="./js/ListCoffee.js"></script>
     <script src="./js/validation.js"></script>
+    <script src="./js/Order.js"></script>
+    <script src="./js/ListOrder.js"></script>
     <script src="./js/shop.js"></script>
 </body>
 

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="icon" href="./images/dashboard-icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./css/orderPage.css">
+</head>
+
+<body>
+    <div class="my-dashboard d-flex">
+        <div class="side-bar">
+            <div class="side-bar-header">
+                <h2>DASHBOARD</h2>
+            </div>
+            <ul class="menu-bar">
+                <li>
+                    <a href="./index.html"><i class="fa fa-home"></i>HOME</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-coffee"></i>MENU</a>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-receipt"></i>ORDER</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-user-friends"></i>USER</a>
+                </li>
+                <li>
+                    <a href="#"> <i class="fa fa-phone"></i>CONTACT</a>
+                </li>
+            </ul>
+        </div>
+        <div class="dashboard-content">
+            <div class="main-content">
+                <div class="content-header">
+                    <h2>COFFEE SHOP > ORDER PAGE</h2>
+                </div>
+                <div class="pt-20">
+                    <table class="content-table">
+                        <!-- firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment -->
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Client Name</th>
+                                <th>Address <br>
+                                    Phone</th>
+                                <th>Comment</th>
+                                <th>Coffee ID</th>
+                                <th>Coffee Name</th>
+                                <th>Coffee Size</th>
+                                <th>Coffee Topping</th>
+                                <th>Coffee Quantity</th>
+                                <th>Price</th>
+                                <th>Total Payment</th>
+                                <th><i class="fa fa-cog"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-table">
+                            <tr>
+                                <td rowspan="3">1</td>
+                                <td rowspan="3">fName LName</td>
+                                <td rowspan="3"> <span class="address"></span> Lorem ipsum dolor sit amet, consectetur
+                                    adipisicing elit. <br>
+                                    <span class="phone">097262622</span>
+                                </td>
+                                <td rowspan="3">
+                                    Lorem ipsum dolor sit amet consectetur
+                                </td>
+                                <td class="cfId">CF ID -1 </td>
+                                <td class="cfName">CF Name -1 </td>
+                                <td class="cfSize">CF size -1 </td>
+                                <td class="cfTopping">CF topping -1 </td>
+                                <td class="cfQuantity">CF quantity -1 </td>
+                                <td class="cfPrice">CF price -1 </td>
+                                <td rowspan="3"> <span class="total-payment">100</span> <span>UDS</span> </td>
+                            </tr>
+                            <tr>
+                                <td class="cfId">CF ID -2 </td>
+                                <td class="cfName">CF Name -2 </td>
+                                <td class="cfSize">CF size -2 </td>
+                                <td class="cfTopping">CF topping -2 </td>
+                                <td class="cfQuantity">CF quantity -2 </td>
+                                <td class="cfPrice">CF price -2 </td>
+                            </tr>
+                            <tr>
+                                <td class="cfId">CF ID -3 </td>
+                                <td class="cfName">CF Name -3 </td>
+                                <td class="cfSize">CF size -3</td>
+                                <td class="cfTopping">CF topping -3 </td>
+                                <td class="cfQuantity">CF quantity -3 </td>
+                                <td class="cfPrice">CF price -3 </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="./js/Order.js"></script>
+    <script src="./js/ListOrder.js"></script>
+</body>
+
+</html>

@@ -1,5 +1,7 @@
 var listCoffee = new ListCoffee();
 var validation = new Validation();
+var order = new Order();
+var listOrder = new ListOrder();
 var productionType = [
     {
         "title": "ORGANIC COFFEE",
@@ -61,32 +63,33 @@ function renderCartTable() {
     for (let i = 0; i < listCoffee.listInCart.length; i++) {
         var coffee = listCoffee.listInCart[i];
 
-        tbodyContent += `
-<tr>
-    <td>${i + 1}</td>
+        tbodyContent +=
+            `
+                    <tr>
+                        <td>${i + 1}</td>
 
-    <td>${coffee.id}</td>
+                        <td>${coffee.id}</td>
 
-    <td>${coffee.name}</td>
+                        <td>${coffee.name}</td>
 
-    <td> ${coffee.size}</td>
+                        <td> ${coffee.size}</td>
     
-    <td> ${coffee.topping.map(topping => `<span class='toppingItems'>${topping}</span>`).join(', ')}</td >
+                        <td> ${coffee.topping.map(topping => `<span class='toppingItems'>${topping}</span>`).join(', ')}</td >
 
-    <td> ${coffee.quantity}</td>
+                        <td> ${coffee.quantity}</td>
     
-    <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>
+                        <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>
    
-    <td> <button class="edit-btn" onclick="editOrder(${i})" ><i class="fa fa-pen" style="color:orange;"></i></button>
-     <button class="delete-btn" onclick="confirmRemoveOrder(${i})" ><i class="fa fa-trash"></i></button></td>
-</tr >
-        `
+                        <td> <button class="edit-btn" onclick="editOrder(${i})" ><i class="fa fa-pen" style="color:orange;"></i></button>
+                                <button class="delete-btn" onclick="confirmRemoveOrder(${i})" ><i class="fa fa-trash"></i></button></td>
+                    </tr >
+                `
     }
 
     tbody.innerHTML = tbodyContent;
     totalElement.innerHTML = totalPayment;
 
-    changeOrderBtn(listCoffee);
+    // changeOrderBtn(listCoffee);
 }
 function saveOrder(No) {
     let coffeeToSave = listCoffee.listInCart[No]
@@ -191,21 +194,23 @@ function showTotalBuy(eleId) {
     getTotal(eleId);
 
     var sizeItems = qSelector('input[name="cf-size"]');
+    console.log(sizeItems)
     sizeItems.forEach(function (radio) {
-        radio.addEventListener("change", function () {
+        radio.addEventListener("click", function () {
+            console.log(eleId);
             getTotal(eleId);
         });
     });
 
     var toppingCheckboxes = qSelector('input[name^="topping"]');
     toppingCheckboxes.forEach(function (checkbox) {
-        checkbox.addEventListener("change", function () {
+        checkbox.addEventListener("click", function () {
             getTotal(eleId);
         });
     });
 
     var quantityInput = DOM_ID("quantity");
-    quantityInput.addEventListener("input", function () {
+    quantityInput.addEventListener("click", function () {
         getTotal(eleId);
     });
 }
@@ -248,6 +253,10 @@ function getCartListInStorage() {
 function setStorage() {
     var jsonCoffeeInCart = JSON.stringify(listCoffee.listInCart);
     localStorage.setItem("coffeeInCart", jsonCoffeeInCart);
+}
+function setOrderToStorage() {
+    var jsonCoffeeInCart = JSON.stringify(listOrder.listCfOrder);
+    localStorage.setItem("orderedCoffee", jsonCoffeeInCart);
 }
 
 
@@ -338,6 +347,7 @@ function truncateString(str, num) {
 function buyCoffee(id) {
     openModal()
     let coffeeToBuy = listCoffee.FindById(id);
+
     let modalElement = `
     <span class="close" onclick="closeModal()">&times;</span>
     <div id="modal-buy-cf" class="d-flex">
@@ -441,15 +451,10 @@ function buyCoffee(id) {
                         <p class="total">Total: <span id="total">${coffeeToBuy.price + 0.5}</span>$</p>
                     </div>
                 </div>
-
-
-               
-
                 <div class="add-to-cart">
                     <input id="add-to-cart-btn" type="button" value="Add to cart" class="my-button add-to-cart-btn"
                         onclick="addToCart(${coffeeToBuy.id})">
                 </div>
-
             </form>
         </div>
     </div>
@@ -591,16 +596,112 @@ function OpenModalEditCoffee(No) {
     DOM_ID("my-modal").innerHTML = modalElement;
     setSize(size);
     setTopping(topping);
-    showTotalBuy("total");
     activeSize();
     activeTopping();
+    showTotalBuy("total");
 }
 
+
+function confirmOrder() {
+    closeTable()
+    openConfirmModal()
+    renderConfirmTable()
+}
 
 function sendOrder() {
 
+    // get Input data 
+    var firstName = DOM_ID("client-firstname").value;
+    var lastName = DOM_ID("client-lastname").value;
+    var phone = DOM_ID("client-phone").value;
+    var address = DOM_ID("client-address").value;
+    var comment = DOM_ID("client-comment").value
+
+    // validation 
+    var error = 0;
+
+    if (validation.CheckEmpty("client-firstname", firstName) == true) {
+        error++;
+    }
+
+    if (validation.CheckEmpty("client-lastname", lastName) == true) {
+        error++;
+    }
+
+    if (validation.CheckEmpty("client-phone", phone) == true) {
+        error++;
+    }
+    if (validation.CheckEmpty("client-address", address) == true) {
+        error++;
+    }
+
+    // send order
+    if (error != 0) {
+        return
+    }
+    let cfId = [],
+        cfName = [],
+        cfSize = [],
+        cfTopping = [],
+        cfQuantity = [],
+        cfTotal = [],
+        cfPayment = parseFloat(DOM_ID('payment-order').innerText).toFixed(2)
+    var listCoffee = getCartListInStorage();
+    for (i = 0; i < listCoffee.listInCart.length; i++) {
+        cfId.push(listCoffee.listInCart[i].id)
+        cfSize.push(listCoffee.listInCart[i].size)
+        cfTopping.push(listCoffee.listInCart[i].topping)
+        cfQuantity.push(listCoffee.listInCart[i].quantity)
+        cfTotal.push(listCoffee.listInCart[i].payment)
+        // cfPayment += listCoffee.listInCart[i].payment;
+    }
+    var order = new Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
+    console.log(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
+    listOrder.AddOrder(order);
+    setOrderToStorage();
 }
 
+
+
+
+function renderConfirmTable() {
+    let listCoffeeConfirm = getCartListInStorage();
+    let tbody = DOM_ID("order-tbody");
+    let totalElement = DOM_ID("payment-order");
+    let totalPayment = calculateTotalPayment(listCoffeeConfirm);
+    let trData = '';
+    for (i = 0; i < listCoffeeConfirm.listInCart.length; i++) {
+        coffee = listCoffeeConfirm.listInCart[i];
+        trData += `
+        
+                    <tr>
+                        <td>${i + 1}</td>
+
+                        <td>${coffee.id}</td>
+
+                        <td>${coffee.name}</td>
+
+                        <td> ${coffee.size}</td>
+    
+                        <td> ${coffee.topping.map(topping => `<span class='toppingItems'>${topping}</span>`).join(', ')}</td >
+
+                        <td> ${coffee.quantity}</td>
+    
+                        <td><span id="cf-${i}-payment">${coffee.payment}</span>$</td>
+                    </tr >
+                
+        `
+    }
+    tbody.innerHTML = trData;
+    totalElement.innerHTML = totalPayment;
+}
+
+function openConfirmModal() {
+    DOM_ID('confirm-order').style.display = 'block';
+}
+function closeConfirmModal() {
+    DOM_ID('confirm-order').style.display = 'none';
+}
 function activeSize() {
     var sizeItems = qSelector('.radio-btn')
     for (var i = 0; i < sizeItems.length; i++) {
@@ -669,16 +770,16 @@ function activeTopping() {
     });
 }
 
-function changeOrderBtn(listCf) {
-    btn = DOM_ID('send-order-btn');
-    if (listCf.listInCart.length == 0) {
-        btn.innerHTML = 'Order now';
-        btn.onclick = closeTable();
-    } else {
-        btn.innerHTML = 'Send Order Now';
-        btn.onclick = sendOrder();
-    }
-}
+// function changeOrderBtn(listCf) {
+//     btn = DOM_ID('send-order-btn');
+//     if (listCf.listInCart.length == 0) {
+//         btn.innerHTML = 'Order now';
+//         btn.onclick = closeTable();
+//     } else {
+//         btn.innerHTML = 'Send Order Now';
+//         btn.onclick = confirmOrder();
+//     }
+// }
 
 function confirmRemoveOrder(No) {
     if (confirm("Are you sure you want to delete?")) {
@@ -698,17 +799,19 @@ function removeOrder(No) {
 
 }
 function openModal() {
-    DOM_ID("my-modal").style.display = 'block';
+    DOM_ID("modal-container").style.display = 'block';
 }
 
 function closeModal() {
-    DOM_ID("my-modal").style.display = 'none';
+    DOM_ID("modal-container").style.display = 'none';
 }
 
 function closeTable() {
-    DOM_ID("table-container").style.display = 'none';
+    DOM_ID('cart-container').style.display = 'none';
+    // DOM_ID("table-container").style.display = 'none';
 
 }
 function openTable() {
-    DOM_ID("table-container").style.display = 'block';
+    DOM_ID('cart-container').style.display = 'block';
+    // DOM_ID("table-container").style.display = 'block';
 }
