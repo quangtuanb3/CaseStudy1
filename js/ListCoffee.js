@@ -93,7 +93,7 @@ function ListCoffee() {
         {
             "id": 10,
             "name": "Turkish Coffee",
-            "image": "./images/coffee-banner.webp",
+            "image": "./images/slide1.webp",
             "title": "Strong coffee brewed in a pot and served unfiltered",
             "rate": 5,
             "order": 3190,

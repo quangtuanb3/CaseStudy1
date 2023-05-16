@@ -13,6 +13,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./css/lightbox.css">
     <link rel="stylesheet" href="./css/style.css">
+    <style>
+        .animate__animated.animate__fadeInLeft {
+            --animate-duration: 3s;
+        }
+    </style>
 </head>
 
 <body>
@@ -66,7 +71,7 @@
     <section class="banner" id="banner">
         <div class="banner-top">
             <img src="./images/image-1.jpg" alt="banner" class="banner-img">
-            <div class="banner-cont">
+            <div class="banner-cont animate__animated animate__fadeInLeft">
                 <h3>LOREM IPSIM DORLOE SIT AMET CONSECTURE</h3>
                 <p>Your favourite coffee</p>
             </div>
@@ -407,8 +412,9 @@
         </div>
     </footer>
 
-    <script type="module" src="./js/lightbox-plus-jquery.js"></script>
-    <script type="module" src="./js/style-index.js"></script>
+    <script src="./js/lightbox-plus-jquery.js"></script>
+    <script src="./js/style-index.js"></script>
+
 </body>
 
 </html>

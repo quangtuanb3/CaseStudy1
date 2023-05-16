@@ -79,7 +79,7 @@
     z-index: 9;
     border-radius: 7px;
     background-color: white;
-    transition: all .5s;
+    transition: all 0.5s;
 }
 .form-popup::before {
     content: "";
@@ -144,6 +144,7 @@
 }
 .banner-top {
     position: relative;
+    padding-top: 80px;
 }
 .banner-cont {
     position: absolute;

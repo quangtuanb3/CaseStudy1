@@ -1,6 +1,4 @@
 
-
-
 // Get all the menu items
 var menuItems = document.querySelectorAll('div ul li a');
 var section = document.querySelectorAll('section')

@@ -55,6 +55,7 @@
 }
 .menu-bar .active{
     background-color: #496198;
+    color: #c21111;
 }
 .menu-bar li {
     padding: 20px 20px;
@@ -243,5 +244,16 @@ textarea {
 }
 .input-img input {
     width: 95%;
+}
+
+.done-btn{
+    color: orange;
+    padding: 5px;
+    border-radius: 50%;
+    border-color: orange;
+    margin: 5px;
+}
+.delete-btn{
+    color: red;
 }
 

@@ -255,8 +255,8 @@ function setStorage() {
     localStorage.setItem("coffeeInCart", jsonCoffeeInCart);
 }
 function setOrderToStorage() {
-    var jsonCoffeeInCart = JSON.stringify(listOrder.listCfOrder);
-    localStorage.setItem("orderedCoffee", jsonCoffeeInCart);
+    var jsonCoffeeOrdered = JSON.stringify(listOrder.listCfOrder);
+    localStorage.setItem("orderedCoffee", jsonCoffeeOrdered);
 }
 
 
@@ -603,6 +603,13 @@ function OpenModalEditCoffee(No) {
 
 
 function confirmOrder() {
+    console.log("abda");
+    let listCoffee = getCartListInStorage();
+    console.log(listCoffee.listInCart.length ==0);
+    if (listCoffee.listInCart.length == 0) {
+        DOM_ID('errorInfo').style.display = 'block'
+        return
+    }
     closeTable()
     openConfirmModal()
     renderConfirmTable()
@@ -653,12 +660,13 @@ function sendOrder() {
         cfTopping.push(listCoffee.listInCart[i].topping)
         cfQuantity.push(listCoffee.listInCart[i].quantity)
         cfTotal.push(listCoffee.listInCart[i].payment)
-        // cfPayment += listCoffee.listInCart[i].payment;
     }
     var order = new Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     console.log(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
+    console.log(listOrder.listCfOrder);
     setOrderToStorage();
+    closeConfirmModal();
 }
 
 
