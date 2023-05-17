@@ -43,6 +43,17 @@
             </ul>
         </div>
 
+        <div class="search-container box">
+            <form action="#product" class="sbox">
+                <input class="stext" type="text" placeholder="Search..." id="keyword" name="search">
+                <a class="sbutton" type="button" href="javascript:void(0);" onclick="searchCoffee()">
+                    <i class="fa fa-search"></i>
+                </a>
+                <!-- <input type="text" placeholder="Search.." name="search" id="keyword">
+                <button type="button" onclick="searchCoffee()"><i class="fa fa-search"></i></button> -->
+            </form>
+        </div>
+
         <div class="cart d-flex">
             <div id="cart-number">
 
@@ -120,6 +131,10 @@
     <!-- 3. Product  -->
     <section class="product" id="product">
         <h2>OUR PRODUCT</h2>
+        <div id="notFound">
+            <p id="notFound-caption">Result Not Found!!!</p>
+            <img src="./images/resultNotFound.webp" alt="not-found">
+        </div>
         <div class="pro-cont" id="pro-cont">
             <!-- item here -->
         </div>

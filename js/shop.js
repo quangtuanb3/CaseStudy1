@@ -15,6 +15,12 @@ var productionType = [
     }
 
 ]
+var coffeeOder = new Coffee();
+Coffee.prototype.size = 'Medium';
+Coffee.prototype.topping = [];
+Coffee.prototype.quantity = '';
+Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this.quantity, this.price);
+
 RenderProductSection();
 RenderCart()
 if (localStorage.getItem("coffeeInCart") != null) {
@@ -36,11 +42,17 @@ function RenderCart() {
     }
 }
 
-var coffeeOder = new Coffee();
-Coffee.prototype.size = 'Medium';
-Coffee.prototype.topping = [];
-Coffee.prototype.quantity = '';
-Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this.quantity, this.price)
+function searchCoffee(keyword) {
+    keyword = DOM_ID('keyword').value;
+    if (keyword == '') { return };
+    listCfSearched = listCoffee.SearchCoffee(keyword)
+    RenderCoffeeData(productionType, listCfSearched);
+    DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
+    if (listCfSearched.listCf.length == 0) {
+        DOM_ID("notFound").style.display = 'block';
+    }
+}
+
 
 function DOM_ID(id) {
     return document.getElementById(id)
@@ -53,15 +65,15 @@ function qSelector(attribute) {
 function renderCartTable() {
     listCoffee = getCartListInStorage();
     openTable();
-    var tbody = DOM_ID("cart-tbody");
-    var totalElement = DOM_ID("payment-cart");
+    let tbody = DOM_ID("cart-tbody");
+    let totalElement = DOM_ID("payment-cart");
     tbody.innerHTML = '';
-    var totalPayment = calculateTotalPayment(listCoffee);
+    let totalPayment = calculateTotalPayment(listCoffee);
 
-    var tbodyContent = '';
+    let tbodyContent = '';
 
     for (let i = 0; i < listCoffee.listInCart.length; i++) {
-        var coffee = listCoffee.listInCart[i];
+        let coffee = listCoffee.listInCart[i];
 
         tbodyContent +=
             `
@@ -104,14 +116,14 @@ function saveOrder(No) {
     renderCartTable();
 };
 function addToCart(cfId) {
-    var coffeeCalled = listCoffee.FindById(cfId);
+    let coffeeCalled = listCoffee.FindById(cfId);
 
     coffeeCalled.size = getSize();
 
     coffeeCalled.topping = getTopping();
     coffeeCalled.quantity = DOM_ID("quantity").value;
 
-    var coffeeToCart = new Coffee(coffeeCalled.id, coffeeCalled.name, coffeeCalled.image, coffeeCalled.title, coffeeCalled.rate, coffeeCalled.order, coffeeCalled.price, coffeeCalled.description)
+    let coffeeToCart = new Coffee(coffeeCalled.id, coffeeCalled.name, coffeeCalled.image, coffeeCalled.title, coffeeCalled.rate, coffeeCalled.order, coffeeCalled.price, coffeeCalled.description)
     coffeeToCart.size = coffeeCalled.size;
     coffeeToCart.topping = coffeeCalled.topping;
     coffeeToCart.quantity = coffeeCalled.quantity;
@@ -128,7 +140,7 @@ function addToCart(cfId) {
     closeModal();
 }
 function checkQuantity() {
-    var error = 0;
+    let error = 0;
     if (validation.CheckBoundary("quantity") == true) {
         error++;
     }
@@ -154,9 +166,9 @@ function showCart(listCoffee) {
 }
 
 function getSize() {
-    var sizeItems = document.querySelectorAll('.radio-btn');
-    var selectedSize = '';
-    for (var i = 0; i < sizeItems.length; i++) {
+    let sizeItems = document.querySelectorAll('.radio-btn');
+    let selectedSize = '';
+    for (let i = 0; i < sizeItems.length; i++) {
         if (sizeItems[i].classList.contains('active')) {
             selectedSize = sizeItems[i].innerHTML;
         }
@@ -165,11 +177,11 @@ function getSize() {
 }
 
 function getTopping() {
-    var toppingItems = document.querySelectorAll('.topping-btn');
-    var selectedToppings = [];
-    for (var i = 0; i < toppingItems.length; i++) {
+    let toppingItems = document.querySelectorAll('.topping-btn');
+    let selectedToppings = [];
+    for (let i = 0; i < toppingItems.length; i++) {
         if (toppingItems[i].classList.contains('active')) {
-            var toppingInput = document.querySelector('input[id="' + toppingItems[i].parentNode.getAttribute('for') + '"]');
+            lettoppingInput = document.querySelector('input[id="' + toppingItems[i].parentNode.getAttribute('for') + '"]');
             if (toppingInput) {
                 selectedToppings.push(toppingInput.value);
             }
@@ -193,7 +205,7 @@ function showTotalBuy(eleId) {
 
     getTotal(eleId);
 
-    var sizeItems = qSelector('input[name="cf-size"]');
+    let sizeItems = qSelector('input[name="cf-size"]');
     console.log(sizeItems)
     sizeItems.forEach(function (radio) {
         radio.addEventListener("click", function () {
@@ -202,14 +214,14 @@ function showTotalBuy(eleId) {
         });
     });
 
-    var toppingCheckboxes = qSelector('input[name^="topping"]');
+    let toppingCheckboxes = qSelector('input[name^="topping"]');
     toppingCheckboxes.forEach(function (checkbox) {
         checkbox.addEventListener("click", function () {
             getTotal(eleId);
         });
     });
 
-    var quantityInput = DOM_ID("quantity");
+    let quantityInput = DOM_ID("quantity");
     quantityInput.addEventListener("click", function () {
         getTotal(eleId);
     });
@@ -238,32 +250,32 @@ function calculateTotal(size, topping, quantity, price) {
 };
 
 function getCfListInStorage() {
-    var coffeeData = localStorage.getItem("coffeeList");
+    let coffeeData = localStorage.getItem("coffeeList");
     listCoffee.listCf = JSON.parse(coffeeData);
     RenderCoffeeData(productionType, listCoffee);
 }
 
 function getCartListInStorage() {
-    var coffeeInCart = localStorage.getItem("coffeeInCart");
+    let coffeeInCart = localStorage.getItem("coffeeInCart");
     listCoffee.listInCart = JSON.parse(coffeeInCart);
     showCart(listCoffee);
     return listCoffee;
 }
 
 function setStorage() {
-    var jsonCoffeeInCart = JSON.stringify(listCoffee.listInCart);
+    let jsonCoffeeInCart = JSON.stringify(listCoffee.listInCart);
     localStorage.setItem("coffeeInCart", jsonCoffeeInCart);
 }
 function setOrderToStorage() {
-    var jsonCoffeeOrdered = JSON.stringify(listOrder.listCfOrder);
+    let jsonCoffeeOrdered = JSON.stringify(listOrder.listCfOrder);
     localStorage.setItem("orderedCoffee", jsonCoffeeOrdered);
 }
 
 
 function RenderCoffeeData(productionType, listCoffee) {
-    var divContent = DOM_ID("pro-cont");
+    let divContent = DOM_ID("pro-cont");
     divContent.innerHTML = '';
-    var content = createDivItem(productionType, listCoffee)
+    let content = createDivItem(productionType, listCoffee)
 
     divContent.innerHTML = content;
 }
@@ -277,13 +289,13 @@ function createStar(start) {
 }
 
 function createDivItem(productionType, listCoffee) {
-    var divItems = '';
+    let divItems = '';
 
     for (let i = 0; i < listCoffee.listCf.length; i++) {
         const des = listCoffee.listCf[i].description.replace(/\n/g, '<br> <br>')
-        var coffee = listCoffee.listCf[i];
-        var newTitle = truncateString(listCoffee.listCf[i].title, 32)
-        var newDescription = truncateString(des, 150)
+        let coffee = listCoffee.listCf[i];
+        let newTitle = truncateString(listCoffee.listCf[i].title, 32)
+        let newDescription = truncateString(des, 150)
         if (i == 0) {
             divItems += createDivBanner(productionType, 0)
         }
@@ -601,11 +613,10 @@ function OpenModalEditCoffee(No) {
     showTotalBuy("total");
 }
 
-
 function confirmOrder() {
     console.log("abda");
     let listCoffee = getCartListInStorage();
-    console.log(listCoffee.listInCart.length ==0);
+    console.log(listCoffee.listInCart.length == 0);
     if (listCoffee.listInCart.length == 0) {
         DOM_ID('errorInfo').style.display = 'block'
         return
@@ -618,14 +629,14 @@ function confirmOrder() {
 function sendOrder() {
 
     // get Input data 
-    var firstName = DOM_ID("client-firstname").value;
-    var lastName = DOM_ID("client-lastname").value;
-    var phone = DOM_ID("client-phone").value;
-    var address = DOM_ID("client-address").value;
-    var comment = DOM_ID("client-comment").value
+    let firstName = DOM_ID("client-firstname").value;
+    let lastName = DOM_ID("client-lastname").value;
+    let phone = DOM_ID("client-phone").value;
+    let address = DOM_ID("client-address").value;
+    let comment = DOM_ID("client-comment").value
 
     // validation 
-    var error = 0;
+    let error = 0;
 
     if (validation.CheckEmpty("client-firstname", firstName) == true) {
         error++;
@@ -653,7 +664,7 @@ function sendOrder() {
         cfQuantity = [],
         cfTotal = [],
         cfPayment = parseFloat(DOM_ID('payment-order').innerText).toFixed(2)
-    var listCoffee = getCartListInStorage();
+    let listCoffee = getCartListInStorage();
     for (i = 0; i < listCoffee.listInCart.length; i++) {
         cfId.push(listCoffee.listInCart[i].id)
         cfSize.push(listCoffee.listInCart[i].size)
@@ -661,16 +672,13 @@ function sendOrder() {
         cfQuantity.push(listCoffee.listInCart[i].quantity)
         cfTotal.push(listCoffee.listInCart[i].payment)
     }
-    var order = new Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
+    let order = new Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     console.log(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
     console.log(listOrder.listCfOrder);
     setOrderToStorage();
     closeConfirmModal();
 }
-
-
-
 
 function renderConfirmTable() {
     let listCoffeeConfirm = getCartListInStorage();
@@ -711,10 +719,10 @@ function closeConfirmModal() {
     DOM_ID('confirm-order').style.display = 'none';
 }
 function activeSize() {
-    var sizeItems = qSelector('.radio-btn')
-    for (var i = 0; i < sizeItems.length; i++) {
+    let sizeItems = qSelector('.radio-btn')
+    for (let i = 0; i < sizeItems.length; i++) {
         sizeItems[i].addEventListener('click', function () {
-            for (var j = 0; j < sizeItems.length; j++) {
+            for (let j = 0; j < sizeItems.length; j++) {
                 sizeItems[j].classList.remove('active');
             }
             this.classList.add('active');
@@ -777,17 +785,6 @@ function activeTopping() {
         });
     });
 }
-
-// function changeOrderBtn(listCf) {
-//     btn = DOM_ID('send-order-btn');
-//     if (listCf.listInCart.length == 0) {
-//         btn.innerHTML = 'Order now';
-//         btn.onclick = closeTable();
-//     } else {
-//         btn.innerHTML = 'Send Order Now';
-//         btn.onclick = confirmOrder();
-//     }
-// }
 
 function confirmRemoveOrder(No) {
     if (confirm("Are you sure you want to delete?")) {

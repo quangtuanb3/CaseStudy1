@@ -151,16 +151,31 @@ function ListCoffee() {
     this.FindById = function (cfId) {
         for (let i = 0; i < this.listCf.length; i++) {
             if (cfId == this.listCf[i].id) {
-
                 return this.listCf[i]
             }
         }
         return null;
     }
 
-    this.SearchCoffee = function (searchCoffee) {
+    this.SearchCoffee = function (keyword) {
+        let listSearch = new ListCoffee();
+        listSearch.listCf = [];
+        let newKey = keyword.trim().toLowerCase()
+        for (var i = 0; i < this.listCf.length; i++) {
+            var coffee = this.listCf[i];
+            if (coffee.name.trim().toLowerCase().search(newKey) != -1) {
+                listSearch.listCf.push(coffee);
+            } else if (coffee.title.trim().toLowerCase().search(newKey) != -1) {
+                listSearch.listCf.push(coffee);
+            } else if (parseInt(coffee.price) == parseInt(keyword)) {
+                listSearch.listCf.push(coffee);
+            }
 
+        }
+        return listSearch
     }
+
+
     this.listInCart = [];
     this.AddToCart = function (coffeeToAdd) {
         this.listInCart.push(coffeeToAdd);
@@ -168,14 +183,11 @@ function ListCoffee() {
     this.DeleteOrder = function (No) {
         this.listInCart.splice(No, 1);
     }
-    this.FindCfInCart = function (No) {
-        for (let i = 0; i < this.listInCart.length; i++) {
-            if (cfId == this.listInCart[i].id) {
+    this.FindCfInCart = function () {
 
-                return this.listInCart[i]
-            }
-        }
-        return null;
     }
+
 }
+
+
 
