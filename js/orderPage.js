@@ -16,7 +16,7 @@ function RenderTableOrder() {
     console.log('tbody: ' + tbody);
     console.log('listOrder.listCfOrder:' + listOrder.listCfOrder);
     if (listOrder.listCfOrder == null) { return };
-    tbodyData='';
+    tbodyData = '';
     let orderItemsLst = [];
     let orderItem;
     let firstRow = '';
@@ -57,16 +57,14 @@ function RenderTableOrder() {
         }
         orderItem = firstRow + otherRows;
         orderItemsLst.push(orderItem);
-        firstRow ='';
-        otherRows='';
+        firstRow = '';
+        otherRows = '';
     }
 
 
     for (i = 0; i < orderItemsLst.length; i++) {
         tbodyData += orderItemsLst[i];
-        console.log('orderItemsLst'+i+': ' + orderItemsLst[i])
+        console.log('orderItemsLst' + i + ': ' + orderItemsLst[i])
     }
-
-
     tbody.innerHTML = tbodyData;
 }

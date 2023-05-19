@@ -1,6 +1,6 @@
 
 var listCoffee = new ListCoffee();
-var validation = new Validation();
+var validate = new Validate();
 
 function DOM_ID(id) {
     return document.getElementById(id)
@@ -25,37 +25,37 @@ function AddCoffee() {
 
     // validation 
     var error = 0;
-    
-    image = validation.CheckToSetDefaultImg(image);
 
-    if (validation.CheckEmpty("coffee-id", id) == true) {
-        error++;
-    } else if ((validation.CheckDuplicateId("coffee-id", listCoffee) == true)) {
-        error++;
-    }
+    image = validate.CheckToSetDefaultImg(image);
 
-    if (validation.CheckEmpty("name", name) == true) {
+    if (validate.CheckEmpty("coffee-id", id) == true) {
         error++;
-    } else if ((validation.CheckDuplicateName("name", listCoffee) == true)) {
+    } else if ((validate.CheckDuplicateId("coffee-id", listCoffee) == true)) {
         error++;
     }
 
-    if (validation.CheckEmpty("image", image) == true) {
+    if (validate.CheckEmpty("name", name) == true) {
+        error++;
+    } else if ((validate.CheckDuplicateName("name", listCoffee) == true)) {
         error++;
     }
-    if (validation.CheckEmpty("title", title) == true) {
+
+    if (validate.CheckEmpty("image", image) == true) {
         error++;
     }
-    if (validation.CheckEmpty("rate", rate) == true) {
+    if (validate.CheckEmpty("title", title) == true) {
         error++;
     }
-    if (validation.CheckEmpty("order", order) == true) {
+    if (validate.CheckEmpty("rate", rate) == true) {
         error++;
     }
-    if (validation.CheckEmpty("price", price) == true) {
+    if (validate.CheckEmpty("order", order) == true) {
         error++;
     }
-    if (validation.CheckEmpty("description", description) == true) {
+    if (validate.CheckEmpty("price", price) == true) {
+        error++;
+    }
+    if (validate.CheckEmpty("description", description) == true) {
         error++;
     }
 

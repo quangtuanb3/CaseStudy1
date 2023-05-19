@@ -1,5 +1,5 @@
 
-function Validation() {
+function Validate() {
     this.CheckEmpty = function (id, value) {
         if (value.trim() === '') {
             document.getElementById(id).style.borderColor = "red"

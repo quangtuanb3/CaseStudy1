@@ -1,5 +1,5 @@
 var listCoffee = new ListCoffee();
-var validation = new Validation();
+var validate = new Validate();
 var order = new Order();
 var listOrder = new ListOrder();
 var productionType = [
@@ -141,7 +141,7 @@ function addToCart(cfId) {
 }
 function checkQuantity() {
     let error = 0;
-    if (validation.CheckBoundary("quantity") == true) {
+    if (validate.CheckBoundary("quantity") == true) {
         error++;
     }
     if (error != 0) {
@@ -181,7 +181,7 @@ function getTopping() {
     let selectedToppings = [];
     for (let i = 0; i < toppingItems.length; i++) {
         if (toppingItems[i].classList.contains('active')) {
-            lettoppingInput = document.querySelector('input[id="' + toppingItems[i].parentNode.getAttribute('for') + '"]');
+            let toppingInput = document.querySelector('input[id="' + toppingItems[i].parentNode.getAttribute('for') + '"]');
             if (toppingInput) {
                 selectedToppings.push(toppingInput.value);
             }
@@ -638,18 +638,18 @@ function sendOrder() {
     // validation 
     let error = 0;
 
-    if (validation.CheckEmpty("client-firstname", firstName) == true) {
+    if (validate.CheckEmpty("client-firstname", firstName) == true) {
         error++;
     }
 
-    if (validation.CheckEmpty("client-lastname", lastName) == true) {
+    if (validate.CheckEmpty("client-lastname", lastName) == true) {
         error++;
     }
 
-    if (validation.CheckEmpty("client-phone", phone) == true) {
+    if (validate.CheckEmpty("client-phone", phone) == true) {
         error++;
     }
-    if (validation.CheckEmpty("client-address", address) == true) {
+    if (validate.CheckEmpty("client-address", address) == true) {
         error++;
     }
 
