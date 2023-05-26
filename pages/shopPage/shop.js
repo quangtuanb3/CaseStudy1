@@ -1,3 +1,23 @@
+var menuItems = document.querySelectorAll('div ul li a');
+var section = document.querySelectorAll('section')
+
+for (var i = 0; i < menuItems.length; i++) {
+    menuItems[i].addEventListener('click', function () {
+        for (var j = 0; j < menuItems.length; j++) {
+            menuItems[j].classList.remove('active');
+        }
+        this.classList.add('active');
+
+    });
+}
+
+
+
+window.onload = checkLogin();
+function logout() {
+    localStorage.removeItem('User');
+    window.location.href = '/index.html';
+}
 var listCoffee = new ListCoffee();
 var validate = new Validate();
 var order = new Order();
@@ -5,24 +25,42 @@ var listOrder = new ListOrder();
 var productionType = [
     {
         "title": "ORGANIC COFFEE",
-        "image": "./images/oganic-coffe.webp",
+        "image": "../../images/oganic-coffe.webp",
         "content": "Organic coffee beans are often considered to have a richer, more complex flavor profile than conventionally grown coffee beans. \nThanks to the fact that they are grown in nutrient-rich soil and are able to develop their full flavor potential without the interference of chemical additives."
     },
     {
         "title": "FLAVOR COFFEE",
-        "image": "./images/image-2.jpg",
+        "image": "../../images/image-2.jpg",
         "content": "Organic coffee beans are often considered to have a richer, more complex flavor profile than conventionally grown coffee beans. \nThanks to the fact that they are grown in nutrient-rich soil and are able to develop their full flavor potential without the interference of chemical additives."
     }
 
 ]
+
+var user = getUserInStorage();
+
 var coffeeOder = new Coffee();
+var listUser = new ListUser();
 Coffee.prototype.size = 'Medium';
 Coffee.prototype.topping = [];
 Coffee.prototype.quantity = '';
 Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this.quantity, this.price);
 
+function checkLogin() {
+    console.log(localStorage.getItem("User"));
+    if (localStorage.getItem("User") == null) {
+        window.location.href = '/index.html';
+    }
+}
+
+function getUserInStorage() {
+    let userInStorage = localStorage.getItem("User");
+    let user = JSON.parse(userInStorage);
+    return user;
+}
+
 RenderProductSection();
 RenderCart()
+
 if (localStorage.getItem("coffeeInCart") != null) {
     listCoffee = getCartListInStorage();
 }
@@ -266,6 +304,7 @@ function setStorage() {
     let jsonCoffeeInCart = JSON.stringify(listCoffee.listInCart);
     localStorage.setItem("coffeeInCart", jsonCoffeeInCart);
 }
+
 function setOrderToStorage() {
     let jsonCoffeeOrdered = JSON.stringify(listOrder.listCfOrder);
     localStorage.setItem("orderedCoffee", jsonCoffeeOrdered);
@@ -362,114 +401,107 @@ function buyCoffee(id) {
 
     let modalElement = `
     <span class="close" onclick="closeModal()">&times;</span>
-    <div id="modal-buy-cf" class="d-flex">
-        <div class="modal-cf-img">
-            <img src="${coffeeToBuy.image}" alt="${coffeeToBuy.name}">
-            <p class="pt-20" style="width:90%;line-height:25px">${coffeeToBuy.description}</p>
-        </div>
-
-        <div class="modal-cf-content">
-            <h3 class="coffee-name">${coffeeToBuy.name}</h3>
-            <h3><span class="coffee-price">${coffeeToBuy.price}</span> <span style="color: #d7084d"> $</span></h3>
-            <!-- option form  -->
-            <form action="#" class="buy-coffee-form">
-                <div class="size">
-                    <h4>Please select your favorite size:</h4>
-                    <div class="d-flex">
-                        <div class="pr-30">
-                            <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
-                            <label for="small">
-                                <p class="my-button radio-btn">Small</p>
-                            </label>
-                        </div>
-                        <div class="pr-30">
-                            <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option"
-                                checked="checked">
-                            <label for="medium">
-                                <p class="my-button radio-btn active">Medium</p>
-                            </label>
-                        </div>
-                        <div class="pr-30">
-                            <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
-                            <label for="big">
-                                <p class="my-button radio-btn" class="">Big</p>
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="topping">
-
-                    <h4>Please select your topping:</h4>
-                    <div class="topping-grid">
-                        <div>
-                            <input type="checkbox" id="topping1" name="topping1" value="topping1"
-                                class="topping-option">
-                            <label for="topping1">
-                                <p class="my-button topping-btn" class="">Lorem psum1</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping2" name="topping2" value="topping2"
-                                class="topping-option">
-                            <label for="topping2">
-                                <p class="my-button topping-btn" class="">Lorem psum2</p>
-                            </label>
-                        </div>
-
-
-                        <div>
-                            <input type="checkbox" id="topping3" name="topping3" value="topping3"
-                                class="topping-option">
-                            <label for="topping3">
-                                <p class="my-button topping-btn" class="">Lorem psum3</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping4" name="topping4" value="topping4"
-                                class="topping-option">
-                            <label for="topping4">
-                                <p class="my-button topping-btn" class="">Lorem psum4</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping5" name="topping5" value="topping5"
-                                class="topping-option">
-                            <label for="topping5">
-                                <p class="my-button topping-btn" class="">Lorem psum5</p>
-                            </label>
-                        </div>
-
-                        <div>
-                            <input type="checkbox" id="topping6" name="topping6" value="topping6"
-                                class="topping-option">
-                            <label for="topping6">
-                                <p class="my-button topping-btn" class="">Lorem psum6</p>
-                            </label>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="d-flex" style="justify-content: space-between">
-                    <div class="quantity">
-                        <h4>Please enter quantity</h4>
-                        <input type="number" min="1" max="1000" value="1" style="text-align: right;" id="quantity">
-                    </div>
-                    <div>
-                        <p class="total">Total: <span id="total">${coffeeToBuy.price + 0.5}</span>$</p>
-                    </div>
-                </div>
-                <div class="add-to-cart">
-                    <input id="add-to-cart-btn" type="button" value="Add to cart" class="my-button add-to-cart-btn"
-                        onclick="addToCart(${coffeeToBuy.id})">
-                </div>
-            </form>
-        </div>
+<div id="modal-buy-cf" class="d-flex">
+    <div class="modal-cf-img">
+        <img src="${coffeeToBuy.image}" alt="${coffeeToBuy.name}">
+        <p class="pt-20" style="width:90%;line-height:25px">${coffeeToBuy.description}</p>
     </div>
+
+    <div class="modal-cf-content">
+        <h3 class="coffee-name">${coffeeToBuy.name}</h3>
+        <h3><span class="coffee-price">${coffeeToBuy.price}</span> <span style="color: #d7084d"> $</span></h3>
+        <!-- option form  -->
+        <form action="#" class="buy-coffee-form">
+            <div class="size">
+                <h4>Please select your favorite size:</h4>
+                <div class="d-flex">
+                    <div class="pr-30">
+                        <input type="radio" id="small" name="cf-size" value="Small" class="radio-option">
+                        <label for="small">
+                            <p class="my-button radio-btn">Small</p>
+                        </label>
+                    </div>
+                    <div class="pr-30">
+                        <input type="radio" id="medium" name="cf-size" value="Medium" class="radio-option"
+                            checked="checked">
+                        <label for="medium">
+                            <p class="my-button radio-btn active">Medium</p>
+                        </label>
+                    </div>
+                    <div class="pr-30">
+                        <input type="radio" id="big" name="cf-size" value="Big" class="radio-option">
+                        <label for="big">
+                            <p class="my-button radio-btn" class="">Big</p>
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="topping">
+
+                <h4>Please select your topping:</h4>
+                <div class="topping-grid">
+                    <div>
+                        <input type="checkbox" id="topping1" name="topping1" value="topping1" class="topping-option">
+                        <label for="topping1">
+                            <p class="my-button topping-btn" class="">Lorem psum1</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="topping2" name="topping2" value="topping2" class="topping-option">
+                        <label for="topping2">
+                            <p class="my-button topping-btn" class="">Lorem psum2</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="topping3" name="topping3" value="topping3" class="topping-option">
+                        <label for="topping3">
+                            <p class="my-button topping-btn" class="">Lorem psum3</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="topping4" name="topping4" value="topping4" class="topping-option">
+                        <label for="topping4">
+                            <p class="my-button topping-btn" class="">Lorem psum4</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="topping5" name="topping5" value="topping5" class="topping-option">
+                        <label for="topping5">
+                            <p class="my-button topping-btn" class="">Lorem psum5</p>
+                        </label>
+                    </div>
+
+                    <div>
+                        <input type="checkbox" id="topping6" name="topping6" value="topping6" class="topping-option">
+                        <label for="topping6">
+                            <p class="my-button topping-btn" class="">Lorem psum6</p>
+                        </label>
+                    </div>
+
+                </div>
+            </div>
+            <div class="d-flex" style="justify-content: space-between">
+                <div class="quantity">
+                    <h4>Please enter quantity</h4>
+                    <input type="number" min="1" max="1000" value="1" style="text-align: right;" id="quantity">
+                </div>
+                <div>
+                    <p class="total">Total: <span id="total">${coffeeToBuy.price + 0.5}</span>$</p>
+                </div>
+            </div>
+            <div class="add-to-cart">
+                <input id="add-to-cart-btn" type="button" value="Add to cart" class="my-button add-to-cart-btn"
+                    onclick="addToCart(${coffeeToBuy.id})">
+            </div>
+        </form>
+    </div>
+</div>
     `
     DOM_ID("my-modal").innerHTML = modalElement;
     activeSize();
@@ -614,16 +646,15 @@ function OpenModalEditCoffee(No) {
 }
 
 function confirmOrder() {
-    console.log("abda");
     let listCoffee = getCartListInStorage();
     console.log(listCoffee.listInCart.length == 0);
     if (listCoffee.listInCart.length == 0) {
-        DOM_ID('errorInfo').style.display = 'block'
-        return
+        DOM_ID('errorInfo').style.display = 'block';
+        return;
     }
-    closeTable()
-    openConfirmModal()
-    renderConfirmTable()
+    closeTable();
+    openConfirmModal();
+    renderConfirmTable();
 }
 
 function sendOrder() {
@@ -673,7 +704,6 @@ function sendOrder() {
         cfTotal.push(listCoffee.listInCart[i].payment)
     }
     let order = new Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
-    console.log(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
     console.log(listOrder.listCfOrder);
     setOrderToStorage();
@@ -813,10 +843,8 @@ function closeModal() {
 
 function closeTable() {
     DOM_ID('cart-container').style.display = 'none';
-    // DOM_ID("table-container").style.display = 'none';
 
 }
 function openTable() {
     DOM_ID('cart-container').style.display = 'block';
-    // DOM_ID("table-container").style.display = 'block';
 }

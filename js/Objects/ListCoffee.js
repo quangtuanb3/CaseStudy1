@@ -3,7 +3,7 @@ function ListCoffee() {
         {
             "id": 1,
             "name": "Espresso",
-            "image": "./images/sale1.png",
+            "image": "../../images/sale1.png",
             "title": "Short and strong coffee",
             "rate": 4,
             "order": 1042,
@@ -13,7 +13,7 @@ function ListCoffee() {
         {
             "id": 2,
             "name": "Latte",
-            "image": "./images/sale2.webp",
+            "image": "../../images/sale2.webp",
             "title": "Coffee with steamed milk",
             "rate": 5,
             "order": 1230,
@@ -23,7 +23,7 @@ function ListCoffee() {
         {
             "id": 3,
             "name": "Cappuccino",
-            "image": "./images/sale3.png",
+            "image": "../../images/sale3.png",
             "title": "Coffee with equal parts of espresso, steamed milk, and milk foam",
             "rate": 4.2,
             "order": 1190,
@@ -33,7 +33,7 @@ function ListCoffee() {
         {
             "id": 4,
             "name": "Americano",
-            "image": "./images/sale4.jpg",
+            "image": "../../images/sale4.jpg",
             "title": "Espresso diluted with hot water",
             "rate": 3.8,
             "order": 3819,
@@ -43,7 +43,7 @@ function ListCoffee() {
         {
             "id": 5,
             "name": "Mocha",
-            "image": "./images/sale5.webp",
+            "image": "../../images/sale5.webp",
             "title": "Espresso with chocolate syrup and steamed milk",
             "rate": 4,
             "order": 2451,
@@ -53,7 +53,7 @@ function ListCoffee() {
         {
             "id": 6,
             "name": "Macchiato",
-            "image": "./images/sale7.jpg",
+            "image": "../../images/sale7.jpg",
             "title": "Espresso with a dollop of steamed milk",
             "rate": 4,
             "order": 5831,
@@ -63,7 +63,7 @@ function ListCoffee() {
         {
             "id": 7,
             "name": "Iced Coffee",
-            "image": "./images/ca-phe-sua-da-2.jpg",
+            "image": "../../images/ca-phe-sua-da-2.jpg",
             "title": "Chilled coffee served over ice",
             "rate": 4,
             "order": 1221,
@@ -73,7 +73,7 @@ function ListCoffee() {
         {
             "id": 8,
             "name": "Affogato",
-            "image": "./images/cotardo2.jpg",
+            "image": "../../images/cotardo2.jpg",
             "title": "Espresso poured over a scoop of ice cream",
             "rate": 5,
             "order": 2390,
@@ -83,7 +83,7 @@ function ListCoffee() {
         {
             "id": 9,
             "name": "Flat White",
-            "image": "./images/Raf-2.jpg",
+            "image": "../../images/Raf-2.jpg",
             "title": "Coffee with a double shot of espresso and steamed milk",
             "rate": 5,
             "order": 5210,
@@ -93,7 +93,7 @@ function ListCoffee() {
         {
             "id": 10,
             "name": "Turkish Coffee",
-            "image": "./images/slide1.webp",
+            "image": "../../images/slide1.webp",
             "title": "Strong coffee brewed in a pot and served unfiltered",
             "rate": 5,
             "order": 3190,
@@ -103,7 +103,7 @@ function ListCoffee() {
         {
             "id": 11,
             "name": "Iced Coffee",
-            "image": "./images/red-eyes.webp",
+            "image": "../../images/red-eyes.webp",
             "title": "Chilled coffee served over ice",
             "rate": 4,
             "order": 1221,
@@ -113,7 +113,7 @@ function ListCoffee() {
         {
             "id": 12,
             "name": "Affogato",
-            "image": "./images/machiato2.jpg",
+            "image": "../../images/machiato2.jpg",
             "title": "Espresso poured over a scoop of ice cream",
             "rate": 5,
             "order": 2390,
@@ -175,16 +175,12 @@ function ListCoffee() {
         return listSearch
     }
 
-
     this.listInCart = [];
     this.AddToCart = function (coffeeToAdd) {
         this.listInCart.push(coffeeToAdd);
     }
     this.DeleteOrder = function (No) {
         this.listInCart.splice(No, 1);
-    }
-    this.FindCfInCart = function () {
-
     }
 
 }

@@ -40,7 +40,7 @@
 }
 .menu-bar ul {
     list-style: none;
-    padding: 30px 20px 20px 100px;
+    padding: 30px 20px 20px 25px;
 }
 .menu-bar ul li {
     padding: 0 20px;
@@ -68,6 +68,9 @@
     outline: none;
     transition: all 0.5s;
     box-shadow: 1px 0px 4px 2px transparent;
+}
+#logout-btn {
+    margin: 80% 0 0 0;
 }
 .box {
     height: 25px;

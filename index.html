@@ -37,7 +37,7 @@
                     <a id="gallery-tab" href="#gallery">GALLERY</a>
                 </li>
                 <li>
-                    <a id="shop-tab" href="./shop.html">SHOP</a>
+                    <a id="shop-tab" href="./pages/shopPage/shop.html">SHOP</a>
                 </li>
                 <li>
                     <a id="team-tab" href="#team">ABOUT US</a>
@@ -55,18 +55,41 @@
                     <h2 class="pb-10">Login</h2>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required id="username">
+                    <input type="text" placeholder="Enter Email" name="email" required id="email">
 
                     <label for="psw"><b>Password</b></label>
                     <input type="password" placeholder="Enter Password" name="psw" required id="password">
 
-                    <button type="submit" class="btn" id="login-submit">Login</button>
+                    <button type="button" class="btn" id="login-submit">Login</button>
                     <button type="button" class="btn cancel" id="close-btn">Close</button>
+                    <hr>
+                    <p id="invalidUser">Invalid Email or Password!!!</p>
+                    <p style="margin: 10px 0;">Don't have account? Sign up now!</pc>
+                        <button type="button" class="btn signUp" id="signUp-btn"
+                            style="background-color: orange; margin-top: 10px;" onclick="openSignUpModal()">Sign
+                            up</button>
                 </form>
             </div>
         </div>
 
+
     </header>
+    <!-- sign up modal  -->
+    <div id="signUp-modal">
+        <span class="close" onclick="closeSignUpModal()">&times;</span>
+        <h2 style="text-align: center; padding: 20px;">SIGN UP</h2>
+        <form class="form" action="#contact">
+            <input type="text" placeholder="First name" required id="firstname_sU">
+            <input type="text" placeholder="Last name" required id="lastname_sU">
+            <input type="email" placeholder="Email" required id="email_sU">
+            <input type="number" placeholder="Phone" required id="phone_sU" min="9" max="12">
+            <input type="password" placeholder="Password" required id="pw_sU" min="6" max="16">
+            <input type="password" placeholder="Confirm Password" required id="cfPw_sU">
+            <button type="button" class="my-button" style="padding: 10px; margin-bottom: 30px;"
+                onclick="signUp()">Submit</button>
+        </form>
+    </div>
+
     <!-- 2. Banner  -->
     <section class="banner" id="banner">
         <div class="banner-top">
@@ -192,7 +215,7 @@
                 <h2 class="pt-20">Your Comfort is Our Priority</h2>
             </div>
             <div>
-                <button class="shop-button"><a href="./shop.html">Visit shop</a></button>
+                <button class="shop-button"><a href="./pages/shopPage/shop.html">Visit shop</a></button>
             </div>
 
         </div>
@@ -341,7 +364,7 @@
     <section id="contact" id="contact">
         <h2>CONTACT</h2>
         <form class="form" action="#contact">
-            <input type="text" placeholder="Name">
+            <input type="text" placeholder="First name">
             <input type="text" placeholder="Last name">
             <input type="text" placeholder="Email">
             <input type="text" placeholder="Phone">
@@ -411,9 +434,12 @@
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit amet consectetur adipisicing</p>
         </div>
     </footer>
-
+    <script src="./js/Objects/user.js"></script>
+    <script src="./js/Objects/ListUser.js"></script>
+    <script src="./js/Objects/ListOrder.js"></script>
+    <script src="./js/Objects/validation.js"></script>
     <script src="./js/lightbox-plus-jquery.js"></script>
-    <script src="./js/style-index.js"></script>
+    <script src="./js/index.js"></script>
 
 </body>
 

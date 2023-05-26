@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/dashboard.css">
+    <link rel="stylesheet" href="./dashboard.css">
 </head>
 
 <body>
@@ -21,13 +21,13 @@
             </div>
             <ul class="menu-bar">
                 <li>
-                    <a href="./index.html"><i class="fa fa-home"></i>HOME</a>
+                    <a href="/index.html"><i class="fa fa-home"></i>HOME</a>
                 </li>
                 <li class="active">
                     <a href="#"><i class="fa fa-coffee"></i>MENU</a>
                 </li>
                 <li>
-                    <a href="./OrderPage.html"><i class="fa fa-receipt"></i>ORDER</a>
+                    <a href="/pages/OrderPage/Order.html"><i class="fa fa-receipt"></i>ORDER</a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-user-friends"></i>USER</a>
@@ -83,31 +83,21 @@
                                     <label for="price">Price</label><br>
                                     <input type="number" id="price" name="price" placeholder="Some text here"
                                         min="1"><br>
-
                                 </div>
 
                                 <div class="input-img">
                                     <label for="image">Image</label><br>
                                     <input type="text" id="image" name="image" placeholder="Image link here"><br>
                                 </div>
-
-
                                 <textarea name="description" id="description" cols="30" rows="4"
                                     placeholder="Description here"></textarea>
-
-
-
                                 <input type="button" value="Submit" class="my-button add-new-btn" id="submit-btn"
                                     onclick="AddCoffee()">
                                 <input type="button" class="my-button clear-form-btn" value="Clear form"
                                     onclick="clearForm()">
                             </form>
                         </div>
-
                     </div>
-
-
-
                 </div>
                 <div class="pt-20">
                     <table class="content-table">
@@ -137,12 +127,13 @@
     </div>
 
 
-    <script src="./js/dashboard-style.js"></script>
-    <script src="./js/Coffee.js"></script>
-    <script src="./js/ListCoffee.js"></script>
-    <script src="./js/validation.js"></script>
-    <script src="./js/util.js"></script>
-    <script src="./js/main.js"></script>
+    <script src="./dashboard-style.js"></script>
+    <script src="../../../js/Objects/Coffee.js"></script>
+    <script src="../../../js/Objects/ListCoffee.js"></script>
+    <script src="../../../js/Objects/validation.js"></script>
+    <script src="../../../js/Objects/User.js"></script>
+    <script src="../../../js/Objects/ListUser.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>

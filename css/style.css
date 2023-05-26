@@ -67,7 +67,37 @@
 .login-btn {
     padding: 10px 15px !important;
 }
+/* Sign up form */
 
+#signUp-modal {
+    display: none;
+    position: relative;
+    position: fixed;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    z-index: 9;
+    border-radius: 7px;
+    background-color: white;
+    transition: all 0.5s;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    margin-right: 2%;
+    margin-top: 1%;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
 /* form popup */
 .form-popup {
     position: relative;
@@ -124,7 +154,12 @@
     opacity: 0.8;
     border-radius: 5px;
 }
-
+#invalidUser{
+    display: none;
+    color: red;
+    text-align: center;
+    padding-top:7px;
+}
 /* Add a red background color to the cancel button */
 .form-container .cancel {
     background-color: red;

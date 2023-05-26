@@ -1,4 +1,4 @@
-
+window.onload = checkLogin();
 var listCoffee = new ListCoffee();
 var validate = new Validate();
 
@@ -11,7 +11,13 @@ if (localStorage.getItem("coffeeList") == null) {
 } else getStorage();
 setStorage()
 
+function checkLogin() {
+    if (localStorage.getItem("User") == null) {
+        window.location.href = '/index.html';
+    }
+}
 
+ 
 function AddCoffee() {
     // get Input data 
     var id = DOM_ID("coffee-id").value;

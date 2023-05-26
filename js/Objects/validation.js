@@ -45,10 +45,6 @@ function Validate() {
 
     this.CheckBoundary = function (id) {
         let element = document.getElementById(id);
-        console.log(element.min);
-        console.log(element.value);
-        console.log(element.max);
-
         if (parseInt(element.min) <= parseInt(element.value) && parseInt(element.value) <= parseInt(element.max)) {
             element.style.borderColor = "green";
             return false;
@@ -56,8 +52,17 @@ function Validate() {
             element.style.borderColor = "red";
             return true;
         }
-
-
     }
+    this.CheckDuplicateUser = function (email_path, listUser) {
+        let emailEle = document.getElementById(email_path);
+        for (let i = 0; i < listUser.listUsers.length; i++) {
+            if (emailEle.value == listUser.listUsers[i].email) {
+                emailEle.style.borderColor = "red";
+                return true;
+            }
+        }
+        emailEle.style.borderColor = "green";
+        return false;
+    };
 
 }

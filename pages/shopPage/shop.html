@@ -12,24 +12,24 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./css/lightbox.css">
-    <link rel="stylesheet" href="./css/style-shop.css">
+    <link rel="stylesheet" href="./style-shop.css">
 </head>
 
 <body>
     <!-- 1. Header -->
     <header id="my-header" class="d-flex">
         <div class="nav-branch">
-            <a href="./index.html"><img src="./images/log123.avif" alt="logo" class="branch-logo"></a>
+            <a href="/index.html"><img src="../../images/log123.avif" alt="logo" class="branch-logo"></a>
 
         </div>
 
         <div class="menu-bar">
             <ul class="d-flex">
                 <li>
-                    <a href="./index.html">HOME</a>
+                    <a href="/index.html">HOME</a>
                 </li>
                 <li>
-                    <a href="./index.html#gallery">GALLERY</a>
+                    <a href="/index.html#gallery">GALLERY</a>
                 </li>
                 <li>
                     <a class="active" href="#product">SHOP</a>
@@ -63,6 +63,10 @@
                 <p id="cart-money">00</p>
                 <p class="currency"><i class="fa fa-dollar-sign"></i></p>
             </div>
+        </div>
+        <div style="margin-right: 3%;">
+            <button class="my-button logout-btn" id="logout-btn" onclick="logout()"> <i
+                    class="fa fa-sign-out-alt"></i></button>
         </div>
 
     </header>
@@ -102,8 +106,8 @@
     <!-- 2. Banner  -->
     <section class="banner">
         <div class="banner-top">
-            <img src="./images/bannershop.jpg" alt="banner-shop" class="banner-img">
-            <img class="banner-cont" src="./images/saleUp.avif">
+            <img src="../../images/bannershop.jpg" alt="banner-shop" class="banner-img">
+            <img class="banner-cont" src="../../images/saleUp.avif">
 
         </div>
         <div class="banner-bot d-flex">
@@ -133,7 +137,7 @@
         <h2>OUR PRODUCT</h2>
         <div id="notFound">
             <p id="notFound-caption">Result Not Found!!!</p>
-            <img src="./images/resultNotFound.webp" alt="not-found">
+            <img src="../../images/resultNotFound.webp" alt="not-found">
         </div>
         <div class="pro-cont" id="pro-cont">
             <!-- item here -->
@@ -189,7 +193,7 @@
             <!-- mem1 -->
             <div class="team-item">
                 <div>
-                    <img src="./images/team1.jpg" alt="team1" class="team-img">
+                    <img src="../../images/team1.jpg" alt="team1" class="team-img">
                     <div class="team-info">
                         <h3>John Simon</h3>
                         <p>-Batender</p>
@@ -211,7 +215,7 @@
             <!-- mem2 -->
             <div class="team-item">
                 <div>
-                    <img src="./images/team4.jpg" alt="team4" class="team-img">
+                    <img src="../../images/team4.jpg" alt="team4" class="team-img">
                     <div class="team-info">
                         <h3>Jim Samule</h3>
                         <p>- Batender</p>
@@ -233,7 +237,7 @@
             <!-- mem3 -->
             <div class="team-item">
                 <div>
-                    <img src="./images/team3.jpg" alt="team3" class="team-img">
+                    <img src="../../images/team3.jpg" alt="team3" class="team-img">
                     <div class="team-info">
                         <h3>Robert Adam</h3>
                         <p>- Batender</p>
@@ -255,7 +259,7 @@
             <!-- mem4 -->
             <div class="team-item">
                 <div>
-                    <img src="./images/team2.jpg" alt="team2" class="team-img">
+                    <img src="../../images/team2.jpg" alt="team2" class="team-img">
                     <div class="team-info">
                         <h3>Rebeca Gomi</h3>
                         <p>- Batender</p>
@@ -277,7 +281,7 @@
             <!-- mem5 -->
             <div class="team-item">
                 <div>
-                    <img src="./images/team5.webp" alt="team5" class="team-img">
+                    <img src="../../images/team5.webp" alt="team5" class="team-img">
                     <div class="team-info">
                         <h3>Tahi Chin</h3>
                         <p>- Batender</p>
@@ -299,7 +303,7 @@
             <!-- mem6 -->
             <div class="team-item">
                 <div>
-                    <img src="./images/team6.jpg" alt="team5" class="team-img">
+                    <img src="../../images/team6.jpg" alt="team5" class="team-img">
                     <div class="team-info">
                         <h3>Grandi</h3>
                         <p>- Batender</p>
@@ -396,12 +400,14 @@
     </footer>
 
 
-    <script src="./js/Coffee.js"></script>
-    <script src="./js/ListCoffee.js"></script>
-    <script src="./js/validation.js"></script>
-    <script src="./js/Order.js"></script>
-    <script src="./js/ListOrder.js"></script>
-    <script src="./js/shop.js"></script>
+    <script src="../../../js/Objects/Coffee.js"></script>
+    <script src="../../../js/Objects/ListCoffee.js"></script>
+    <script src="../../../js/Objects/validation.js"></script>
+    <script src="../../../js/Objects/Order.js"></script>
+    <script src="../../../js/Objects/ListOrder.js"></script>
+    <script src="../../../js/Objects/User.js"></script>
+    <script src="../../../js/Objects/ListUser.js"></script>
+    <script src="shop.js"></script>
 </body>
 
 </html>

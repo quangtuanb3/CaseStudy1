@@ -1,3 +1,10 @@
+window.onload = checkLogin();
+function checkLogin() {
+    if (localStorage.getItem("User") == null) {
+        window.location.href = '/index.html';
+    }
+}
+
 let listOrder = new ListOrder();
 function getStorage() {
     var listOrderData = localStorage.getItem("orderedCoffee");
