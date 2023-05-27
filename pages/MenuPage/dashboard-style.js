@@ -5,13 +5,11 @@ var btn = document.getElementById("my-button");
 
 var span = document.getElementsByClassName("close")[0];
 
-btn.onclick = function() {
+btn.onclick = function () {
   modal.style.display = "block";
 }
 
-span.onclick = function() {
+span.onclick = function () {
   modal.style.display = "none";
 }
-
-
 

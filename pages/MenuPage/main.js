@@ -7,17 +7,30 @@ function DOM_ID(id) {
 }
 
 if (localStorage.getItem("coffeeList") == null) {
-    RenderNewCoffee(listCoffee);
-} else getStorage();
+    // RenderNewCoffee(listCoffee);
+    renderTableWithPagination(listCoffee.listCf);
+} else {
+    getStorage();
+}
 setStorage()
 
 function checkLogin() {
     if (localStorage.getItem("User") == null) {
         window.location.href = '/index.html';
     }
+    // else {
+    //     let user = localStorage.getItem("User");
+    //     if (user.auth != 1) {
+    //         window.location.href = '/index.html';
+    //     }
+    // }
 }
 
- 
+function logout() {
+    localStorage.removeItem('User');
+    window.location.href = '/index.html';
+}
+
 function AddCoffee() {
     // get Input data 
     var id = DOM_ID("coffee-id").value;
@@ -129,26 +142,26 @@ function SaveCoffee() {
     // validation 
     var error = 0;
 
-    if (validation.CheckEmpty("name", name) == true) {
+    if (validate.CheckEmpty("name", name) == true) {
         error++;
     }
 
-    if (validation.CheckEmpty("image", image) == true) {
+    if (validate.CheckEmpty("image", image) == true) {
         error++;
     }
-    if (validation.CheckEmpty("title", title) == true) {
+    if (validate.CheckEmpty("title", title) == true) {
         error++;
     }
-    if (validation.CheckEmpty("rate", rate) == true) {
+    if (validate.CheckEmpty("rate", rate) == true) {
         error++;
     }
-    if (validation.CheckEmpty("order", order) == true) {
+    if (validate.CheckEmpty("order", order) == true) {
         error++;
     }
-    if (validation.CheckEmpty("price", price) == true) {
+    if (validate.CheckEmpty("price", price) == true) {
         error++;
     }
-    if (validation.CheckEmpty("description", description) == true) {
+    if (validate.CheckEmpty("description", description) == true) {
         error++;
     }
 
@@ -165,34 +178,134 @@ function SaveCoffee() {
 }
 
 
-function RenderNewCoffee(listCoffee) {
-    var tbody = DOM_ID("my-table");
-    tbody.innerHTML = '';
+// function RenderNewCoffee(listCoffee) {
+//     var tbody = DOM_ID("my-table");
+//     tbody.innerHTML = '';
 
-    var trCoffee = '';
+//     var trCoffee = [];
 
+//     for (let i = 0; i < listCoffee.listCf.length; i++) {
+//         var coffee = listCoffee.listCf[i];
+//         var newTitle = truncateString(listCoffee.listCf[i].title, 50)
+//         var newDescription = truncateString(listCoffee.listCf[i].description, 50)
+//         trCoffee.push(
+//             `
+//             <tr>
+//               <td>${coffee.id}</td>
+//               <td>${coffee.name}</td>
+//               <td class="table-img"><img src="${coffee.image}" alt="${coffee.image}"></td>
+//               <td>${newTitle}</td>
+//               <td>${coffee.rate}</td>
+//               <td>${coffee.order}</td>
+//               <td>${coffee.price}</td>
+//               <td>${newDescription}</td>
+//               <td>
+//                 <button class="edit-btn" onclick="EditCoffee(${coffee.id})"><i class="fa fa-edit"></i></button>
+//                 <button class="delete-btn" onclick="confirmDeleteCoffee(${coffee.id})" ><i class="fa fa-trash"></i></button>
+//               </td>
+//             </tr>`
+//         );
+//     }
+//     tbody.innerHTML = trCoffee.join("");
+// }
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+// Sample data
+
+// Function to generate HTML table
+function generateTable(listCoffee, page) {
+    let rowsPerPage = Number(DOM_ID("rowsPerPages").value);
+    // const startIndex = (page - 1) * rowsPerPage;
+    // const endIndex = startIndex + rowsPerPage;
+    const startIndex = (page - 1) * rowsPerPage;
+    const endIndex = Math.min(startIndex + rowsPerPage, listCoffee.listCf.length);
+
+    let trData = [];
+
+    // Create trData
+    let trCoffee = [];
     for (let i = 0; i < listCoffee.listCf.length; i++) {
         var coffee = listCoffee.listCf[i];
         var newTitle = truncateString(listCoffee.listCf[i].title, 50)
         var newDescription = truncateString(listCoffee.listCf[i].description, 50)
-        trCoffee += `
-        <tr>
-          <td>${coffee.id}</td>
-          <td>${coffee.name}</td>
-          <td class="table-img"><img src="${coffee.image}" alt="${coffee.image}"></td>
-          <td>${newTitle}</td>
-          <td>${coffee.rate}</td>
-          <td>${coffee.order}</td>
-          <td>${coffee.price}</td>
-          <td>${newDescription}</td>
-          <td>
-            <button class="edit-btn" onclick="EditCoffee(${coffee.id})"><i class="fa fa-edit"></i></button>
-            <button class="delete-btn" onclick="confirmDeleteCoffee(${coffee.id})" ><i class="fa fa-trash"></i></button>
-          </td>
-        </tr>`;
+        trCoffee.push(
+            `
+            <tr>
+              <td>${coffee.id}</td>
+              <td>${coffee.name}</td>
+              <td class="table-img"><img src="${coffee.image}" alt="${coffee.image}"></td>
+              <td>${newTitle}</td>
+              <td>${coffee.rate}</td>
+              <td>${coffee.order}</td>
+              <td>${coffee.price}</td>
+              <td>${newDescription}</td>
+              <td>
+                <button class="edit-btn" onclick="EditCoffee(${coffee.id})"><i class="fa fa-edit"></i></button>
+                <button class="delete-btn" onclick="confirmDeleteCoffee(${coffee.id})" ><i class="fa fa-trash"></i></button>
+              </td>
+            </tr>`
+        );
     }
-    tbody.innerHTML = trCoffee;
+
+    for (let i = startIndex; i < endIndex && i < trCoffee.length; i++) {
+        trData.push(trCoffee[i]);
+        console.log(endIndex);
+    }
+    return trData;
 }
+
+// Function to render table with pagination
+function renderTableWithPagination(listCoffee) {
+    var tbody = DOM_ID("my-table");
+    let rowsPerPage = Number(DOM_ID("rowsPerPages").value);
+    const totalPages = Math.ceil(listCoffee.listCf.length / rowsPerPage);
+    let currentPage = 1;
+
+    function showPage(page) {
+        currentPage = page;
+        tbody.innerHTML = '';
+        const trData = generateTable(listCoffee, page, rowsPerPage);
+        tbody.innerHTML = trData.join("");
+    }
+
+    function previousPage() {
+        if (currentPage > 1) {
+            showPage(currentPage - 1);
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < totalPages) {
+            showPage(currentPage + 1);
+        }
+    }
+
+    // Initial page display
+    showPage(1);
+
+    // Create pagination buttons
+    const paginationContainer = document.getElementById('pagination-container');
+    const prevButton = document.createElement('button');
+    prevButton.innerHTML = '<i class="fa fa-angle-left"></i>';
+    prevButton.addEventListener('click', previousPage);
+    paginationContainer.appendChild(prevButton);
+
+    for (let i = 1; i <= totalPages; i++) {
+        const pageButton = document.createElement('button');
+        pageButton.textContent = i;
+        pageButton.addEventListener('click', () => showPage(i));
+        paginationContainer.appendChild(pageButton);
+    }
+
+    const nextButton = document.createElement('button');
+    nextButton.innerHTML = '<i class="fa fa-angle-right"></i>';
+    nextButton.addEventListener('click', nextPage);
+    paginationContainer.appendChild(nextButton);
+}
+
+
+
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 function openModal() {
     DOM_ID("myModal").style.display = 'block';
@@ -210,7 +323,7 @@ function setStorage() {
 function getStorage() {
     var coffeeData = localStorage.getItem("coffeeList");
     listCoffee.listCf = JSON.parse(coffeeData);
-    RenderNewCoffee(listCoffee);
+    renderTableWithPagination(listCoffee);
 }
 
 
@@ -236,5 +349,7 @@ function truncateString(str, num) {
         return str;
     }
 }
+
+
 
 

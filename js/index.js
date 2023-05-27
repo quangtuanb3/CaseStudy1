@@ -23,34 +23,37 @@ galleryTab.addEventListener("click", function () {
   homeTab.classList.remove("active");
 });
 
-document.addEventListener("DOMContentLoaded", function (event) {
-  var loginBtn = document.getElementById("login-btn");
-  var loginPopup = document.getElementById("my-form");
-  var closeBtn = document.getElementById("close-btn");
+function showLoginForm() {
+  document.addEventListener("DOMContentLoaded", function (event) {
+    var loginBtn = document.getElementById("login-btn");
+    var loginPopup = document.getElementById("my-form");
+    var closeBtn = document.getElementById("close-btn");
 
 
-  if (loginBtn && loginPopup && closeBtn) {
-    loginBtn.addEventListener("click", function () {
-      if (loginPopup.style.display === "block") {
+    if (loginBtn && loginPopup && closeBtn) {
+      loginBtn.addEventListener("click", function () {
+        if (loginPopup.style.display === "block") {
+          loginPopup.style.display = "none";
+        } else {
+          loginPopup.style.display = "block";
+        }
+      });
+
+      closeBtn.addEventListener("click", function () {
         loginPopup.style.display = "none";
-      } else {
-        loginPopup.style.display = "block";
-      }
-    });
+      });
 
-    closeBtn.addEventListener("click", function () {
-      loginPopup.style.display = "none";
-    });
+      window.addEventListener("click", function (event) {
+        if (event.target == loginPopup) {
+          loginPopup.style.display = "none";
+        }
+      });
+    } else {
+      console.error('One or more elements not found');
+    }
+  });
+}
 
-    window.addEventListener("click", function (event) {
-      if (event.target == loginPopup) {
-        loginPopup.style.display = "none";
-      }
-    });
-  } else {
-    console.error('One or more elements not found');
-  }
-});
 
 
 function truncateDescription() {
@@ -83,6 +86,7 @@ function login() {
     if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 1) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
+      console.log(localStorage.getItem("User"));
       window.location.href = '/pages/MenuPage/dashboard.html';
     } else if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 0) {
       let user = listUser.listUsers[i];
@@ -92,8 +96,20 @@ function login() {
     }
 
   }
-  // alert('Invalid username or password. Please try again.');
   document.getElementById("invalidUser").style.display = "block";
+}
+window.onload = checkLogin();
+function checkLogin() {
+  if (localStorage.getItem('User') != null) {
+    document.getElementById("login-btn").innerHTML = '<i class="fa fa-sign-out-alt"></i> Logout';
+    document.getElementById("login-btn").onclick = logout();
+  } else {
+    document.getElementById("login-btn").innerHTML = "Login";
+    document.getElementById("login-btn").onclick = showLoginForm();
+  }
+}
+function logout() {
+  localStorage.removeItem('User');
 }
 
 document.querySelector('#login-submit').addEventListener('click', function (event) {

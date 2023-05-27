@@ -14,7 +14,7 @@ function Validate() {
         http.open('HEAD', imgSrc, false);
         http.send();
         if (http.status == 404) {
-            imgSrc = "./images/defaultProduct.webp";
+            imgSrc = "../../images/defaultProduct.webp";
         }
         return imgSrc;
     }
@@ -45,7 +45,7 @@ function Validate() {
 
     this.CheckBoundary = function (id) {
         let element = document.getElementById(id);
-        if (parseInt(element.min) <= parseInt(element.value) && parseInt(element.value) <= parseInt(element.max)) {
+        if (Number(element.min) <= Number(element.value) && Number(element.value) <= Number(element.max)) {
             element.style.borderColor = "green";
             return false;
         } else {
