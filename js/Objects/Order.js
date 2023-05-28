@@ -1,6 +1,6 @@
-function Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+function Order(email, name, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment) {
+    this.email = email;
+    this.name = name;
     this.address = address;
     this.phone = phone;
     this.comment = comment;

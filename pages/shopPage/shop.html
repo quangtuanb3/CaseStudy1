@@ -49,8 +49,6 @@
                 <a class="sbutton" type="button" href="javascript:void(0);" onclick="searchCoffee()">
                     <i class="fa fa-search"></i>
                 </a>
-                <!-- <input type="text" placeholder="Search.." name="search" id="keyword">
-                <button type="button" onclick="searchCoffee()"><i class="fa fa-search"></i></button> -->
             </form>
         </div>
 
@@ -157,8 +155,8 @@
             <h2 style="text-align: center;">Client Information</h2>
             <span class="close" id="close-confirmModal" onclick="closeConfirmModal()">&times;</span>
             <form class="form" action="#contact">
-                <input type="text" placeholder="First name" id="client-firstname">
-                <input type="text" placeholder="Last name" id="client-lastname">
+                <input type="text" placeholder="Email" id="client-email" disabled>
+                <input type="text" placeholder="Name" id="client-name">
                 <input type="text" placeholder="Address" id="client-address">
                 <input type="phone" placeholder="Phone" id="client-phone">
                 <textarea cols="30" rows="3" placeholder="Message" id="client-comment"></textarea>

@@ -8,7 +8,7 @@ function DOM_ID(id) {
 
 if (localStorage.getItem("coffeeList") == null) {
     // RenderNewCoffee(listCoffee);
-    renderTableWithPagination(listCoffee.listCf);
+    renderTableWithPagination(listCoffee);
 } else {
     getStorage();
 }
@@ -41,6 +41,9 @@ function AddCoffee() {
     var order = DOM_ID("order").value;
     var price = DOM_ID("price").value;
     var description = DOM_ID("description").value
+
+    let coffeeData = localStorage.getItem("coffeeList");
+    listCoffee.listCf = JSON.parse(coffeeData);
 
     // validation 
     var error = 0;
@@ -82,7 +85,7 @@ function AddCoffee() {
     if (error != 0) {
         return
     }
-    var coffee = new Coffee(id, name, image, title, rate, order, price, description)
+    var coffee = new Coffee(id, name, image, title, Number(rate), Number(order), Number(price), description)
     listCoffee.AddCoffee(coffee);
     setStorage();
     getStorage();
@@ -169,48 +172,13 @@ function SaveCoffee() {
     if (error != 0) {
         return
     }
-    var coffee = new Coffee(id, name, image, title, rate, order, price, description)
+    var coffee = new Coffee(id, name, image, title, Number(rate), Number(order), Number(price), description)
     listCoffee.EditCoffeeInList(coffee);
     closeModal()
     setStorage();
     getStorage();
-
 }
 
-
-// function RenderNewCoffee(listCoffee) {
-//     var tbody = DOM_ID("my-table");
-//     tbody.innerHTML = '';
-
-//     var trCoffee = [];
-
-//     for (let i = 0; i < listCoffee.listCf.length; i++) {
-//         var coffee = listCoffee.listCf[i];
-//         var newTitle = truncateString(listCoffee.listCf[i].title, 50)
-//         var newDescription = truncateString(listCoffee.listCf[i].description, 50)
-//         trCoffee.push(
-//             `
-//             <tr>
-//               <td>${coffee.id}</td>
-//               <td>${coffee.name}</td>
-//               <td class="table-img"><img src="${coffee.image}" alt="${coffee.image}"></td>
-//               <td>${newTitle}</td>
-//               <td>${coffee.rate}</td>
-//               <td>${coffee.order}</td>
-//               <td>${coffee.price}</td>
-//               <td>${newDescription}</td>
-//               <td>
-//                 <button class="edit-btn" onclick="EditCoffee(${coffee.id})"><i class="fa fa-edit"></i></button>
-//                 <button class="delete-btn" onclick="confirmDeleteCoffee(${coffee.id})" ><i class="fa fa-trash"></i></button>
-//               </td>
-//             </tr>`
-//         );
-//     }
-//     tbody.innerHTML = trCoffee.join("");
-// }
-
-// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-// Sample data
 
 // Function to generate HTML table
 function generateTable(listCoffee, page) {
@@ -249,7 +217,6 @@ function generateTable(listCoffee, page) {
 
     for (let i = startIndex; i < endIndex && i < trCoffee.length; i++) {
         trData.push(trCoffee[i]);
-        console.log(endIndex);
     }
     return trData;
 }
@@ -285,6 +252,11 @@ function renderTableWithPagination(listCoffee) {
 
     // Create pagination buttons
     const paginationContainer = document.getElementById('pagination-container');
+    paginationContainer.innerHTML = '';
+    let rowsOption = ` 
+   
+`
+    paginationContainer.innerHTML = rowsOption;
     const prevButton = document.createElement('button');
     prevButton.innerHTML = '<i class="fa fa-angle-left"></i>';
     prevButton.addEventListener('click', previousPage);
@@ -316,19 +288,23 @@ function closeModal() {
 }
 
 function setStorage() {
-    var jsonCoffeeData = JSON.stringify(listCoffee.listCf);
+    let jsonCoffeeData = JSON.stringify(listCoffee.listCf);
     localStorage.setItem("coffeeList", jsonCoffeeData);
 }
 
 function getStorage() {
-    var coffeeData = localStorage.getItem("coffeeList");
+    let coffeeData = localStorage.getItem("coffeeList");
     listCoffee.listCf = JSON.parse(coffeeData);
     renderTableWithPagination(listCoffee);
 }
 
+document.getElementById("rowsPerPages").addEventListener('change', e => {
+    let coffeeData = localStorage.getItem("coffeeList");
+    listCoffee.listCf = JSON.parse(coffeeData);
+    renderTableWithPagination(listCoffee);
+})
 
 function clearForm() {
-    console.log(DOM_ID("coffee-id").disabled)
     if (!DOM_ID("coffee-id").disabled) {
         DOM_ID("coffee-id").value = '';
     }
@@ -351,5 +327,9 @@ function truncateString(str, num) {
 }
 
 
-
+function searchCoffee() {
+    keyword = DOM_ID('keyword').value;
+    listCfSearched = listCoffee.SearchCoffee(keyword)
+    renderTableWithPagination(listCfSearched);
+}
 

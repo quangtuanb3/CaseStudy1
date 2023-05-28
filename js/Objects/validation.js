@@ -23,13 +23,14 @@ function Validate() {
     this.CheckDuplicateId = function (id, listCoffee) {
         let idElement = document.getElementById(id);
         for (let i = 0; i < listCoffee.listCf.length; i++) {
+            console.log(listCoffee.listCf[i].id)
             if (idElement.value == listCoffee.listCf[i].id) {
                 idElement.style.borderColor = "red"
                 return true
             }
-            idElement.style.borderColor = "green"
-            return false;
         }
+        idElement.style.borderColor = "green"
+        return false; s
     }
     this.CheckDuplicateName = function (id, listCoffee) {
         let idElement = document.getElementById(id);
@@ -38,9 +39,9 @@ function Validate() {
                 idElement.style.borderColor = "red"
                 return true
             }
-            idElement.style.borderColor = "green"
-            return false;
         }
+        idElement.style.borderColor = "green"
+        return false;
     }
 
     this.CheckBoundary = function (id) {

@@ -55,6 +55,7 @@
 .menu-bar ul li a.active {
     color: #fac760;
 }
+
 .search-container {
     display: flex;
     align-items: center;

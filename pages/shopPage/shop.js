@@ -36,10 +36,10 @@ var productionType = [
 
 ]
 
-var user = getUserInStorage();
+let user = getUserInStorage();
 
-var coffeeOder = new Coffee();
-var listUser = new ListUser();
+let coffeeOder = new Coffee();
+let listUser = new ListUser();
 Coffee.prototype.size = 'Medium';
 Coffee.prototype.topping = [];
 Coffee.prototype.quantity = '';
@@ -79,7 +79,6 @@ function RenderCart() {
 
 function searchCoffee() {
     keyword = DOM_ID('keyword').value;
-    // if (keyword == '') { return };
     listCfSearched = listCoffee.SearchCoffee(keyword)
     RenderCoffeeData(productionType, listCfSearched);
     DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
@@ -658,26 +657,29 @@ function confirmOrder() {
     }
     closeTable();
     openConfirmModal();
+    showClientInfo()
     renderConfirmTable();
 }
 
 function sendOrder() {
 
     // get Input data 
-    let firstName = DOM_ID("client-firstname").value;
-    let lastName = DOM_ID("client-lastname").value;
+    let email = DOM_ID("client-email").value;
+    let name = DOM_ID("client-name").value;
     let phone = DOM_ID("client-phone").value;
     let address = DOM_ID("client-address").value;
     let comment = DOM_ID("client-comment").value
 
+
+
     // validation 
     let error = 0;
 
-    if (validate.CheckEmpty("client-firstname", firstName) == true) {
+    if (validate.CheckEmpty("client-email", email) == true) {
         error++;
     }
 
-    if (validate.CheckEmpty("client-lastname", lastName) == true) {
+    if (validate.CheckEmpty("client-name", name) == true) {
         error++;
     }
 
@@ -707,7 +709,7 @@ function sendOrder() {
         cfQuantity.push(listCoffee.listInCart[i].quantity)
         cfTotal.push(listCoffee.listInCart[i].payment)
     }
-    let order = new Order(firstName, lastName, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
+    let order = new Order(email, name, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
     setOrderToStorage();
     closeConfirmModal();
@@ -747,6 +749,13 @@ function renderConfirmTable() {
 
 function openConfirmModal() {
     DOM_ID('confirm-order').style.display = 'block';
+}
+function showClientInfo() {
+    user = getUserInStorage();
+    DOM_ID("client-email").value = user.email;
+    DOM_ID("client-name").value = user.firstName + ' ' + user.lastName;
+    DOM_ID("client-phone").value = user.phone;
+
 }
 function closeConfirmModal() {
     DOM_ID('confirm-order').style.display = 'none';

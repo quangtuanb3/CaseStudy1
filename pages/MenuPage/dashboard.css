@@ -22,14 +22,14 @@
 .my-button {
     display: block;
     background-color: #fac760;
-    padding: 5px 10px;
+    padding: 5px;
     border: 1px solid #fac760;
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
     font-weight: 500;
     letter-spacing: 2px;
-    margin: 10px 0;
+    margin: 10px 50px;
 }
 .my-button:hover {
     background-color: rgb(65, 65, 131);
@@ -96,7 +96,6 @@ li:hover {
     border-bottom: 1px dotted gray;
 }
 .content-header button {
-    float: right;
     margin-right: 50px;
     padding: 15px 20px;
 }
@@ -272,12 +271,97 @@ textarea {
     transition: all 0.5s;
 }
 
-#pagination-container select {
+#rowsPerPages {
     padding: 4px 2px;
     border: 1px solid transparent;
     border-radius: 4px;
     cursor: pointer;
+    width: 50px;
 }
-#pagination-container select:focus {
+#rowsPerPages:focus {
     outline: none;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    min-width: 240px;
+    margin: 10px 50px;
+}
+.search-container input {
+    width: 190px;
+    border-radius: 5px 0 0 5px;
+}
+.search-container input:focus {
+    outline: none;
+    transition: all 0.5s;
+    box-shadow: 1px 0px 4px 2px transparent;
+}
+
+.box {
+    height: 25px;
+    /* transform: translate(-50%, -50%); */
+    background: #dae7fa;
+    border-radius: 15px;
+    padding: 10px;
+    margin-top: 24px;
+}
+.sbutton {
+    color: #e84118;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #dadada;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: 0.4s;
+}
+.stext {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    padding: 0;
+    color: #555;
+    font-size: 14px;
+    transition: 0.4s;
+    line-height: 35px;
+    width: 0px;
+    border-radius: 40px;
+    margin-top: 3px;
+}
+.sbox:hover > .stext {
+    width: 200px;
+    padding: 0 5px;
+}
+.sbox:hover > .sbutton {
+    background: #fff;
+}
+
+.fa-search {
+    color: #001eff;
+}
+#notFound {
+    position: relative;
+    display: none;
+}
+
+#notFound-caption {
+    position: absolute;
+    left: 30%;
+    top: 10%;
+    font-size: 30px;
+    background-color: #89d0f3;
+}
+
+/* /////////// */
+
+.error-info {
+    margin-left: 10px;
+    color: red;
+    font-size: 12px;
+    display: none;
 }
