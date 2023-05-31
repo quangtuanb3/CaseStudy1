@@ -45,6 +45,14 @@
     font-weight: 600;
     transition: all 0.5s;
 }
+.menu-bar li{
+    text-decoration: none;
+    color: #60de55;
+    font-size: 18px;
+    font-weight: 600;
+    transition: all 0.5s;
+    cursor: pointer;
+}
 .menu-bar ul li a.active {
     color: #fac760;
 }
@@ -154,11 +162,11 @@
     opacity: 0.8;
     border-radius: 5px;
 }
-#invalidUser{
+#invalidUser {
     display: none;
     color: red;
     text-align: center;
-    padding-top:7px;
+    padding-top: 7px;
 }
 /* Add a red background color to the cancel button */
 .form-container .cancel {
@@ -297,15 +305,14 @@
     border: none;
     box-shadow: -1px 3px 5px 3px #888888;
     transition: all 1s;
-}
-.shop-button :hover {
-    background-color: rgba(232, 110, 167, 1);
-    border-color: rgba(232, 110, 167, 1);
-    border-radius: 5px;
-}
-.shop-button a {
     text-decoration: none;
     padding: 20px;
+    color: white;
+    letter-spacing: 2px;
+}
+
+.shop-button a {
+    text-decoration: none;
     color: white;
     letter-spacing: 2px;
 }
@@ -471,4 +478,7 @@ input:focus {
 #contact .form .my-button {
     padding: 15px;
     font-size: 15px;
+}
+#my-form {
+    display: none;
 }

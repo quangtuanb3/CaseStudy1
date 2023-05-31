@@ -18,12 +18,13 @@ function checkLogin() {
     if (localStorage.getItem("User") == null) {
         window.location.href = '/index.html';
     }
-    // else {
-    //     let user = localStorage.getItem("User");
-    //     if (user.auth != 1) {
-    //         window.location.href = '/index.html';
-    //     }
-    // }
+    else {
+        let user = JSON.parse(localStorage.getItem("User"));
+        console.log(user)
+        if (user.auth != 1) {
+            window.location.href = '/index.html';
+        }
+    }
 }
 
 function logout() {

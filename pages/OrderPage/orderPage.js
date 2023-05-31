@@ -20,8 +20,6 @@ RenderTableOrder();
 function RenderTableOrder() {
     let listOrder = getStorage();
     let tbody = DOM_ID("order-table");
-    console.log('tbody: ' + tbody);
-    console.log('listOrder.listCfOrder:' + listOrder.listCfOrder);
     if (listOrder.listCfOrder == null) { return };
     tbodyData = '';
     let orderItemsLst = [];
@@ -35,7 +33,7 @@ function RenderTableOrder() {
         firstRow +=
             `   <tr>
                 <td rowspan="${orderLength}">${i + 1}</td>
-                <td rowspan="${orderLength}">${orderedCf.firstName} ${orderedCf.lastName}</td>
+                <td rowspan="${orderLength}">${orderedCf.name} ${orderedCf.email}</td>
                 <td rowspan="${orderLength}"> <span class="address">${orderedCf.address}</span><br><span class="phone">${orderedCf.phone}</span></td>
                 <td rowspan="${orderLength}">${orderedCf.comment}</td>
                 <td class="cfId">${orderedCf.cfId[i]}</td>

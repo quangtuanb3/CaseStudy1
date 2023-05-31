@@ -12,8 +12,6 @@ for (var i = 0; i < menuItems.length; i++) {
 }
 
 
-
-window.onload = checkLogin();
 function logout() {
     localStorage.removeItem('User');
     window.location.href = '/index.html';
@@ -57,19 +55,18 @@ function getUserInStorage() {
     return user;
 }
 
-RenderProductSection();
-RenderCart()
+
 
 if (localStorage.getItem("coffeeInCart") != null) {
     listCoffee = getCartListInStorage();
 }
 
-
 function RenderProductSection() {
     if (localStorage.getItem("coffeeList") == null) {
         RenderCoffeeData(productionType, listCoffee);
     } else {
-        getCfListInStorage()
+        listCoffee = getCfListInStorage();
+        RenderCoffeeData(productionType, listCoffee);
     };
 }
 
@@ -293,14 +290,13 @@ function calculateTotal(size, topping, quantity, price) {
 function getCfListInStorage() {
     let coffeeData = localStorage.getItem("coffeeList");
     listCoffee.listCf = JSON.parse(coffeeData);
-    RenderCoffeeData(productionType, listCoffee);
+    return listCoffee;
 }
 
 function getCartListInStorage() {
-    let temp = localStorage.getItem("User");
-    let user = JSON.parse(temp);
+    let user = JSON.parse(localStorage.getItem("User"));
     listCoffee.listInCart = user.listInCart;
-    showCart(user);
+    // showCart(user);
     return listCoffee;
 }
 
@@ -319,7 +315,6 @@ function RenderCoffeeData(productionType, listCoffee) {
     let divContent = DOM_ID("pro-cont");
     divContent.innerHTML = '';
     let content = createDivItem(productionType, listCoffee)
-
     divContent.innerHTML = content;
 }
 
@@ -333,7 +328,6 @@ function createStar(start) {
 
 function createDivItem(productionType, listCoffee) {
     let divItems = '';
-
     for (let i = 0; i < listCoffee.listCf.length; i++) {
         const des = listCoffee.listCf[i].description.replace(/\n/g, '<br> <br>')
         let coffee = listCoffee.listCf[i];
@@ -840,6 +834,7 @@ function removeOrder(No) {
     user.listInCart = listCoffee.listInCart;
     setStorage(user);
     getCartListInStorage();
+    showCart(user);
     renderCartTable()
 
 
@@ -859,3 +854,7 @@ function closeTable() {
 function openTable() {
     DOM_ID('cart-container').style.display = 'block';
 }
+
+window.onload = checkLogin();
+RenderProductSection();
+RenderCart()

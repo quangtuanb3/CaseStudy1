@@ -24,36 +24,37 @@ galleryTab.addEventListener("click", function () {
 });
 
 function showLoginForm() {
-  document.addEventListener("DOMContentLoaded", function (event) {
-    var loginBtn = document.getElementById("login-btn");
-    var loginPopup = document.getElementById("my-form");
-    var closeBtn = document.getElementById("close-btn");
+  let loginBtn = document.getElementById("login-btn");
+  let loginPopup = document.getElementById("my-form");
+  let closeBtn = document.getElementById("close-btn");
 
-
-    if (loginBtn && loginPopup && closeBtn) {
-      loginBtn.addEventListener("click", function () {
-        if (loginPopup.style.display === "block") {
-          loginPopup.style.display = "none";
-        } else {
-          loginPopup.style.display = "block";
-        }
-      });
-
-      closeBtn.addEventListener("click", function () {
+  if (loginBtn && loginPopup && closeBtn) {
+    loginBtn.addEventListener("click", function () {
+      if (loginPopup.style.display === "block") {
         loginPopup.style.display = "none";
-      });
+      } else {
+        loginPopup.style.display = "block";
+      }
+    });
 
-      window.addEventListener("click", function (event) {
-        if (event.target == loginPopup) {
-          loginPopup.style.display = "none";
-        }
-      });
-    } else {
-      console.error('One or more elements not found');
-    }
-  });
+    closeBtn.addEventListener("click", function () {
+      loginPopup.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+      if (event.target == loginPopup) {
+        loginPopup.style.display = "none";
+      }
+    });
+  } else {
+    console.error('One or more elements not found');
+  }
 }
 
+function openLoginForm() {
+  let loginPopup = document.getElementById("my-form");
+  loginPopup.style.display = "block"
+}
 
 
 function truncateDescription() {
@@ -86,7 +87,6 @@ function login() {
     if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 1) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
-      console.log(localStorage.getItem("User"));
       window.location.href = '/pages/MenuPage/dashboard.html';
     } else if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 0) {
       let user = listUser.listUsers[i];
@@ -98,18 +98,33 @@ function login() {
   }
   document.getElementById("invalidUser").style.display = "block";
 }
-window.onload = checkLogin();
+
+
+
 function checkLogin() {
   if (localStorage.getItem('User') != null) {
     document.getElementById("login-btn").innerHTML = '<i class="fa fa-sign-out-alt"></i> Logout';
-    document.getElementById("login-btn").onclick = logout();
+    document.getElementById("login-btn").addEventListener('click', () => {
+      logout();
+    })
+
+    document.getElementById('visit-shop').innerHTML = '<a href="./pages/shopPage/shop.html">Visit shop</a>';
+
+    document.getElementById('menubar-shop').innerHTML = ' <a id="shop-tab" href="./pages/shopPage/shop.html">SHOP</a>'
   } else {
     document.getElementById("login-btn").innerHTML = "Login";
     document.getElementById("login-btn").onclick = showLoginForm();
+    document.getElementById('menubar-shop').innerHTML = 'SHOP';
+    document.getElementById('menubar-shop').addEventListener('click', openLoginForm);
+    document.getElementById('visit-shop').addEventListener('click', () => {
+      openLoginForm();
+    })
   }
 }
+
 function logout() {
   localStorage.removeItem('User');
+  checkLogin();
 }
 
 document.querySelector('#login-submit').addEventListener('click', function (event) {
@@ -179,3 +194,6 @@ function setUserToStorage(user) {
   localStorage.setItem("User", jsonUser);
 }
 
+
+
+window.onload = checkLogin();
