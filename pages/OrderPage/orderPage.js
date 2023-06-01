@@ -22,54 +22,95 @@ function RenderTableOrder() {
     let tbody = DOM_ID("order-table");
     if (listOrder.listCfOrder == null) { return };
     tbodyData = '';
-    let orderItemsLst = [];
-    let orderItem;
-    let firstRow = '';
-    let otherRows = '';
-
-    for (i = 0; i < listOrder.listCfOrder.length; i++) {
-        let orderLength = listOrder.listCfOrder[i].cfId.length;
-        let orderedCf = listOrder.listCfOrder[i];
-        firstRow +=
-            `   <tr>
-                <td rowspan="${orderLength}">${i + 1}</td>
-                <td rowspan="${orderLength}">${orderedCf.name} ${orderedCf.email}</td>
-                <td rowspan="${orderLength}"> <span class="address">${orderedCf.address}</span><br><span class="phone">${orderedCf.phone}</span></td>
-                <td rowspan="${orderLength}">${orderedCf.comment}</td>
-                <td class="cfId">${orderedCf.cfId[i]}</td>
-                <td class="cfName">${orderedCf.address[i]}</td>
-                <td class="cfSize">${orderedCf.cfSize[i]}</td>
-                <td class="cfTopping">${orderedCf.cfTopping[i]}</td>
-                <td class="cfQuantity">${orderedCf.cfQuantity[i]}</td>
-                <td class="cfPrice">${orderedCf.cfTotal[i]}</td>
-                <td rowspan="${orderLength}"> <span class="total-payment">${orderedCf.cfPayment}</span> <span>$</span> </td>
-                <td rowspan="${orderLength}">
-                <button class='done-btn'><i class="fa fa-check-circle"></i></button>
-                <button class='delete-btn'><i class="fa fa-trash"></i></button>
-                 </td>
-            </tr>`
-        for (j = 1; j < orderedCf.cfId.length; j++) {
-            otherRows += `
-            <tr>
-            <td class="cfId">${orderedCf.cfId[j]}</td>
-            <td class="cfName">${orderedCf.address[j]}</td>
-            <td class="cfSize">${orderedCf.cfSize[j]}</td>
-            <td class="cfTopping">${orderedCf.cfTopping[j]} </td>
-            <td class="cfQuantity">${orderedCf.cfQuantity[j]}</td>
-            <td class="cfPrice">${orderedCf.cfTotal[j]}</td>
-            </tr>
-         `
-        }
-        orderItem = firstRow + otherRows;
-        orderItemsLst.push(orderItem);
-        firstRow = '';
-        otherRows = '';
-    }
+    listOrder.listCfOrder.map((order, index) => {
+        tbodyData += `
+        <tr>
+        <td>${index + 1}</td>
+        <td>${order.name}</br>${order.email}</td>
+        <td>${order.address} </td>
+        <td> ${order.phone} </td>
+        <td>${order.comment}</td>
+        <td>${order.cfPayment} $</td>
+        <td><button onclick='getDetail(${index})'><i class="fa fa-file-invoice"></i></button></td>
+    </tr>
+        `
+    })
 
 
-    for (i = 0; i < orderItemsLst.length; i++) {
-        tbodyData += orderItemsLst[i];
-        console.log('orderItemsLst' + i + ': ' + orderItemsLst[i])
-    }
     tbody.innerHTML = tbodyData;
+}
+function getDetail(No) {
+    document.getElementById('bill-modal').style.display = 'block'
+    let listOrder = getStorage();
+    if (listOrder.listCfOrder == null) { return };
+    let order = listOrder.listCfOrder[No];
+    let billTableHead = `    
+    <span class="close" onclick='closeBillModal()'>&times;</span>
+    <table id="bill-table">
+        <caption> BILL DETAIL</caption>
+        <thead>
+            <tr>
+                <td>
+                    Client Name:
+                </td>
+                <td>${order.name}</td>
+                <td></td>
+                <td></td>
+                <td>
+                    Email:
+                </td>
+                <td>${order.email}</td>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td>${order.address}</td>
+                <td></td>
+                <td></td>
+                <td>
+                    Comment:
+                </td>
+                <td> ${order.comment}</td>
+            </tr>
+            <tr>
+                <td>
+                    Phone:
+                </td>
+                <td>${order.phone}</td>
+                <td></td>
+                <td></td>
+                <td>Total</td>
+                <td>${order.cfPayment}$</td>
+            </tr>
+            <tr class='trHead'>
+            <td>No</td>
+            <td>Coffee Name</td>
+            <td>Size</td>
+            <td>Topping</td>
+            <td>Quantity</td>
+            <td>Payment</td>
+            </tr>
+
+        </thead>`
+    let billTableBody = `<tbody>`;
+    for (let j = 0; j < order.cfId.length; j++) {
+        billTableBody +=
+            `<tr>
+                <td> ${j + 1}</td>
+                <td>${order.cfName[j]}</td>
+                <td> ${order.cfSize[j]}</td>
+                <td>${order.cfTopping[j].toString()}</td>
+                <td>${order.cfQuantity[j]}</td>
+                <td> ${order.cfTotal[j]}</td>
+            </tr>`
+        let billTableFoot = `    </tbody>
+    </table>`
+
+        document.getElementById('bill-modal').innerHTML = billTableHead + billTableBody + billTableFoot
+    }
+
+}
+function closeBillModal() {
+    document.getElementById('bill-modal').style.display = 'none';
 }

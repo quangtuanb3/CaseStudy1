@@ -644,6 +644,7 @@ input:focus {
     z-index: 9999;
 }
 #cart-table {
+    /* display: block; */
     position: fixed;
     z-index: 100;
     padding: 30px;
@@ -769,4 +770,17 @@ td {
     text-align: center;
     color: red;
     display: none;
+}
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }

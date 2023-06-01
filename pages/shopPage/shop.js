@@ -698,8 +698,6 @@ function sendOrder() {
     let address = DOM_ID("client-address").value;
     let comment = DOM_ID("client-comment").value
 
-
-
     // validation 
     let error = 0;
 
@@ -732,6 +730,7 @@ function sendOrder() {
     let listCoffee = getCartListInStorage();
     for (i = 0; i < listCoffee.listInCart.length; i++) {
         cfId.push(listCoffee.listInCart[i].id)
+        cfName.push(listCoffee.listInCart[i].name)
         cfSize.push(listCoffee.listInCart[i].size)
         cfTopping.push(listCoffee.listInCart[i].topping)
         cfQuantity.push(listCoffee.listInCart[i].quantity)
@@ -740,6 +739,8 @@ function sendOrder() {
     let order = new Order(email, name, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
     setOrderToStorage();
+    // listCoffee.ChangeToOrdered();
+    showCart();
     closeConfirmModal();
 }
 

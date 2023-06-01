@@ -180,15 +180,18 @@ table {
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
-    float: right;
+    color: #f4f0f0;
+    position: absolute;
+     /* float: left; */
+    top: 0;
+    right: 10px;
     font-size: 28px;
     font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: #000;
+    color: #474747;
     text-decoration: none;
     cursor: pointer;
 }
@@ -258,4 +261,54 @@ textarea {
 }
 .delete-btn {
     color: red;
+}
+
+#bill-modal {
+    display: none;
+    background-color: #aaaaaa53;
+    width: 70%;
+    height: 0;
+    /* margin:10% auto; */
+    padding: 0;
+    position: fixed;
+    top: 8%;
+    left: 23%;
+}
+#bill-modal table {
+    background-color: #fce1ce;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    margin: auto;
+}
+#bill-modal table caption {
+    background-color: #c75b13;
+    padding: 15px;
+    color: white;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+#bill-modal table thead td {
+    text-align: left;
+    padding: 10px;
+    border: none;
+    
+}
+.trHead {
+    background-color: rgb(247, 214, 153);
+}
+.trHead td {
+    text-align: center !important;
+    font-weight: bold;
+}
+#bill-modal table tbody td{
+    padding: 10px;
+}
+#order-table button i{
+    color: #fa8d26;
+    border: none;
+    font-size: 20px;
+}
+#order-table button:hover{
+    transform: scale(1.2);
+    cursor: pointer;
 }
