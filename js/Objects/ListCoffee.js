@@ -182,6 +182,11 @@ function ListCoffee() {
     this.DeleteOrder = function (No) {
         this.listInCart.splice(No, 1);
     }
+    // this.listOrdered = [];
+    // this.ChangeToOrdered = function (coffee) {
+    //     this.listOrdered.push(coffee);
+    //     this.listInCart = [];
+    // }
 
 }
 

@@ -7,6 +7,5 @@ function User(email, pw, phone, firstName, lastName, listOrder, listInCart, auth
     this.firstName = firstName;
     this.lastName = lastName;
     this.auth = auth;
-
 }
 

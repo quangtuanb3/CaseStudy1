@@ -7,6 +7,7 @@ function ListUser() {
             'firstName': 'Bui',
             'lastName': 'Tuan',
             'auth': 1,
+            'listInCart':[],
         },
         {
             "email": "user1@gmail.com",
@@ -15,6 +16,7 @@ function ListUser() {
             'firstName': 'John',
             'lastName': 'Canary',
             'auth': 0,
+            'listInCart':[],
         },
     ];
     this.AddUser = function (newUser) {

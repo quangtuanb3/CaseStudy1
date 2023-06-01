@@ -1,4 +1,4 @@
-
+let memory = new Memory();
 var menuItems = document.querySelectorAll('div ul li a');
 var section = document.querySelectorAll('section')
 
@@ -78,7 +78,7 @@ function truncateString(str, num) {
 let listUser = new ListUser();
 let validate = new Validate();
 let listOrder = new ListOrder();
-// listUser.listUsers.to
+
 function login() {
   listUser.listUsers = getListUserInStorage();
   const email = document.querySelector('#email').value;
@@ -87,14 +87,14 @@ function login() {
     if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 1) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
+      createMemory(user);
       window.location.href = '/pages/MenuPage/dashboard.html';
     } else if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 0) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
+      createMemory(user)
       window.location.href = "/pages/shopPage/shop.html";
-
     }
-
   }
   document.getElementById("invalidUser").style.display = "block";
 }
@@ -123,6 +123,7 @@ function checkLogin() {
 }
 
 function logout() {
+  // createMemory()
   localStorage.removeItem('User');
   checkLogin();
 }
@@ -177,7 +178,6 @@ function setStorageListUser() {
   localStorage.setItem("listUsers", jsonUser);
 }
 
-
 function getListUserInStorage() {
   if (localStorage.getItem("listUsers") != null) {
     let userInStorage = localStorage.getItem("listUsers");
@@ -193,6 +193,24 @@ function setUserToStorage(user) {
   let jsonUser = JSON.stringify(user);
   localStorage.setItem("User", jsonUser);
 }
+
+function createMemory(user) {
+  let memory = new Memory();
+  if (localStorage.getItem("memory") == null) {
+    memory.userList = [];
+    memory.addNewUser(user);
+    localStorage.setItem("memory", JSON.stringify(memory));
+  } else {
+    let memoryJson = JSON.parse(localStorage.getItem("memory"));
+    memory.userList = memoryJson.userList;
+    if (!memory.isExist(user)) {
+      memory.addNewUser(user);
+      localStorage.setItem("memory", JSON.stringify(memory));
+    }
+  }
+
+}
+
 
 
 

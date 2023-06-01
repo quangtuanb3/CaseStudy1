@@ -12,7 +12,19 @@ for (var i = 0; i < menuItems.length; i++) {
 }
 
 
+function setMemory() {
+    let user = JSON.parse(localStorage.getItem("User"));
+    console.log(memory);
+    if (!memory.isExist(user)) {
+        // memory.replaceUser(user)
+        memory.addNewUser(user);
+    } else {
+        localStorage.setItem("memory", JSON.stringify(memory));
+    }
+
+}
 function logout() {
+    // setMemory();
     localStorage.removeItem('User');
     window.location.href = '/index.html';
 }
@@ -34,13 +46,14 @@ var productionType = [
 
 ]
 
-let user = getUserInStorage();
-
+let user = getMemory();
+let memory = new Memory();
 let coffeeOder = new Coffee();
 let listUser = new ListUser();
 Coffee.prototype.size = 'Medium';
 Coffee.prototype.topping = [];
 Coffee.prototype.quantity = '';
+Coffee.prototype.ordered = false;
 Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this.quantity, this.price);
 
 function checkLogin() {
@@ -49,11 +62,6 @@ function checkLogin() {
     }
 }
 
-function getUserInStorage() {
-    let userInStorage = localStorage.getItem("User");
-    let user = JSON.parse(userInStorage);
-    return user;
-}
 
 
 
@@ -70,10 +78,6 @@ function RenderProductSection() {
     };
 }
 
-function RenderCart() {
-    showCart(user);
-}
-
 function searchCoffee() {
     keyword = DOM_ID('keyword').value;
     listCfSearched = listCoffee.SearchCoffee(keyword)
@@ -81,9 +85,11 @@ function searchCoffee() {
     DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
     if (listCfSearched.listCf.length == 0) {
         DOM_ID("notFound").style.display = 'block';
+    } else {
+        DOM_ID("notFound").style.display = 'none';
     }
 }
-DOM_ID('keyword').addEventListener("input", function (event) {
+DOM_ID('keyword').addEventListener("input", () => {
     DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
     searchCoffee();
 });
@@ -97,7 +103,7 @@ function qSelector(attribute) {
 
 
 function renderCartTable() {
-    user = getUserInStorage();
+    user = getMemory();
     openTable();
     let tbody = DOM_ID("cart-tbody");
     let totalElement = DOM_ID("payment-cart");
@@ -145,7 +151,7 @@ function saveOrder(No) {
     user.listInCart[No].payment = calculateTotal(user.listInCart[No].size, user.listInCart[No].topping, user.listInCart[No].quantity, Number(user.listInCart[No].price));
     //validate
     if (validate.CheckBoundary("quantity") == true) { return; }
-    setStorage(user);
+    saveToMemory(user);
     showCart();
     closeModal();
     openTable();
@@ -153,10 +159,12 @@ function saveOrder(No) {
 
 };
 function addToCart(cfId) {
+    user = getMemory();
+    console.log(user);
+    console.log('user.listInCart>>>>>>>>>>' + user.listInCart)
     let coffeeCalled = listCoffee.FindById(cfId);
 
     coffeeCalled.size = getSize();
-
     coffeeCalled.topping = getTopping();
     coffeeCalled.quantity = Number(DOM_ID("quantity").value);
 
@@ -164,7 +172,7 @@ function addToCart(cfId) {
     coffeeToCart.size = coffeeCalled.size;
     coffeeToCart.topping = coffeeCalled.topping;
     coffeeToCart.quantity = coffeeCalled.quantity;
-
+    coffeeToCart.ordered = false;
     coffeeToCart.payment = calculateTotal(coffeeToCart.size, coffeeToCart.topping, coffeeToCart.quantity, coffeeToCart.price);
 
     //validate
@@ -174,8 +182,8 @@ function addToCart(cfId) {
 
     listCoffee.AddToCart(coffeeToCart);
     user.listInCart = listCoffee.listInCart;
-    setStorage(user);
-    showCart(user)
+    saveToMemory(user);
+    showCart()
     closeModal();
 }
 function checkQuantity() {
@@ -196,12 +204,14 @@ function calculateTotalPayment(user) {
     return parseFloat(sum).toFixed(2);
 }
 
-function showCart(user) {
-    user = getUserInStorage()
-    let items = user.listInCart.length;
-    let sum = calculateTotalPayment(user);
-    DOM_ID("cart-number").innerHTML = items;
-    DOM_ID("cart-money").innerHTML = sum;
+function showCart() {
+    user = getMemory();
+    if (user.listInCart != undefined) {
+        let items = user.listInCart.length;
+        let sum = calculateTotalPayment(user);
+        DOM_ID("cart-number").innerHTML = items;
+        DOM_ID("cart-money").innerHTML = sum;
+    }
 
 }
 
@@ -294,15 +304,39 @@ function getCfListInStorage() {
 }
 
 function getCartListInStorage() {
-    let user = JSON.parse(localStorage.getItem("User"));
+    let user = getMemory();
     listCoffee.listInCart = user.listInCart;
-    // showCart(user);
     return listCoffee;
 }
 
-function setStorage(user) {
-    let jsonUser = JSON.stringify(user);
-    localStorage.setItem("User", jsonUser);
+// function setStorage(user) {
+//     let jsonUser = JSON.stringify(user);
+//     localStorage.setItem("User", jsonUser);
+// }
+function getUserInStorage() {
+    let user = JSON.parse(localStorage.getItem("User"));
+    return user;
+}
+
+function getMemory() {
+    let result = {};
+    let user = JSON.parse(localStorage.getItem("User"));
+    let memory = JSON.parse(localStorage.getItem("memory"));
+    if (memory && user && memory.userList.find(obj => obj.email === user.email)) {
+        let foundObj = memory.userList.find(obj => obj.email === user.email);
+        result = foundObj;
+        console.log("result: ", result);
+    }
+    return result;
+}
+
+function saveToMemory(user) {
+    let memory = new Memory();
+    // setMemory();
+    let memoryListUser = JSON.parse(localStorage.getItem("memory"));
+    memory.userList = memoryListUser.userList;
+    memory.overrideUser(user);
+    localStorage.setItem("memory", JSON.stringify(memory));
 }
 
 function setOrderToStorage() {
@@ -745,7 +779,7 @@ function openConfirmModal() {
     DOM_ID('confirm-order').style.display = 'block';
 }
 function showClientInfo() {
-    user = getUserInStorage();
+    user = getMemory();
     DOM_ID("client-email").value = user.email;
     DOM_ID("client-name").value = user.firstName + ' ' + user.lastName;
     DOM_ID("client-phone").value = user.phone;
@@ -832,9 +866,9 @@ function confirmRemoveOrder(No) {
 function removeOrder(No) {
     listCoffee.DeleteOrder(No);
     user.listInCart = listCoffee.listInCart;
-    setStorage(user);
+    saveToMemory(user);
     getCartListInStorage();
-    showCart(user);
+    showCart();
     renderCartTable()
 
 
@@ -857,4 +891,5 @@ function openTable() {
 
 window.onload = checkLogin();
 RenderProductSection();
-RenderCart()
+showCart();
+
