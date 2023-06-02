@@ -14,7 +14,6 @@ for (var i = 0; i < menuItems.length; i++) {
 
 function setMemory() {
     let user = JSON.parse(localStorage.getItem("User"));
-    console.log(memory);
     if (!memory.isExist(user)) {
         // memory.replaceUser(user)
         memory.addNewUser(user);
@@ -160,8 +159,6 @@ function saveOrder(No) {
 };
 function addToCart(cfId) {
     user = getMemory();
-    console.log(user);
-    console.log('user.listInCart>>>>>>>>>>' + user.listInCart)
     let coffeeCalled = listCoffee.FindById(cfId);
 
     coffeeCalled.size = getSize();
@@ -325,7 +322,6 @@ function getMemory() {
     if (memory && user && memory.userList.find(obj => obj.email === user.email)) {
         let foundObj = memory.userList.find(obj => obj.email === user.email);
         result = foundObj;
-        console.log("result: ", result);
     }
     return result;
 }
@@ -339,9 +335,15 @@ function saveToMemory(user) {
     localStorage.setItem("memory", JSON.stringify(memory));
 }
 
-function setOrderToStorage() {
-    let jsonCoffeeOrdered = JSON.stringify(listOrder.listCfOrder);
-    localStorage.setItem("orderedCoffee", jsonCoffeeOrdered);
+function setOrderToStorage(cfOrder) {
+    if (localStorage.getItem("orderedCoffee") == null) {
+        localStorage.setItem("orderedCoffee", JSON.stringify(listOrder.listCfOrder));
+    } else {
+        let listOrder = new ListOrder();
+        listOrder.listCfOrder = JSON.parse(localStorage.getItem("orderedCoffee"));
+        listOrder.listCfOrder.push(cfOrder);
+        localStorage.setItem("orderedCoffee", JSON.stringify(listOrder.listCfOrder));
+    }
 }
 
 
@@ -738,7 +740,7 @@ function sendOrder() {
     }
     let order = new Order(email, name, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
-    setOrderToStorage();
+    setOrderToStorage(order);
     // listCoffee.ChangeToOrdered();
     showCart();
     closeConfirmModal();
