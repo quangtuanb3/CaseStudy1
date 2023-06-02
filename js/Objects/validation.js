@@ -1,11 +1,14 @@
 
 function Validate() {
-    this.CheckEmpty = function (id, value) {
+    this.CheckEmpty = function (id, value, error) {
         if (value.trim() === '') {
-            document.getElementById(id).style.borderColor = "red"
+            document.getElementById(id).style.borderColor = "red";
+            document.getElementById(error).style.display = "inline";
+
             return true;
         }
-        document.getElementById(id).style.borderColor = "green"
+        document.getElementById(id).style.borderColor = "green";
+        document.getElementById(error).style.display = "none";
         return false;
     }
 
@@ -20,37 +23,43 @@ function Validate() {
     }
 
 
-    this.CheckDuplicateId = function (id, listCoffee) {
+    this.CheckDuplicateId = function (id, listCoffee, error) {
         let idElement = document.getElementById(id);
         for (let i = 0; i < listCoffee.listCf.length; i++) {
             console.log(listCoffee.listCf[i].id)
             if (idElement.value == listCoffee.listCf[i].id) {
                 idElement.style.borderColor = "red"
+                document.getElementById(error).style.display = "inline";
                 return true
             }
         }
-        idElement.style.borderColor = "green"
+        idElement.style.borderColor = "green";
+        document.getElementById(error).style.display = "none";
         return false; s
     }
-    this.CheckDuplicateName = function (id, listCoffee) {
+    this.CheckDuplicateName = function (id, listCoffee, error) {
         let idElement = document.getElementById(id);
         for (let i = 0; i < listCoffee.listCf.length; i++) {
             if (idElement.value == listCoffee.listCf[i].name) {
-                idElement.style.borderColor = "red"
+                idElement.style.borderColor = "red";
+                document.getElementById(error).style.display = "inline";
                 return true
             }
         }
-        idElement.style.borderColor = "green"
+        idElement.style.borderColor = "green";
+        document.getElementById(error).style.display = "none";
         return false;
     }
 
-    this.CheckBoundary = function (id) {
+    this.CheckBoundary = function (id, error) {
         let element = document.getElementById(id);
         if (Number(element.min) <= Number(element.value) && Number(element.value) <= Number(element.max)) {
             element.style.borderColor = "green";
+            document.getElementById(error).style.display = "none";
             return false;
         } else {
             element.style.borderColor = "red";
+            document.getElementById(error).style.display = "inline";
             return true;
         }
     }

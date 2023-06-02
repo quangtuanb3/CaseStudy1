@@ -7,7 +7,7 @@ class Memory {
     addNewUser(newUser) {
         this.userList.push(newUser);
     }
-
+    
     isExist(user) {
         console.log("this.userList: " + this.userList);
         if (this.userList.some(obj => obj.email === user.email)) {

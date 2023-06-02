@@ -211,7 +211,4 @@ function createMemory(user) {
 
 }
 
-
-
-
 window.onload = checkLogin();

@@ -51,34 +51,37 @@ function AddCoffee() {
 
     image = validate.CheckToSetDefaultImg(image);
 
-    if (validate.CheckEmpty("coffee-id", id) == true) {
+    if (validate.CheckEmpty("coffee-id", id, 'id-error')) {
         error++;
-    } else if ((validate.CheckDuplicateId("coffee-id", listCoffee) == true)) {
-        error++;
-    }
-
-    if (validate.CheckEmpty("name", name) == true) {
-        error++;
-    } else if ((validate.CheckDuplicateName("name", listCoffee) == true)) {
+    } else if ((validate.CheckDuplicateId("coffee-id", listCoffee, 'id-error') == true)) {
         error++;
     }
 
-    if (validate.CheckEmpty("image", image) == true) {
+    if (validate.CheckEmpty("name", name, 'name-error')) {
+        error++;
+    } else if ((validate.CheckDuplicateName("name", listCoffee, 'name-error') == true)) {
         error++;
     }
-    if (validate.CheckEmpty("title", title) == true) {
+
+    if (validate.CheckEmpty("image", image, 'image-error')) {
         error++;
     }
-    if (validate.CheckEmpty("rate", rate) == true) {
+    if (validate.CheckEmpty("title", title, 'title-error')) {
         error++;
     }
-    if (validate.CheckEmpty("order", order) == true) {
+    if (validate.CheckEmpty("rate", rate, 'rate-error')) {
+        error++;
+    } else if (validate.CheckBoundary("rate", 'rate-error')) {
         error++;
     }
-    if (validate.CheckEmpty("price", price) == true) {
+    if (validate.CheckEmpty("order", order, 'order-error')) {
+        error++;
+    } else if ((validate.CheckBoundary("order",'order-error') )) {
         error++;
     }
-    if (validate.CheckEmpty("description", description) == true) {
+    if (validate.CheckEmpty("price", price, 'price-error')) {
+        error++;
+    } else if ((validate.CheckBoundary("price",'price-error' ))) {
         error++;
     }
 

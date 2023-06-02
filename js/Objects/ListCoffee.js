@@ -159,19 +159,11 @@ function ListCoffee() {
 
     this.SearchCoffee = function (keyword) {
         let listSearch = new ListCoffee();
-        listSearch.listCf = [];
-        let newKey = keyword.trim().toLowerCase()
-        for (var i = 0; i < this.listCf.length; i++) {
-            var coffee = this.listCf[i];
-            if (coffee.name.trim().toLowerCase().search(newKey) != -1) {
-                listSearch.listCf.push(coffee);
-            } else if (coffee.title.trim().toLowerCase().search(newKey) != -1) {
-                listSearch.listCf.push(coffee);
-            } else if (parseInt(coffee.price) == parseInt(keyword)) {
-                listSearch.listCf.push(coffee);
+        listSearch.listCf = this.listCf.filter((coffee, index) => {
+            if (coffee.name.toLowerCase().includes(keyword.toLowerCase()) || coffee.description.toLowerCase().includes(keyword.toLowerCase()) || coffee.title.toLowerCase().includes(keyword.toLowerCase())) {
+                return coffee;
             }
-
-        }
+        })
         return listSearch
     }
 

@@ -88,10 +88,10 @@ function searchCoffee() {
         DOM_ID("notFound").style.display = 'none';
     }
 }
-DOM_ID('keyword').addEventListener("input", () => {
-    DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
-    searchCoffee();
-});
+// DOM_ID('keyword').addEventListener("input", () => {
+//     DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
+//     searchCoffee();
+// });
 
 function DOM_ID(id) {
     return document.getElementById(id)
@@ -149,7 +149,7 @@ function saveOrder(No) {
     user.listInCart[No].quantity = Number(DOM_ID("quantity").value);
     user.listInCart[No].payment = calculateTotal(user.listInCart[No].size, user.listInCart[No].topping, user.listInCart[No].quantity, Number(user.listInCart[No].price));
     //validate
-    if (validate.CheckBoundary("quantity") == true) { return; }
+    if (validate.CheckBoundary("quantity", "error-quantity")) { return; }
     saveToMemory(user);
     showCart();
     closeModal();
@@ -159,6 +159,8 @@ function saveOrder(No) {
 };
 function addToCart(cfId) {
     user = getMemory();
+
+    listCoffee.listInCart = user.listInCart;
     let coffeeCalled = listCoffee.FindById(cfId);
 
     coffeeCalled.size = getSize();
@@ -173,7 +175,7 @@ function addToCart(cfId) {
     coffeeToCart.payment = calculateTotal(coffeeToCart.size, coffeeToCart.topping, coffeeToCart.quantity, coffeeToCart.price);
 
     //validate
-    if (validate.CheckBoundary("quantity") == true) {
+    if (validate.CheckBoundary("quantity", "error-quantity")) {
         return
     }
 
@@ -183,15 +185,7 @@ function addToCart(cfId) {
     showCart()
     closeModal();
 }
-function checkQuantity() {
-    let error = 0;
-    if (validate.CheckBoundary("quantity") == true) {
-        error++;
-    }
-    if (error != 0) {
-        return;
-    }
-}
+
 function calculateTotalPayment(user) {
     let sum = 0;
     for (let i = 0; i < user.listInCart.length; i++) {
@@ -378,8 +372,8 @@ function createDivItem(productionType, listCoffee) {
         divItems += `
             <div class="pro-item">
             <div class="pro-img">
-                <img src="${coffee.image}" alt="${coffee.name}">
-                <div class="pro-item-overlay animate__animated animate__fadeIn">
+                <img src="${coffee.image}" alt="${coffee.name}" onclick="buyCoffee(${coffee.id})">
+                <div class="pro-item-overlay animate__animated animate__fadeIn" onclick="buyCoffee(${coffee.id})">
                     <h3>${coffee.name}</h3>
                     <p>${newDescription}</p>
                 </div>
@@ -524,6 +518,7 @@ function buyCoffee(id) {
                 <div class="quantity">
                     <h4>Please enter quantity</h4>
                     <input type="number" min="1" max="1000" value="1" style="text-align: right;" id="quantity">
+                    <span id='error-quantity'>*Invalid quantity</span>
                 </div>
                 <div>
                     <p class="total">Total: <span id="total">${coffeeToBuy.price + 0.5}</span>$</p>
@@ -653,6 +648,7 @@ function OpenModalEditCoffee(No) {
                     <div class="quantity">
                         <h4>Please enter quantity</h4>
                         <input type="number" min="1" max="1000" value="${quantity}" style="text-align: right;" id="quantity">
+                        <span id='error-quantity'>*Invalid quantity</span>
                     </div>
                     <div>
                         <p class="total">Total: <span id="total">${coffeeToEdit.payment}</span>$</p>
@@ -703,18 +699,18 @@ function sendOrder() {
     // validation 
     let error = 0;
 
-    if (validate.CheckEmpty("client-email", email) == true) {
+    if (validate.CheckEmpty("client-email", email, "client-email-error")) {
         error++;
     }
 
-    if (validate.CheckEmpty("client-name", name) == true) {
+    if (validate.CheckEmpty("client-name", name, "client-name-error")) {
         error++;
     }
 
-    if (validate.CheckEmpty("client-phone", phone) == true) {
+    if (validate.CheckEmpty("client-phone", phone, "client-phone-error")) {
         error++;
     }
-    if (validate.CheckEmpty("client-address", address) == true) {
+    if (validate.CheckEmpty("client-address", address, "client-address-error")) {
         error++;
     }
 
@@ -866,15 +862,16 @@ function confirmRemoveOrder(No) {
     }
 }
 
+
 function removeOrder(No) {
+    user = getMemory();
+    listCoffee.listInCart = user.listInCart;
     listCoffee.DeleteOrder(No);
     user.listInCart = listCoffee.listInCart;
     saveToMemory(user);
     getCartListInStorage();
     showCart();
     renderCartTable()
-
-
 }
 function openModal() {
     DOM_ID("modal-container").style.display = 'block';
@@ -890,6 +887,10 @@ function closeTable() {
 }
 function openTable() {
     DOM_ID('cart-container').style.display = 'block';
+}
+function logout() {
+    localStorage.removeItem('User');
+    window.location.href = '/index.html';
 }
 
 window.onload = checkLogin();

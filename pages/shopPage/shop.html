@@ -45,7 +45,8 @@
 
         <div class="search-container box">
             <form action="#product" class="sbox">
-                <input class="stext" type="text" placeholder="Search..." id="keyword" name="search">
+                <input class="stext" type="text" placeholder="Search..." id="keyword" name="search"
+                    oninput="searchCoffee()">
                 <a class="sbutton" type="button" href="javascript:void(0);" onclick="searchCoffee()">
                     <i class="fa fa-search"></i>
                 </a>
@@ -118,7 +119,7 @@
             </div> -->
 
         </div>
-      
+
     </div>
 
     <!-- 2. Banner  -->
@@ -175,10 +176,30 @@
             <h2 style="text-align: center;">Client Information</h2>
             <span class="close" id="close-confirmModal" onclick="closeConfirmModal()">&times;</span>
             <form class="form" action="#contact">
-                <input type="text" placeholder="Email" id="client-email" disabled>
-                <input type="text" placeholder="Name" id="client-name">
-                <input type="text" placeholder="Address" id="client-address" value="28 Nguyen Tri Phuong, Hue">
-                <input type="phone" placeholder="Phone" id="client-phone">
+                <div>
+                    <input type="text" placeholder="Email" id="client-email" disabled>
+                    <br>
+                    <span id="client-email-error" class="error-msg">* Invalid Email</span>
+
+                </div>
+                <div>
+                    <input type="text" placeholder="Name" id="client-name">
+                    <br>
+                    <span id="client-name-error" class="error-msg">*Invalid client name</span>
+                </div>
+                <div>
+                    <input type="text" placeholder="Address" id="client-address" value="28 Nguyen Tri Phuong, Hue">
+                    <br>
+                    <span id="client-address-error" class="error-msg">*Invalid client address</span>
+
+                </div>
+                <div>
+                    <input type="phone" placeholder="Phone" id="client-phone">
+                    <br>
+                    <span id="client-phone-error" class="error-msg">*Invalid client phone</span>
+
+                </div>
+
                 <textarea cols="30" rows="3" placeholder="Message" id="client-comment" value="50% Sugar"></textarea>
                 <table style="grid-column: 1 /span 2;">
                     <thead>
