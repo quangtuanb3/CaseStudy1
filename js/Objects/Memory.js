@@ -16,16 +16,6 @@ class Memory {
         return false;
     }
 
-    // replaceUser(user) {
-    //     this.userList = this.userList.map(obj => {
-    //         if (obj.email === user.email) {
-    //             return user;
-    //         } else {
-    //             return obj;
-    //         }
-    //     });
-    // }
-
     overrideUser(user) {
         console.log(this.userList);
         this.userList.forEach((obj, index) => {

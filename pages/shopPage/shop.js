@@ -110,7 +110,13 @@ function renderCartTable() {
     let totalPayment = calculateTotalPayment(user);
 
     let tbodyContent = '';
-
+    if (user.listInCart.length == 0) {
+        tbodyContent = `
+        <tr>
+        <td colspan="8">Please select coffee first</td>
+    </tr>
+        `
+    }
     for (let i = 0; i < user.listInCart.length; i++) {
         let coffee = user.listInCart[i];
 
@@ -139,9 +145,40 @@ function renderCartTable() {
 
     tbody.innerHTML = tbodyContent;
     totalElement.innerHTML = totalPayment;
-
-    // changeOrderBtn(listCoffee);
+    renderRecentProduct()
 }
+function renderRecentProduct() {
+    user = getMemory();
+    let divRecent = DOM_ID("recent-order");
+    divRecent.innerHTML = '';
+    let tableHead = `
+    <table>
+    <thead>
+        <tr>
+            <th> No.</th>
+            <th> Name </th>
+            <th> Comment </th>
+            <th>Total Payment</th>
+        </tr>
+    </thead>
+    <tbody id="recent-order-tbody">`
+    let tableFoot = `   </tbody>
+    </table>`
+    let tableBody = '';
+    user.listOrder.map((order, index) => {
+        tableBody += `
+        <tr>
+        <td> ${index + 1}</td>
+        <td> ${order.cfName.toString()} </td>
+        <td> ${order.comment} </td>
+        <td>${order.cfPayment}$</td>
+    </tr>
+        `
+    })
+
+    divRecent.innerHTML = tableHead + tableBody + tableFoot;
+}
+
 function saveOrder(No) {
     user.listInCart[No] = listCoffee.listInCart[No]
     user.listInCart[No].size = getSize();
@@ -312,9 +349,9 @@ function getUserInStorage() {
 function getMemory() {
     let result = {};
     let user = JSON.parse(localStorage.getItem("User"));
-    let memory = JSON.parse(localStorage.getItem("memory"));
-    if (memory && user && memory.userList.find(obj => obj.email === user.email)) {
-        let foundObj = memory.userList.find(obj => obj.email === user.email);
+    let memory = JSON.parse(localStorage.getItem("userList"));
+    if (memory && user && memory.find(obj => obj.email === user.email)) {
+        let foundObj = memory.find(obj => obj.email === user.email);
         result = foundObj;
     }
     return result;
@@ -322,11 +359,9 @@ function getMemory() {
 
 function saveToMemory(user) {
     let memory = new Memory();
-    // setMemory();
-    let memoryListUser = JSON.parse(localStorage.getItem("memory"));
-    memory.userList = memoryListUser.userList;
+    memory.userList = JSON.parse(localStorage.getItem("userList"));
     memory.overrideUser(user);
-    localStorage.setItem("memory", JSON.stringify(memory));
+    localStorage.setItem("userList", JSON.stringify(memory.userList));
 }
 
 function setOrderToStorage(cfOrder) {
@@ -736,8 +771,12 @@ function sendOrder() {
     }
     let order = new Order(email, name, address, phone, comment, cfId, cfName, cfSize, cfTopping, cfQuantity, cfTotal, cfPayment)
     listOrder.AddOrder(order);
+    user = getMemory();
+    user.listOrder = listOrder.listCfOrder;
+    user.listInCart = [];
     setOrderToStorage(order);
     // listCoffee.ChangeToOrdered();
+    saveToMemory(user);
     showCart();
     closeConfirmModal();
 }

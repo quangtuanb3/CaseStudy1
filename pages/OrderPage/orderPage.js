@@ -114,3 +114,8 @@ function getDetail(No) {
 function closeBillModal() {
     document.getElementById('bill-modal').style.display = 'none';
 }
+
+function logout() {
+    localStorage.removeItem('User');
+    window.location.href = '/index.html';
+}

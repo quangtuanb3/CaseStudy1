@@ -196,16 +196,16 @@ function setUserToStorage(user) {
 
 function createMemory(user) {
   let memory = new Memory();
-  if (localStorage.getItem("memory") == null) {
+  if (localStorage.getItem("userList") == null) {
     memory.userList = [];
     memory.addNewUser(user);
-    localStorage.setItem("memory", JSON.stringify(memory));
+    localStorage.setItem("userList", JSON.stringify(memory.userList));
   } else {
-    let memoryJson = JSON.parse(localStorage.getItem("memory"));
-    memory.userList = memoryJson.userList;
+
+    memory.userList = JSON.parse(localStorage.getItem("userList"));
     if (!memory.isExist(user)) {
       memory.addNewUser(user);
-      localStorage.setItem("memory", JSON.stringify(memory));
+      localStorage.setItem("userList", JSON.stringify(memory.userList));
     }
   }
 
