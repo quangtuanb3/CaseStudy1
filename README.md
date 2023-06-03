@@ -9,6 +9,10 @@
 ```
 ## TIME: 15 days
 
+## LINK:
++ GitHub https://github.com/quangtuanb3/Coffee-shop
++ Deploy https://quangtuanb3.github.io/Coffee-shop/
+
 ## MAIN FUNCTION:
 * Client: 
 ```
