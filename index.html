@@ -79,12 +79,31 @@
         <span class="close" onclick="closeSignUpModal()">&times;</span>
         <h2 style="text-align: center; padding: 20px;">SIGN UP</h2>
         <form class="form" action="#contact">
-            <input type="text" placeholder="First name" required id="firstname_sU">
-            <input type="text" placeholder="Last name" required id="lastname_sU">
-            <input type="email" placeholder="Email" required id="email_sU">
-            <input type="Phone" placeholder="Phone" required id="phone_sU" min="9" max="12">
-            <input type="password" placeholder="Password" required id="pw_sU" min="6" max="16">
-            <input type="password" placeholder="Confirm Password" required id="cfPw_sU">
+            <div>
+                <input type="text" placeholder="First name" required id="firstname_sU">
+                <span id="firstname-error" class="errorMsg">*Invalid first name</span>
+            </div>
+            <div>
+                <input type="text" placeholder="Last name" required id="lastname_sU">
+                <span id="lastname-error" class="errorMsg">*Invalid first name</span>
+            </div>
+            <div>
+                <input type="email" placeholder="Email" required id="email_sU">
+                <span id="email-error" class="errorMsg">*Invalid email</span>
+            </div>
+            <div>
+                <input type="Phone" placeholder="Phone" required id="phone_sU" min="9" max="12">
+                <span id="phone-error" class="errorMsg">*Invalid phone number</span>
+            </div>
+            <div>
+                <input type="password" placeholder="Password" required id="pw_sU" min="6" max="16">
+                <span id="pw-error" class="errorMsg">*Invalid password </span>
+
+            </div>
+            <div>
+                <input type="password" placeholder="Confirm Password" required id="cfPw_sU">
+                <span id="cfPw-error" class="errorMsg">*Invalid confirm password</span>
+            </div>
             <button type="button" class="my-button" style="padding: 10px; margin-bottom: 30px;"
                 onclick="signUp()">Submit</button>
         </form>

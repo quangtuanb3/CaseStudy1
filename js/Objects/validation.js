@@ -63,16 +63,43 @@ function Validate() {
             return true;
         }
     }
-    this.CheckDuplicateUser = function (email_path, listUser) {
+    this.CheckLength = function (id, error) {
+        let element = document.getElementById(id);
+        if (Number(element.min) <= element.value.length && element.value.length <= Number(element.max)) {
+            element.style.borderColor = "green";
+            document.getElementById(error).style.display = "none";
+            return false;
+        } else {
+            element.style.borderColor = "red";
+            document.getElementById(error).style.display = "inline";
+            return true;
+        }
+    }
+    this.CheckDuplicateUser = function (email_path, listUser, errorMsg) {
         let emailEle = document.getElementById(email_path);
         for (let i = 0; i < listUser.listUsers.length; i++) {
             if (emailEle.value == listUser.listUsers[i].email) {
                 emailEle.style.borderColor = "red";
+                document.getElementById(errorMsg).style.display = 'block';
+                document.getElementById(errorMsg).innerText = '* Email has been used!'
                 return true;
+            } else {
+                document.getElementById(errorMsg).innerText = '* Invalid email';
+                document.getElementById(errorMsg).style.display = 'none';
             }
         }
         emailEle.style.borderColor = "green";
+        document.getElementById(errorMsg).style.display = 'none';
         return false;
     };
+    this.CheckConfirmPw = function (pw, cfPw, errorMsg) {
+        if (document.getElementById(pw).value === document.getElementById(cfPw).value) {
+            document.getElementById(errorMsg).style.display = 'none';
+            return false;
+        } else {
+            document.getElementById(errorMsg).style.display = 'block';
+            return true;
+        }
+    }
 
 }

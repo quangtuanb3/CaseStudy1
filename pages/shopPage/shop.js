@@ -153,6 +153,7 @@ function renderRecentProduct() {
     divRecent.innerHTML = '';
     let tableHead = `
     <table>
+    <caption><h3 style='padding: 10px';>Recent Order</h3></caption>
     <thead>
         <tr>
             <th> No.</th>
@@ -775,7 +776,7 @@ function sendOrder() {
     user.listOrder = listOrder.listCfOrder;
     user.listInCart = [];
     setOrderToStorage(order);
-    // listCoffee.ChangeToOrdered();
+    alert("Your order has been sent!!")
     saveToMemory(user);
     showCart();
     closeConfirmModal();

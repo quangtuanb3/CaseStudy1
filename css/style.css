@@ -45,7 +45,7 @@
     font-weight: 600;
     transition: all 0.5s;
 }
-.menu-bar li{
+.menu-bar li {
     text-decoration: none;
     color: #60de55;
     font-size: 18px;
@@ -90,6 +90,9 @@
     border-radius: 7px;
     background-color: white;
     transition: all 0.5s;
+}
+#signUp-modal input {
+    width: 89%;
 }
 .close {
     color: #aaaaaa;
@@ -481,4 +484,10 @@ input:focus {
 }
 #my-form {
     display: none;
+}
+.errorMsg {
+    display: none ;
+    text-align: left;
+    color: red;
+    font-size: 12px;
 }

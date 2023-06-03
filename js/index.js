@@ -156,13 +156,24 @@ function signUp() {
   listUser.listUsers = getListUserInStorage();
   // validate
   let error = 0;
-  if (validate.CheckDuplicateUser("email_sU", listUser)) {
+  if (validate.CheckEmpty("email_sU", email, 'email-error')) {
+    error++
+  } else if (validate.CheckDuplicateUser("email_sU", listUser, 'email-error')) {
     error++
   }
-  if (pw != confirmPW) {
-    DOM_ID("cfPw_sU").style.borderColor = 'red';
+  if (validate.CheckEmpty("pw_sU", confirmPW, "pw-error")) {
+    error++;
+  } else if (validate.CheckLength("pw_sU", "pw-error")) {
     error++;
   }
+  // if (validate.CheckEmpty("cfPw_sU", confirmPW, "cfPw-error")) error++;
+  if (validate.CheckConfirmPw('pw_sU', 'cfPw_sU', "cfPw-error")) {
+    error++;
+  }
+  if (validate.CheckEmpty("firstname_sU", firstName, "firstname-error")) error++;
+  if (validate.CheckEmpty("lastname_sU", lastName, "lastname-error")) error++;
+  if (validate.CheckEmpty("phone_sU", lastName, "phone-error")) error++;
+
   if (error != 0) { return; }
   let listInCart = [];
   let user = new User(email, pw, phone, firstName, lastName, listOrder, listInCart, 0);
@@ -170,7 +181,6 @@ function signUp() {
   alert("Sign up successfully, Login now!");
   closeSignUpModal();
   setStorageListUser();
-
 }
 
 function setStorageListUser() {
