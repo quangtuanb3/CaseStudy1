@@ -83,20 +83,24 @@ function login() {
   listUser.listUsers = getListUserInStorage();
   const email = document.querySelector('#email').value;
   const password = document.querySelector('#password').value;
+
   for (let i = 0; i < listUser.listUsers.length; i++) {
     if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 1) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
       createMemory(user);
       window.location.href = '/pages/MenuPage/dashboard.html';
+      return;
     } else if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 0) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
       createMemory(user)
       window.location.href = "/pages/shopPage/shop.html";
+      return
     }
   }
   document.getElementById("invalidUser").style.display = "block";
+
 }
 
 

@@ -28,4 +28,5 @@
 + Validate input data (Sign up, Add to cart, Add new coffee).
 + Light box script (Gallery).
 + Table pagination (Dashboard).
++ Search a product (Shop page, dashboard)
 ```
