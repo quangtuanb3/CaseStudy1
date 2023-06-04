@@ -20,7 +20,6 @@ function checkLogin() {
     }
     else {
         let user = JSON.parse(localStorage.getItem("User"));
-        console.log(user)
         if (user.auth != 1) {
             window.location.href = '/index.html';
         }
@@ -76,12 +75,12 @@ function AddCoffee() {
     }
     if (validate.CheckEmpty("order", order, 'order-error')) {
         error++;
-    } else if ((validate.CheckBoundary("order",'order-error') )) {
+    } else if ((validate.CheckBoundary("order", 'order-error'))) {
         error++;
     }
     if (validate.CheckEmpty("price", price, 'price-error')) {
         error++;
-    } else if ((validate.CheckBoundary("price",'price-error' ))) {
+    } else if ((validate.CheckBoundary("price", 'price-error'))) {
         error++;
     }
 
@@ -121,7 +120,7 @@ function EditCoffee(id) {
         btn.setAttribute("onclick", "SaveCoffee()");
         DOM_ID("coffee-id").value = coffee.id;
         DOM_ID("cf-hide-id").value = coffee.id;
-        DOM_ID("coffee-id").disabled = 'true';
+        DOM_ID("coffee-id").disabled = true;
         DOM_ID("name").value = coffee.name;
         DOM_ID("image").value = coffee.image;
         DOM_ID("title").value = coffee.title;
@@ -129,8 +128,8 @@ function EditCoffee(id) {
         DOM_ID("order").value = coffee.order;
         DOM_ID("price").value = coffee.price;
         DOM_ID("description").value = coffee.description;
-
     }
+
     setStorage();
     getStorage();
 
@@ -146,29 +145,27 @@ function SaveCoffee() {
     var price = DOM_ID("price").value;
     var description = DOM_ID("description").value
 
+
     // validation 
     var error = 0;
 
-    if (validate.CheckEmpty("name", name) == true) {
+    if (validate.CheckEmpty("name", name, "name-error") == true) {
         error++;
     }
 
-    if (validate.CheckEmpty("image", image) == true) {
+    if (validate.CheckEmpty("image", image, "image-error") == true) {
         error++;
     }
-    if (validate.CheckEmpty("title", title) == true) {
+    if (validate.CheckEmpty("title", title, "title-error")) {
         error++;
     }
-    if (validate.CheckEmpty("rate", rate) == true) {
+    if (validate.CheckEmpty("rate", rate, "rate-error") == true) {
         error++;
     }
-    if (validate.CheckEmpty("order", order) == true) {
+    if (validate.CheckEmpty("order", order, "order-error")) {
         error++;
     }
-    if (validate.CheckEmpty("price", price) == true) {
-        error++;
-    }
-    if (validate.CheckEmpty("description", description) == true) {
+    if (validate.CheckEmpty("price", price, "price-error") == true) {
         error++;
     }
 
@@ -178,6 +175,8 @@ function SaveCoffee() {
     }
     var coffee = new Coffee(id, name, image, title, Number(rate), Number(order), Number(price), description)
     listCoffee.EditCoffeeInList(coffee);
+    DOM_ID("coffee-id").disabled = false;
+    clearForm();
     closeModal()
     setStorage();
     getStorage();
@@ -335,5 +334,26 @@ function searchCoffee() {
     keyword = DOM_ID('keyword').value;
     listCfSearched = listCoffee.SearchCoffee(keyword)
     renderTableWithPagination(listCfSearched);
+}
+
+
+var modal = document.getElementById("myModal");
+
+var btn = document.getElementById("my-button");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function () {
+    modal.style.display = "block";
+    DOM_ID("coffee-id").disabled = false;
+    DOM_ID("cf-hide-id").value = 0;
+    let btn = DOM_ID("submit-btn");
+    btn.value = "Submit";
+    btn.removeAttribute("onclick");
+    btn.setAttribute("onclick", "AddCoffee()");
+}
+
+span.onclick = function () {
+    modal.style.display = "none";
 }
 
