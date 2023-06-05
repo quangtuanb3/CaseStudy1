@@ -503,42 +503,42 @@ function buyCoffee(id) {
                     <div>
                         <input type="checkbox" id="topping1" name="topping1" value="topping1" class="topping-option">
                         <label for="topping1">
-                            <p class="my-button topping-btn" class="">Lorem psum1</p>
+                            <p class="my-button topping-btn" class="">Topping 1</p>
                         </label>
                     </div>
 
                     <div>
                         <input type="checkbox" id="topping2" name="topping2" value="topping2" class="topping-option">
                         <label for="topping2">
-                            <p class="my-button topping-btn" class="">Lorem psum2</p>
+                            <p class="my-button topping-btn" class="">Topping 2</p>
                         </label>
                     </div>
 
                     <div>
                         <input type="checkbox" id="topping3" name="topping3" value="topping3" class="topping-option">
                         <label for="topping3">
-                            <p class="my-button topping-btn" class="">Lorem psum3</p>
+                            <p class="my-button topping-btn" class="">Topping 3</p>
                         </label>
                     </div>
 
                     <div>
                         <input type="checkbox" id="topping4" name="topping4" value="topping4" class="topping-option">
                         <label for="topping4">
-                            <p class="my-button topping-btn" class="">Lorem psum4</p>
+                            <p class="my-button topping-btn" class="">Topping 4</p>
                         </label>
                     </div>
 
                     <div>
                         <input type="checkbox" id="topping5" name="topping5" value="topping5" class="topping-option">
                         <label for="topping5">
-                            <p class="my-button topping-btn" class="">Lorem psum5</p>
+                            <p class="my-button topping-btn" class="">Topping 5</p>
                         </label>
                     </div>
 
                     <div>
                         <input type="checkbox" id="topping6" name="topping6" value="topping6" class="topping-option">
                         <label for="topping6">
-                            <p class="my-button topping-btn" class="">Lorem psum6</p>
+                            <p class="my-button topping-btn" class="">Topping 6</p>
                         </label>
                     </div>
 
@@ -627,7 +627,7 @@ function OpenModalEditCoffee(No) {
                             <input type="checkbox" id="topping1" name="topping1" value="topping1"
                                 class="topping-option">
                             <label for="topping1">
-                                <p class="my-button topping-btn topping1-btn" >Lorem psum1</p>
+                                <p class="my-button topping-btn topping1-btn" >Topping 1</p>
                             </label>
                         </div>
 
@@ -635,7 +635,7 @@ function OpenModalEditCoffee(No) {
                             <input type="checkbox" id="topping2" name="topping2" value="topping2"
                                 class="topping-option">
                             <label for="topping2">
-                                <p class="my-button topping-btn topping2-btn" >Lorem psum2</p>
+                                <p class="my-button topping-btn topping2-btn" >Topping 2</p>
                             </label>
                         </div>
 
@@ -644,7 +644,7 @@ function OpenModalEditCoffee(No) {
                             <input type="checkbox" id="topping3" name="topping3" value="topping3"
                                 class="topping-option">
                             <label for="topping3">
-                                <p class="my-button topping-btn topping3-btn" >Lorem psum3</p>
+                                <p class="my-button topping-btn topping3-btn" >Topping 3</p>
                             </label>
                         </div>
 
@@ -652,7 +652,7 @@ function OpenModalEditCoffee(No) {
                             <input type="checkbox" id="topping4" name="topping4" value="topping4"
                                 class="topping-option">
                             <label for="topping4">
-                                <p class="my-button topping-btn topping4-btn" >Lorem psum4</p>
+                                <p class="my-button topping-btn topping4-btn" >Topping 4</p>
                             </label>
                         </div>
 
@@ -660,7 +660,7 @@ function OpenModalEditCoffee(No) {
                             <input type="checkbox" id="topping5" name="topping5" value="topping5"
                                 class="topping-option">
                             <label for="topping5">
-                                <p class="my-button topping-btn topping5-btn" >Lorem psum5</p>
+                                <p class="my-button topping-btn topping5-btn" >Topping 5</p>
                             </label>
                         </div>
 
@@ -668,7 +668,7 @@ function OpenModalEditCoffee(No) {
                             <input type="checkbox" id="topping6" name="topping6" value="topping6"
                                 class="topping-option">
                             <label for="topping6">
-                                <p class="my-button topping-btn topping6-btn">Lorem psum6</p>
+                                <p class="my-button topping-btn topping6-btn">Topping 6</p>
                             </label>
                         </div>
 
