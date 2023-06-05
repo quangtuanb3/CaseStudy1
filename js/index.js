@@ -127,7 +127,6 @@ function checkLogin() {
 }
 
 function logout() {
-  // createMemory()
   localStorage.removeItem('User');
   checkLogin();
 }
@@ -170,7 +169,6 @@ function signUp() {
   } else if (validate.CheckLength("pw_sU", "pw-error")) {
     error++;
   }
-  // if (validate.CheckEmpty("cfPw_sU", confirmPW, "cfPw-error")) error++;
   if (validate.CheckConfirmPw('pw_sU', 'cfPw_sU', "cfPw-error")) {
     error++;
   }
