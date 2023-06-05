@@ -1,7 +1,7 @@
 window.onload = checkLogin();
 function checkLogin() {
     if (localStorage.getItem("User") == null) {
-        window.location.href = '/index.html';
+        window.location.href = './index.html';
     }
 }
 
@@ -117,5 +117,5 @@ function closeBillModal() {
 
 function logout() {
     localStorage.removeItem('User');
-    window.location.href = '/index.html';
+    window.location.href = './index.html';
 }
