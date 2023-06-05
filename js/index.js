@@ -89,13 +89,13 @@ function login() {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
       createMemory(user);
-      window.location.href = '/pages/MenuPage/dashboard.html';
+      window.location.href = './pages/MenuPage/index.html';
       return;
     } else if (email === listUser.listUsers[i].email && password === listUser.listUsers[i].pw && listUser.listUsers[i].auth == 0) {
       let user = listUser.listUsers[i];
       setUserToStorage(user);
       createMemory(user)
-      window.location.href = "/pages/shopPage/shop.html";
+      window.location.href = "./pages/shopPage/index.html";
       return
     }
   }

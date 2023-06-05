@@ -15,7 +15,6 @@ for (var i = 0; i < menuItems.length; i++) {
 function setMemory() {
     let user = JSON.parse(localStorage.getItem("User"));
     if (!memory.isExist(user)) {
-        // memory.replaceUser(user)
         memory.addNewUser(user);
     } else {
         localStorage.setItem("memory", JSON.stringify(memory));
@@ -23,7 +22,6 @@ function setMemory() {
 
 }
 function logout() {
-    // setMemory();
     localStorage.removeItem('User');
     window.location.href = '/index.html';
 }
@@ -57,7 +55,7 @@ Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this
 
 function checkLogin() {
     if (localStorage.getItem("User") == null) {
-        window.location.href = '/index.html';
+        window.location.href = './index.html';
     }
 }
 
@@ -88,10 +86,6 @@ function searchCoffee() {
         DOM_ID("notFound").style.display = 'none';
     }
 }
-// DOM_ID('keyword').addEventListener("input", () => {
-//     DOM_ID("product").scrollIntoView({ behavior: 'smooth' });
-//     searchCoffee();
-// });
 
 function DOM_ID(id) {
     return document.getElementById(id)
