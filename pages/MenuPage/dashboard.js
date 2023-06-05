@@ -16,19 +16,19 @@ setStorage()
 
 function checkLogin() {
     if (localStorage.getItem("User") == null) {
-        window.location.href = './index.html';
+        window.location.href = '../../index.html';
     }
     else {
         let user = JSON.parse(localStorage.getItem("User"));
         if (user.auth != 1) {
-            window.location.href = './index.html';
+            window.location.href = '../../index.html';
         }
     }
 }
 
 function logout() {
     localStorage.removeItem('User');
-    window.location.href = './index.html';
+    window.location.href = '../../index.html';
 }
 
 function AddCoffee() {

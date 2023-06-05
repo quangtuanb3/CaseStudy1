@@ -23,7 +23,7 @@ function setMemory() {
 }
 function logout() {
     localStorage.removeItem('User');
-    window.location.href = './index.html';
+    window.location.href = '../../index.html';
 }
 var listCoffee = new ListCoffee();
 var validate = new Validate();
@@ -55,7 +55,7 @@ Coffee.prototype.calculatePayment = calculateTotal(this.size, this.topping, this
 
 function checkLogin() {
     if (localStorage.getItem("User") == null) {
-        window.location.href = './index.html';
+        window.location.href = '../../index.html';
     }
 }
 
@@ -924,7 +924,7 @@ function openTable() {
 }
 function logout() {
     localStorage.removeItem('User');
-    window.location.href = './index.html';
+    window.location.href = '../../index.html';
 }
 
 window.onload = checkLogin();
