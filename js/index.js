@@ -112,9 +112,9 @@ function checkLogin() {
       logout();
     })
 
-    document.getElementById('visit-shop').innerHTML = '<a href="./pages/shopPage/shop.html">Visit shop</a>';
+    document.getElementById('visit-shop').innerHTML = '<a href="./pages/shopPage/index.html">Visit shop</a>';
 
-    document.getElementById('menubar-shop').innerHTML = ' <a id="shop-tab" href="./pages/shopPage/shop.html">SHOP</a>'
+    document.getElementById('menubar-shop').innerHTML = ' <a id="shop-tab" href="./pages/shopPage/index.html">SHOP</a>'
   } else {
     document.getElementById("login-btn").innerHTML = "Login";
     document.getElementById("login-btn").onclick = showLoginForm();
